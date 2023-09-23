@@ -1,0 +1,76 @@
+generator client {
+  provider = "dart run orm"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:root@localhost:3306/contas_receber"
+}
+
+model cliente {
+  CODCLIENTE   Int      @id @default(autoincrement())
+  NOME         String   @default("") @db.VarChar(500)
+  CPFCNPJ      String   @default("") @db.VarChar(20)
+  ENDERECO     String   @default("") @db.VarChar(500)
+  CONTATO      String   @default("") @db.VarChar(500)
+  DATACADASTRO DateTime @default(now()) @db.DateTime(0)
+  pedido       pedido[]
+}
+
+model contasreceber {
+  CODCONTASRECEBER Int         @id @default(autoincrement())
+  CODPEDIDO        Int
+  DATAEMISSAO      DateTime    @default(now()) @db.DateTime(0)
+  DATAVENCIMENTO   DateTime    @default(now()) @db.DateTime(0)
+  VALOR            Float       @default(0)
+  VALORRESTANTE    Float       @default(0)
+  STATUSPAGAMENTO  String      @default("") @db.VarChar(1)
+  pedido           pedido      @relation(fields: [CODPEDIDO], references: [CODPEDIDO], onUpdate: Restrict, map: "FK_CONTASRECEBER_PEDIDO")
+  pagamento        pagamento[]
+
+  @@index([CODPEDIDO], map: "FK_CONTASRECEBER_PEDIDO")
+}
+
+model itenspedido {
+  CODITENSPEDIDO Int     @id @default(autoincrement())
+  CODPEDIDO      Int
+  CODPRODUTO     Int
+  QUANTIDADE     Int     @default(0)
+  PRECOUNITARIO  Float   @default(0)
+  VALORTOTAL     Float   @default(0)
+  pedido         pedido  @relation(fields: [CODPEDIDO], references: [CODPEDIDO], onUpdate: Restrict, map: "FK_ITENSPEDIDO_PEDIDO")
+  produto        produto @relation(fields: [CODPRODUTO], references: [CODPRODUTO], onUpdate: Restrict, map: "FK_ITENSPEDIDO_PRODUTO")
+
+  @@index([CODPEDIDO], map: "FK_ITENSPEDIDO_PEDIDO")
+  @@index([CODPRODUTO], map: "FK_ITENSPEDIDO_PRODUTO")
+}
+
+model pagamento {
+  CODPAGAMENTO     Int           @id @default(autoincrement())
+  CODCONTASRECEBER Int
+  DATAPAGAMENTO    DateTime      @default(now()) @db.DateTime(0)
+  VALORPAGO        Float         @default(0)
+  contasreceber    contasreceber @relation(fields: [CODCONTASRECEBER], references: [CODCONTASRECEBER], onUpdate: Restrict, map: "FK_PAGAMENTOS_CONTASRECEBER")
+
+  @@index([CODCONTASRECEBER], map: "FK_PAGAMENTOS_CONTASRECEBER")
+}
+
+model pedido {
+  CODPEDIDO     Int             @id @default(autoincrement())
+  CODCLIENTE    Int
+  DATAPEDIDO    DateTime        @default(now()) @db.DateTime(0)
+  VALORTOTAL    Float           @default(0)
+  contasreceber contasreceber[]
+  itenspedido   itenspedido[]
+  cliente       cliente         @relation(fields: [CODCLIENTE], references: [CODCLIENTE], onUpdate: Restrict, map: "FK_PEDIDO_CLIENTE")
+
+  @@index([CODCLIENTE], map: "FK_PEDIDO_CLIENTE")
+}
+
+model produto {
+  CODPRODUTO  Int           @id @default(autoincrement())
+  NOME        String        @default("") @db.VarChar(500)
+  DESCRICAO   String        @default("") @db.VarChar(500)
+  PRECO       Float         @default(0)
+  itenspedido itenspedido[]
+}
