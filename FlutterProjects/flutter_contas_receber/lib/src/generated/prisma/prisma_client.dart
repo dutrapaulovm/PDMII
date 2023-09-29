@@ -32,6 +32,8 @@ enum ClienteScalarFieldEnum implements _i1.PrismaEnum {
 enum ContasreceberScalarFieldEnum implements _i1.PrismaEnum {
   @JsonValue('CODCONTASRECEBER')
   codcontasreceber(r'CODCONTASRECEBER'),
+  @JsonValue('CODCLIENTE')
+  codcliente(r'CODCLIENTE'),
   @JsonValue('CODPEDIDO')
   codpedido(r'CODPEDIDO'),
   @JsonValue('DATAEMISSAO')
@@ -139,6 +141,7 @@ class ClienteWhereInput implements _i1.JsonSerializable {
     this.endereco,
     this.contato,
     this.datacadastro,
+    this.contasreceber,
     this.pedido,
   });
 
@@ -169,6 +172,8 @@ class ClienteWhereInput implements _i1.JsonSerializable {
   @JsonKey(name: r'DATACADASTRO')
   final DateTimeFilter? datacadastro;
 
+  final ContasreceberListRelationFilter? contasreceber;
+
   final PedidoListRelationFilter? pedido;
 
   @override
@@ -184,6 +189,7 @@ class ClienteOrderByWithRelationInput implements _i1.JsonSerializable {
     this.endereco,
     this.contato,
     this.datacadastro,
+    this.contasreceber,
     this.pedido,
   });
 
@@ -207,6 +213,8 @@ class ClienteOrderByWithRelationInput implements _i1.JsonSerializable {
 
   @JsonKey(name: r'DATACADASTRO')
   final SortOrder? datacadastro;
+
+  final ContasreceberOrderByRelationAggregateInput? contasreceber;
 
   final PedidoOrderByRelationAggregateInput? pedido;
 
@@ -341,12 +349,14 @@ class ContasreceberWhereInput implements _i1.JsonSerializable {
     this.OR,
     this.NOT,
     this.codcontasreceber,
+    this.codcliente,
     this.codpedido,
     this.dataemissao,
     this.datavencimento,
     this.valor,
     this.valorrestante,
     this.statuspagamento,
+    this.cliente,
     this.pedido,
     this.pagamento,
   });
@@ -363,8 +373,11 @@ class ContasreceberWhereInput implements _i1.JsonSerializable {
   @JsonKey(name: r'CODCONTASRECEBER')
   final IntFilter? codcontasreceber;
 
+  @JsonKey(name: r'CODCLIENTE')
+  final IntFilter? codcliente;
+
   @JsonKey(name: r'CODPEDIDO')
-  final IntFilter? codpedido;
+  final IntNullableFilter? codpedido;
 
   @JsonKey(name: r'DATAEMISSAO')
   final DateTimeFilter? dataemissao;
@@ -381,6 +394,8 @@ class ContasreceberWhereInput implements _i1.JsonSerializable {
   @JsonKey(name: r'STATUSPAGAMENTO')
   final StringFilter? statuspagamento;
 
+  final ClienteRelationFilter? cliente;
+
   final PedidoRelationFilter? pedido;
 
   final PagamentoListRelationFilter? pagamento;
@@ -393,12 +408,14 @@ class ContasreceberWhereInput implements _i1.JsonSerializable {
 class ContasreceberOrderByWithRelationInput implements _i1.JsonSerializable {
   const ContasreceberOrderByWithRelationInput({
     this.codcontasreceber,
+    this.codcliente,
     this.codpedido,
     this.dataemissao,
     this.datavencimento,
     this.valor,
     this.valorrestante,
     this.statuspagamento,
+    this.cliente,
     this.pedido,
     this.pagamento,
   });
@@ -409,6 +426,9 @@ class ContasreceberOrderByWithRelationInput implements _i1.JsonSerializable {
 
   @JsonKey(name: r'CODCONTASRECEBER')
   final SortOrder? codcontasreceber;
+
+  @JsonKey(name: r'CODCLIENTE')
+  final SortOrder? codcliente;
 
   @JsonKey(name: r'CODPEDIDO')
   final SortOrder? codpedido;
@@ -427,6 +447,8 @@ class ContasreceberOrderByWithRelationInput implements _i1.JsonSerializable {
 
   @JsonKey(name: r'STATUSPAGAMENTO')
   final SortOrder? statuspagamento;
+
+  final ClienteOrderByWithRelationInput? cliente;
 
   final PedidoOrderByWithRelationInput? pedido;
 
@@ -455,6 +477,7 @@ class ContasreceberWhereUniqueInput implements _i1.JsonSerializable {
 class ContasreceberOrderByWithAggregationInput implements _i1.JsonSerializable {
   const ContasreceberOrderByWithAggregationInput({
     this.codcontasreceber,
+    this.codcliente,
     this.codpedido,
     this.dataemissao,
     this.datavencimento,
@@ -474,6 +497,9 @@ class ContasreceberOrderByWithAggregationInput implements _i1.JsonSerializable {
 
   @JsonKey(name: r'CODCONTASRECEBER')
   final SortOrder? codcontasreceber;
+
+  @JsonKey(name: r'CODCLIENTE')
+  final SortOrder? codcliente;
 
   @JsonKey(name: r'CODPEDIDO')
   final SortOrder? codpedido;
@@ -521,6 +547,7 @@ class ContasreceberScalarWhereWithAggregatesInput
     this.OR,
     this.NOT,
     this.codcontasreceber,
+    this.codcliente,
     this.codpedido,
     this.dataemissao,
     this.datavencimento,
@@ -542,8 +569,11 @@ class ContasreceberScalarWhereWithAggregatesInput
   @JsonKey(name: r'CODCONTASRECEBER')
   final IntWithAggregatesFilter? codcontasreceber;
 
+  @JsonKey(name: r'CODCLIENTE')
+  final IntWithAggregatesFilter? codcliente;
+
   @JsonKey(name: r'CODPEDIDO')
-  final IntWithAggregatesFilter? codpedido;
+  final IntNullableWithAggregatesFilter? codpedido;
 
   @JsonKey(name: r'DATAEMISSAO')
   final DateTimeWithAggregatesFilter? dataemissao;
@@ -1325,6 +1355,7 @@ class ClienteCreateInput implements _i1.JsonSerializable {
     this.endereco,
     this.contato,
     this.datacadastro,
+    this.contasreceber,
     this.pedido,
   });
 
@@ -1346,6 +1377,8 @@ class ClienteCreateInput implements _i1.JsonSerializable {
   @JsonKey(name: r'DATACADASTRO')
   final DateTime? datacadastro;
 
+  final ContasreceberCreateNestedManyWithoutClienteInput? contasreceber;
+
   final PedidoCreateNestedManyWithoutClienteInput? pedido;
 
   @override
@@ -1361,6 +1394,7 @@ class ClienteUncheckedCreateInput implements _i1.JsonSerializable {
     this.endereco,
     this.contato,
     this.datacadastro,
+    this.contasreceber,
     this.pedido,
   });
 
@@ -1385,6 +1419,9 @@ class ClienteUncheckedCreateInput implements _i1.JsonSerializable {
   @JsonKey(name: r'DATACADASTRO')
   final DateTime? datacadastro;
 
+  final ContasreceberUncheckedCreateNestedManyWithoutClienteInput?
+      contasreceber;
+
   final PedidoUncheckedCreateNestedManyWithoutClienteInput? pedido;
 
   @override
@@ -1399,6 +1436,7 @@ class ClienteUpdateInput implements _i1.JsonSerializable {
     this.endereco,
     this.contato,
     this.datacadastro,
+    this.contasreceber,
     this.pedido,
   });
 
@@ -1420,6 +1458,8 @@ class ClienteUpdateInput implements _i1.JsonSerializable {
   @JsonKey(name: r'DATACADASTRO')
   final DateTimeFieldUpdateOperationsInput? datacadastro;
 
+  final ContasreceberUpdateManyWithoutClienteNestedInput? contasreceber;
+
   final PedidoUpdateManyWithoutClienteNestedInput? pedido;
 
   @override
@@ -1435,6 +1475,7 @@ class ClienteUncheckedUpdateInput implements _i1.JsonSerializable {
     this.endereco,
     this.contato,
     this.datacadastro,
+    this.contasreceber,
     this.pedido,
   });
 
@@ -1458,6 +1499,9 @@ class ClienteUncheckedUpdateInput implements _i1.JsonSerializable {
 
   @JsonKey(name: r'DATACADASTRO')
   final DateTimeFieldUpdateOperationsInput? datacadastro;
+
+  final ContasreceberUncheckedUpdateManyWithoutClienteNestedInput?
+      contasreceber;
 
   final PedidoUncheckedUpdateManyWithoutClienteNestedInput? pedido;
 
@@ -1578,7 +1622,8 @@ class ContasreceberCreateInput implements _i1.JsonSerializable {
     this.valor,
     this.valorrestante,
     this.statuspagamento,
-    required this.pedido,
+    required this.cliente,
+    this.pedido,
     this.pagamento,
   });
 
@@ -1600,7 +1645,9 @@ class ContasreceberCreateInput implements _i1.JsonSerializable {
   @JsonKey(name: r'STATUSPAGAMENTO')
   final String? statuspagamento;
 
-  final PedidoCreateNestedOneWithoutContasreceberInput pedido;
+  final ClienteCreateNestedOneWithoutContasreceberInput cliente;
+
+  final PedidoCreateNestedOneWithoutContasreceberInput? pedido;
 
   final PagamentoCreateNestedManyWithoutContasreceberInput? pagamento;
 
@@ -1612,7 +1659,8 @@ class ContasreceberCreateInput implements _i1.JsonSerializable {
 class ContasreceberUncheckedCreateInput implements _i1.JsonSerializable {
   const ContasreceberUncheckedCreateInput({
     this.codcontasreceber,
-    required this.codpedido,
+    required this.codcliente,
+    this.codpedido,
     this.dataemissao,
     this.datavencimento,
     this.valor,
@@ -1628,8 +1676,11 @@ class ContasreceberUncheckedCreateInput implements _i1.JsonSerializable {
   @JsonKey(name: r'CODCONTASRECEBER')
   final int? codcontasreceber;
 
+  @JsonKey(name: r'CODCLIENTE')
+  final int codcliente;
+
   @JsonKey(name: r'CODPEDIDO')
-  final int codpedido;
+  final int? codpedido;
 
   @JsonKey(name: r'DATAEMISSAO')
   final DateTime? dataemissao;
@@ -1661,6 +1712,7 @@ class ContasreceberUpdateInput implements _i1.JsonSerializable {
     this.valor,
     this.valorrestante,
     this.statuspagamento,
+    this.cliente,
     this.pedido,
     this.pagamento,
   });
@@ -1683,7 +1735,9 @@ class ContasreceberUpdateInput implements _i1.JsonSerializable {
   @JsonKey(name: r'STATUSPAGAMENTO')
   final StringFieldUpdateOperationsInput? statuspagamento;
 
-  final PedidoUpdateOneRequiredWithoutContasreceberNestedInput? pedido;
+  final ClienteUpdateOneRequiredWithoutContasreceberNestedInput? cliente;
+
+  final PedidoUpdateOneWithoutContasreceberNestedInput? pedido;
 
   final PagamentoUpdateManyWithoutContasreceberNestedInput? pagamento;
 
@@ -1695,6 +1749,7 @@ class ContasreceberUpdateInput implements _i1.JsonSerializable {
 class ContasreceberUncheckedUpdateInput implements _i1.JsonSerializable {
   const ContasreceberUncheckedUpdateInput({
     this.codcontasreceber,
+    this.codcliente,
     this.codpedido,
     this.dataemissao,
     this.datavencimento,
@@ -1711,8 +1766,11 @@ class ContasreceberUncheckedUpdateInput implements _i1.JsonSerializable {
   @JsonKey(name: r'CODCONTASRECEBER')
   final IntFieldUpdateOperationsInput? codcontasreceber;
 
+  @JsonKey(name: r'CODCLIENTE')
+  final IntFieldUpdateOperationsInput? codcliente;
+
   @JsonKey(name: r'CODPEDIDO')
-  final IntFieldUpdateOperationsInput? codpedido;
+  final NullableIntFieldUpdateOperationsInput? codpedido;
 
   @JsonKey(name: r'DATAEMISSAO')
   final DateTimeFieldUpdateOperationsInput? dataemissao;
@@ -1740,7 +1798,8 @@ class ContasreceberUncheckedUpdateInput implements _i1.JsonSerializable {
 class ContasreceberCreateManyInput implements _i1.JsonSerializable {
   const ContasreceberCreateManyInput({
     this.codcontasreceber,
-    required this.codpedido,
+    required this.codcliente,
+    this.codpedido,
     this.dataemissao,
     this.datavencimento,
     this.valor,
@@ -1754,8 +1813,11 @@ class ContasreceberCreateManyInput implements _i1.JsonSerializable {
   @JsonKey(name: r'CODCONTASRECEBER')
   final int? codcontasreceber;
 
+  @JsonKey(name: r'CODCLIENTE')
+  final int codcliente;
+
   @JsonKey(name: r'CODPEDIDO')
-  final int codpedido;
+  final int? codpedido;
 
   @JsonKey(name: r'DATAEMISSAO')
   final DateTime? dataemissao;
@@ -1814,6 +1876,7 @@ class ContasreceberUpdateManyMutationInput implements _i1.JsonSerializable {
 class ContasreceberUncheckedUpdateManyInput implements _i1.JsonSerializable {
   const ContasreceberUncheckedUpdateManyInput({
     this.codcontasreceber,
+    this.codcliente,
     this.codpedido,
     this.dataemissao,
     this.datavencimento,
@@ -1829,8 +1892,11 @@ class ContasreceberUncheckedUpdateManyInput implements _i1.JsonSerializable {
   @JsonKey(name: r'CODCONTASRECEBER')
   final IntFieldUpdateOperationsInput? codcontasreceber;
 
+  @JsonKey(name: r'CODCLIENTE')
+  final IntFieldUpdateOperationsInput? codcliente;
+
   @JsonKey(name: r'CODPEDIDO')
-  final IntFieldUpdateOperationsInput? codpedido;
+  final NullableIntFieldUpdateOperationsInput? codpedido;
 
   @JsonKey(name: r'DATAEMISSAO')
   final DateTimeFieldUpdateOperationsInput? dataemissao;
@@ -2789,6 +2855,28 @@ class DateTimeFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
+class ContasreceberListRelationFilter implements _i1.JsonSerializable {
+  const ContasreceberListRelationFilter({
+    this.every,
+    this.some,
+    this.none,
+  });
+
+  factory ContasreceberListRelationFilter.fromJson(Map<String, dynamic> json) =>
+      _$ContasreceberListRelationFilterFromJson(json);
+
+  final ContasreceberWhereInput? every;
+
+  final ContasreceberWhereInput? some;
+
+  final ContasreceberWhereInput? none;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberListRelationFilterToJson(this);
+}
+
+@_i1.jsonSerializable
 class PedidoListRelationFilter implements _i1.JsonSerializable {
   const PedidoListRelationFilter({
     this.every,
@@ -2807,6 +2895,23 @@ class PedidoListRelationFilter implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$PedidoListRelationFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberOrderByRelationAggregateInput
+    implements _i1.JsonSerializable {
+  const ContasreceberOrderByRelationAggregateInput({this.$count});
+
+  factory ContasreceberOrderByRelationAggregateInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberOrderByRelationAggregateInputFromJson(json);
+
+  @JsonKey(name: r'_count')
+  final SortOrder? $count;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberOrderByRelationAggregateInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -3132,6 +3237,43 @@ class DateTimeWithAggregatesFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
+class IntNullableFilter implements _i1.JsonSerializable {
+  const IntNullableFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+  });
+
+  factory IntNullableFilter.fromJson(Map<String, dynamic> json) =>
+      _$IntNullableFilterFromJson(json);
+
+  final int? equals;
+
+  @JsonKey(name: r'in')
+  final Iterable<int>? $in;
+
+  final Iterable<int>? notIn;
+
+  final int? lt;
+
+  final int? lte;
+
+  final int? gt;
+
+  final int? gte;
+
+  final NestedIntNullableFilter? not;
+
+  @override
+  Map<String, dynamic> toJson() => _$IntNullableFilterToJson(this);
+}
+
+@_i1.jsonSerializable
 class FloatFilter implements _i1.JsonSerializable {
   const FloatFilter({
     this.equals,
@@ -3166,6 +3308,25 @@ class FloatFilter implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$FloatFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class ClienteRelationFilter implements _i1.JsonSerializable {
+  const ClienteRelationFilter({
+    this.$is,
+    this.isNot,
+  });
+
+  factory ClienteRelationFilter.fromJson(Map<String, dynamic> json) =>
+      _$ClienteRelationFilterFromJson(json);
+
+  @JsonKey(name: r'is')
+  final ClienteWhereInput? $is;
+
+  final ClienteWhereInput? isNot;
+
+  @override
+  Map<String, dynamic> toJson() => _$ClienteRelationFilterToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -3228,6 +3389,7 @@ class PagamentoOrderByRelationAggregateInput implements _i1.JsonSerializable {
 class ContasreceberCountOrderByAggregateInput implements _i1.JsonSerializable {
   const ContasreceberCountOrderByAggregateInput({
     this.codcontasreceber,
+    this.codcliente,
     this.codpedido,
     this.dataemissao,
     this.datavencimento,
@@ -3242,6 +3404,9 @@ class ContasreceberCountOrderByAggregateInput implements _i1.JsonSerializable {
 
   @JsonKey(name: r'CODCONTASRECEBER')
   final SortOrder? codcontasreceber;
+
+  @JsonKey(name: r'CODCLIENTE')
+  final SortOrder? codcliente;
 
   @JsonKey(name: r'CODPEDIDO')
   final SortOrder? codpedido;
@@ -3270,6 +3435,7 @@ class ContasreceberCountOrderByAggregateInput implements _i1.JsonSerializable {
 class ContasreceberAvgOrderByAggregateInput implements _i1.JsonSerializable {
   const ContasreceberAvgOrderByAggregateInput({
     this.codcontasreceber,
+    this.codcliente,
     this.codpedido,
     this.valor,
     this.valorrestante,
@@ -3281,6 +3447,9 @@ class ContasreceberAvgOrderByAggregateInput implements _i1.JsonSerializable {
 
   @JsonKey(name: r'CODCONTASRECEBER')
   final SortOrder? codcontasreceber;
+
+  @JsonKey(name: r'CODCLIENTE')
+  final SortOrder? codcliente;
 
   @JsonKey(name: r'CODPEDIDO')
   final SortOrder? codpedido;
@@ -3300,6 +3469,7 @@ class ContasreceberAvgOrderByAggregateInput implements _i1.JsonSerializable {
 class ContasreceberMaxOrderByAggregateInput implements _i1.JsonSerializable {
   const ContasreceberMaxOrderByAggregateInput({
     this.codcontasreceber,
+    this.codcliente,
     this.codpedido,
     this.dataemissao,
     this.datavencimento,
@@ -3314,6 +3484,9 @@ class ContasreceberMaxOrderByAggregateInput implements _i1.JsonSerializable {
 
   @JsonKey(name: r'CODCONTASRECEBER')
   final SortOrder? codcontasreceber;
+
+  @JsonKey(name: r'CODCLIENTE')
+  final SortOrder? codcliente;
 
   @JsonKey(name: r'CODPEDIDO')
   final SortOrder? codpedido;
@@ -3342,6 +3515,7 @@ class ContasreceberMaxOrderByAggregateInput implements _i1.JsonSerializable {
 class ContasreceberMinOrderByAggregateInput implements _i1.JsonSerializable {
   const ContasreceberMinOrderByAggregateInput({
     this.codcontasreceber,
+    this.codcliente,
     this.codpedido,
     this.dataemissao,
     this.datavencimento,
@@ -3356,6 +3530,9 @@ class ContasreceberMinOrderByAggregateInput implements _i1.JsonSerializable {
 
   @JsonKey(name: r'CODCONTASRECEBER')
   final SortOrder? codcontasreceber;
+
+  @JsonKey(name: r'CODCLIENTE')
+  final SortOrder? codcliente;
 
   @JsonKey(name: r'CODPEDIDO')
   final SortOrder? codpedido;
@@ -3384,6 +3561,7 @@ class ContasreceberMinOrderByAggregateInput implements _i1.JsonSerializable {
 class ContasreceberSumOrderByAggregateInput implements _i1.JsonSerializable {
   const ContasreceberSumOrderByAggregateInput({
     this.codcontasreceber,
+    this.codcliente,
     this.codpedido,
     this.valor,
     this.valorrestante,
@@ -3395,6 +3573,9 @@ class ContasreceberSumOrderByAggregateInput implements _i1.JsonSerializable {
 
   @JsonKey(name: r'CODCONTASRECEBER')
   final SortOrder? codcontasreceber;
+
+  @JsonKey(name: r'CODCLIENTE')
+  final SortOrder? codcliente;
 
   @JsonKey(name: r'CODPEDIDO')
   final SortOrder? codpedido;
@@ -3408,6 +3589,64 @@ class ContasreceberSumOrderByAggregateInput implements _i1.JsonSerializable {
   @override
   Map<String, dynamic> toJson() =>
       _$ContasreceberSumOrderByAggregateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class IntNullableWithAggregatesFilter implements _i1.JsonSerializable {
+  const IntNullableWithAggregatesFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+    this.$count,
+    this.$avg,
+    this.$sum,
+    this.$min,
+    this.$max,
+  });
+
+  factory IntNullableWithAggregatesFilter.fromJson(Map<String, dynamic> json) =>
+      _$IntNullableWithAggregatesFilterFromJson(json);
+
+  final int? equals;
+
+  @JsonKey(name: r'in')
+  final Iterable<int>? $in;
+
+  final Iterable<int>? notIn;
+
+  final int? lt;
+
+  final int? lte;
+
+  final int? gt;
+
+  final int? gte;
+
+  final NestedIntNullableWithAggregatesFilter? not;
+
+  @JsonKey(name: r'_count')
+  final NestedIntNullableFilter? $count;
+
+  @JsonKey(name: r'_avg')
+  final NestedFloatNullableFilter? $avg;
+
+  @JsonKey(name: r'_sum')
+  final NestedIntNullableFilter? $sum;
+
+  @JsonKey(name: r'_min')
+  final NestedIntNullableFilter? $min;
+
+  @JsonKey(name: r'_max')
+  final NestedIntNullableFilter? $max;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$IntNullableWithAggregatesFilterToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -3838,28 +4077,6 @@ class PagamentoSumOrderByAggregateInput implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
-class ContasreceberListRelationFilter implements _i1.JsonSerializable {
-  const ContasreceberListRelationFilter({
-    this.every,
-    this.some,
-    this.none,
-  });
-
-  factory ContasreceberListRelationFilter.fromJson(Map<String, dynamic> json) =>
-      _$ContasreceberListRelationFilterFromJson(json);
-
-  final ContasreceberWhereInput? every;
-
-  final ContasreceberWhereInput? some;
-
-  final ContasreceberWhereInput? none;
-
-  @override
-  Map<String, dynamic> toJson() =>
-      _$ContasreceberListRelationFilterToJson(this);
-}
-
-@_i1.jsonSerializable
 class ItenspedidoListRelationFilter implements _i1.JsonSerializable {
   const ItenspedidoListRelationFilter({
     this.every,
@@ -3878,42 +4095,6 @@ class ItenspedidoListRelationFilter implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$ItenspedidoListRelationFilterToJson(this);
-}
-
-@_i1.jsonSerializable
-class ClienteRelationFilter implements _i1.JsonSerializable {
-  const ClienteRelationFilter({
-    this.$is,
-    this.isNot,
-  });
-
-  factory ClienteRelationFilter.fromJson(Map<String, dynamic> json) =>
-      _$ClienteRelationFilterFromJson(json);
-
-  @JsonKey(name: r'is')
-  final ClienteWhereInput? $is;
-
-  final ClienteWhereInput? isNot;
-
-  @override
-  Map<String, dynamic> toJson() => _$ClienteRelationFilterToJson(this);
-}
-
-@_i1.jsonSerializable
-class ContasreceberOrderByRelationAggregateInput
-    implements _i1.JsonSerializable {
-  const ContasreceberOrderByRelationAggregateInput({this.$count});
-
-  factory ContasreceberOrderByRelationAggregateInput.fromJson(
-          Map<String, dynamic> json) =>
-      _$ContasreceberOrderByRelationAggregateInputFromJson(json);
-
-  @JsonKey(name: r'_count')
-  final SortOrder? $count;
-
-  @override
-  Map<String, dynamic> toJson() =>
-      _$ContasreceberOrderByRelationAggregateInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -4197,6 +4378,34 @@ class ProdutoSumOrderByAggregateInput implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
+class ContasreceberCreateNestedManyWithoutClienteInput
+    implements _i1.JsonSerializable {
+  const ContasreceberCreateNestedManyWithoutClienteInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  factory ContasreceberCreateNestedManyWithoutClienteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberCreateNestedManyWithoutClienteInputFromJson(json);
+
+  final Iterable<ContasreceberCreateWithoutClienteInput>? create;
+
+  final Iterable<ContasreceberCreateOrConnectWithoutClienteInput>?
+      connectOrCreate;
+
+  final ContasreceberCreateManyClienteInputEnvelope? createMany;
+
+  final Iterable<ContasreceberWhereUniqueInput>? connect;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberCreateNestedManyWithoutClienteInputToJson(this);
+}
+
+@_i1.jsonSerializable
 class PedidoCreateNestedManyWithoutClienteInput
     implements _i1.JsonSerializable {
   const PedidoCreateNestedManyWithoutClienteInput({
@@ -4221,6 +4430,34 @@ class PedidoCreateNestedManyWithoutClienteInput
   @override
   Map<String, dynamic> toJson() =>
       _$PedidoCreateNestedManyWithoutClienteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberUncheckedCreateNestedManyWithoutClienteInput
+    implements _i1.JsonSerializable {
+  const ContasreceberUncheckedCreateNestedManyWithoutClienteInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  factory ContasreceberUncheckedCreateNestedManyWithoutClienteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberUncheckedCreateNestedManyWithoutClienteInputFromJson(json);
+
+  final Iterable<ContasreceberCreateWithoutClienteInput>? create;
+
+  final Iterable<ContasreceberCreateOrConnectWithoutClienteInput>?
+      connectOrCreate;
+
+  final ContasreceberCreateManyClienteInputEnvelope? createMany;
+
+  final Iterable<ContasreceberWhereUniqueInput>? connect;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberUncheckedCreateNestedManyWithoutClienteInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -4278,6 +4515,56 @@ class DateTimeFieldUpdateOperationsInput implements _i1.JsonSerializable {
   @override
   Map<String, dynamic> toJson() =>
       _$DateTimeFieldUpdateOperationsInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberUpdateManyWithoutClienteNestedInput
+    implements _i1.JsonSerializable {
+  const ContasreceberUpdateManyWithoutClienteNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  factory ContasreceberUpdateManyWithoutClienteNestedInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberUpdateManyWithoutClienteNestedInputFromJson(json);
+
+  final Iterable<ContasreceberCreateWithoutClienteInput>? create;
+
+  final Iterable<ContasreceberCreateOrConnectWithoutClienteInput>?
+      connectOrCreate;
+
+  final Iterable<ContasreceberUpsertWithWhereUniqueWithoutClienteInput>? upsert;
+
+  final ContasreceberCreateManyClienteInputEnvelope? createMany;
+
+  final Iterable<ContasreceberWhereUniqueInput>? set;
+
+  final Iterable<ContasreceberWhereUniqueInput>? disconnect;
+
+  final Iterable<ContasreceberWhereUniqueInput>? delete;
+
+  final Iterable<ContasreceberWhereUniqueInput>? connect;
+
+  final Iterable<ContasreceberUpdateWithWhereUniqueWithoutClienteInput>? update;
+
+  final Iterable<ContasreceberUpdateManyWithWhereWithoutClienteInput>?
+      updateMany;
+
+  final Iterable<ContasreceberScalarWhereInput>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberUpdateManyWithoutClienteNestedInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -4356,6 +4643,56 @@ class IntFieldUpdateOperationsInput implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
+class ContasreceberUncheckedUpdateManyWithoutClienteNestedInput
+    implements _i1.JsonSerializable {
+  const ContasreceberUncheckedUpdateManyWithoutClienteNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  factory ContasreceberUncheckedUpdateManyWithoutClienteNestedInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberUncheckedUpdateManyWithoutClienteNestedInputFromJson(json);
+
+  final Iterable<ContasreceberCreateWithoutClienteInput>? create;
+
+  final Iterable<ContasreceberCreateOrConnectWithoutClienteInput>?
+      connectOrCreate;
+
+  final Iterable<ContasreceberUpsertWithWhereUniqueWithoutClienteInput>? upsert;
+
+  final ContasreceberCreateManyClienteInputEnvelope? createMany;
+
+  final Iterable<ContasreceberWhereUniqueInput>? set;
+
+  final Iterable<ContasreceberWhereUniqueInput>? disconnect;
+
+  final Iterable<ContasreceberWhereUniqueInput>? delete;
+
+  final Iterable<ContasreceberWhereUniqueInput>? connect;
+
+  final Iterable<ContasreceberUpdateWithWhereUniqueWithoutClienteInput>? update;
+
+  final Iterable<ContasreceberUpdateManyWithWhereWithoutClienteInput>?
+      updateMany;
+
+  final Iterable<ContasreceberScalarWhereInput>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberUncheckedUpdateManyWithoutClienteNestedInputToJson(this);
+}
+
+@_i1.jsonSerializable
 class PedidoUncheckedUpdateManyWithoutClienteNestedInput
     implements _i1.JsonSerializable {
   const PedidoUncheckedUpdateManyWithoutClienteNestedInput({
@@ -4401,6 +4738,30 @@ class PedidoUncheckedUpdateManyWithoutClienteNestedInput
   @override
   Map<String, dynamic> toJson() =>
       _$PedidoUncheckedUpdateManyWithoutClienteNestedInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ClienteCreateNestedOneWithoutContasreceberInput
+    implements _i1.JsonSerializable {
+  const ClienteCreateNestedOneWithoutContasreceberInput({
+    this.create,
+    this.connectOrCreate,
+    this.connect,
+  });
+
+  factory ClienteCreateNestedOneWithoutContasreceberInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ClienteCreateNestedOneWithoutContasreceberInputFromJson(json);
+
+  final ClienteCreateWithoutContasreceberInput? create;
+
+  final ClienteCreateOrConnectWithoutContasreceberInput? connectOrCreate;
+
+  final ClienteWhereUniqueInput? connect;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ClienteCreateNestedOneWithoutContasreceberInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -4513,9 +4874,9 @@ class FloatFieldUpdateOperationsInput implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
-class PedidoUpdateOneRequiredWithoutContasreceberNestedInput
+class ClienteUpdateOneRequiredWithoutContasreceberNestedInput
     implements _i1.JsonSerializable {
-  const PedidoUpdateOneRequiredWithoutContasreceberNestedInput({
+  const ClienteUpdateOneRequiredWithoutContasreceberNestedInput({
     this.create,
     this.connectOrCreate,
     this.upsert,
@@ -4523,9 +4884,41 @@ class PedidoUpdateOneRequiredWithoutContasreceberNestedInput
     this.update,
   });
 
-  factory PedidoUpdateOneRequiredWithoutContasreceberNestedInput.fromJson(
+  factory ClienteUpdateOneRequiredWithoutContasreceberNestedInput.fromJson(
           Map<String, dynamic> json) =>
-      _$PedidoUpdateOneRequiredWithoutContasreceberNestedInputFromJson(json);
+      _$ClienteUpdateOneRequiredWithoutContasreceberNestedInputFromJson(json);
+
+  final ClienteCreateWithoutContasreceberInput? create;
+
+  final ClienteCreateOrConnectWithoutContasreceberInput? connectOrCreate;
+
+  final ClienteUpsertWithoutContasreceberInput? upsert;
+
+  final ClienteWhereUniqueInput? connect;
+
+  final ClienteUpdateWithoutContasreceberInput? update;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ClienteUpdateOneRequiredWithoutContasreceberNestedInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class PedidoUpdateOneWithoutContasreceberNestedInput
+    implements _i1.JsonSerializable {
+  const PedidoUpdateOneWithoutContasreceberNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+  });
+
+  factory PedidoUpdateOneWithoutContasreceberNestedInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$PedidoUpdateOneWithoutContasreceberNestedInputFromJson(json);
 
   final PedidoCreateWithoutContasreceberInput? create;
 
@@ -4533,13 +4926,17 @@ class PedidoUpdateOneRequiredWithoutContasreceberNestedInput
 
   final PedidoUpsertWithoutContasreceberInput? upsert;
 
+  final bool? disconnect;
+
+  final bool? delete;
+
   final PedidoWhereUniqueInput? connect;
 
   final PedidoUpdateWithoutContasreceberInput? update;
 
   @override
   Map<String, dynamic> toJson() =>
-      _$PedidoUpdateOneRequiredWithoutContasreceberNestedInputToJson(this);
+      _$PedidoUpdateOneWithoutContasreceberNestedInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -4592,6 +4989,35 @@ class PagamentoUpdateManyWithoutContasreceberNestedInput
   @override
   Map<String, dynamic> toJson() =>
       _$PagamentoUpdateManyWithoutContasreceberNestedInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class NullableIntFieldUpdateOperationsInput implements _i1.JsonSerializable {
+  const NullableIntFieldUpdateOperationsInput({
+    this.set,
+    this.increment,
+    this.decrement,
+    this.multiply,
+    this.divide,
+  });
+
+  factory NullableIntFieldUpdateOperationsInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$NullableIntFieldUpdateOperationsInputFromJson(json);
+
+  final int? set;
+
+  final int? increment;
+
+  final int? decrement;
+
+  final int? multiply;
+
+  final int? divide;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$NullableIntFieldUpdateOperationsInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -5648,6 +6074,139 @@ class NestedDateTimeWithAggregatesFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
+class NestedIntNullableFilter implements _i1.JsonSerializable {
+  const NestedIntNullableFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+  });
+
+  factory NestedIntNullableFilter.fromJson(Map<String, dynamic> json) =>
+      _$NestedIntNullableFilterFromJson(json);
+
+  final int? equals;
+
+  @JsonKey(name: r'in')
+  final Iterable<int>? $in;
+
+  final Iterable<int>? notIn;
+
+  final int? lt;
+
+  final int? lte;
+
+  final int? gt;
+
+  final int? gte;
+
+  final NestedIntNullableFilter? not;
+
+  @override
+  Map<String, dynamic> toJson() => _$NestedIntNullableFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class NestedIntNullableWithAggregatesFilter implements _i1.JsonSerializable {
+  const NestedIntNullableWithAggregatesFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+    this.$count,
+    this.$avg,
+    this.$sum,
+    this.$min,
+    this.$max,
+  });
+
+  factory NestedIntNullableWithAggregatesFilter.fromJson(
+          Map<String, dynamic> json) =>
+      _$NestedIntNullableWithAggregatesFilterFromJson(json);
+
+  final int? equals;
+
+  @JsonKey(name: r'in')
+  final Iterable<int>? $in;
+
+  final Iterable<int>? notIn;
+
+  final int? lt;
+
+  final int? lte;
+
+  final int? gt;
+
+  final int? gte;
+
+  final NestedIntNullableWithAggregatesFilter? not;
+
+  @JsonKey(name: r'_count')
+  final NestedIntNullableFilter? $count;
+
+  @JsonKey(name: r'_avg')
+  final NestedFloatNullableFilter? $avg;
+
+  @JsonKey(name: r'_sum')
+  final NestedIntNullableFilter? $sum;
+
+  @JsonKey(name: r'_min')
+  final NestedIntNullableFilter? $min;
+
+  @JsonKey(name: r'_max')
+  final NestedIntNullableFilter? $max;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$NestedIntNullableWithAggregatesFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class NestedFloatNullableFilter implements _i1.JsonSerializable {
+  const NestedFloatNullableFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+  });
+
+  factory NestedFloatNullableFilter.fromJson(Map<String, dynamic> json) =>
+      _$NestedFloatNullableFilterFromJson(json);
+
+  final double? equals;
+
+  @JsonKey(name: r'in')
+  final Iterable<double>? $in;
+
+  final Iterable<double>? notIn;
+
+  final double? lt;
+
+  final double? lte;
+
+  final double? gt;
+
+  final double? gte;
+
+  final NestedFloatNullableFilter? not;
+
+  @override
+  Map<String, dynamic> toJson() => _$NestedFloatNullableFilterToJson(this);
+}
+
+@_i1.jsonSerializable
 class NestedFloatWithAggregatesFilter implements _i1.JsonSerializable {
   const NestedFloatWithAggregatesFilter({
     this.equals,
@@ -5703,6 +6262,134 @@ class NestedFloatWithAggregatesFilter implements _i1.JsonSerializable {
   @override
   Map<String, dynamic> toJson() =>
       _$NestedFloatWithAggregatesFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberCreateWithoutClienteInput implements _i1.JsonSerializable {
+  const ContasreceberCreateWithoutClienteInput({
+    this.dataemissao,
+    this.datavencimento,
+    this.valor,
+    this.valorrestante,
+    this.statuspagamento,
+    this.pedido,
+    this.pagamento,
+  });
+
+  factory ContasreceberCreateWithoutClienteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberCreateWithoutClienteInputFromJson(json);
+
+  @JsonKey(name: r'DATAEMISSAO')
+  final DateTime? dataemissao;
+
+  @JsonKey(name: r'DATAVENCIMENTO')
+  final DateTime? datavencimento;
+
+  @JsonKey(name: r'VALOR')
+  final double? valor;
+
+  @JsonKey(name: r'VALORRESTANTE')
+  final double? valorrestante;
+
+  @JsonKey(name: r'STATUSPAGAMENTO')
+  final String? statuspagamento;
+
+  final PedidoCreateNestedOneWithoutContasreceberInput? pedido;
+
+  final PagamentoCreateNestedManyWithoutContasreceberInput? pagamento;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberCreateWithoutClienteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberUncheckedCreateWithoutClienteInput
+    implements _i1.JsonSerializable {
+  const ContasreceberUncheckedCreateWithoutClienteInput({
+    this.codcontasreceber,
+    this.codpedido,
+    this.dataemissao,
+    this.datavencimento,
+    this.valor,
+    this.valorrestante,
+    this.statuspagamento,
+    this.pagamento,
+  });
+
+  factory ContasreceberUncheckedCreateWithoutClienteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberUncheckedCreateWithoutClienteInputFromJson(json);
+
+  @JsonKey(name: r'CODCONTASRECEBER')
+  final int? codcontasreceber;
+
+  @JsonKey(name: r'CODPEDIDO')
+  final int? codpedido;
+
+  @JsonKey(name: r'DATAEMISSAO')
+  final DateTime? dataemissao;
+
+  @JsonKey(name: r'DATAVENCIMENTO')
+  final DateTime? datavencimento;
+
+  @JsonKey(name: r'VALOR')
+  final double? valor;
+
+  @JsonKey(name: r'VALORRESTANTE')
+  final double? valorrestante;
+
+  @JsonKey(name: r'STATUSPAGAMENTO')
+  final String? statuspagamento;
+
+  final PagamentoUncheckedCreateNestedManyWithoutContasreceberInput? pagamento;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberUncheckedCreateWithoutClienteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberCreateOrConnectWithoutClienteInput
+    implements _i1.JsonSerializable {
+  const ContasreceberCreateOrConnectWithoutClienteInput({
+    required this.where,
+    required this.create,
+  });
+
+  factory ContasreceberCreateOrConnectWithoutClienteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberCreateOrConnectWithoutClienteInputFromJson(json);
+
+  final ContasreceberWhereUniqueInput where;
+
+  final ContasreceberCreateWithoutClienteInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberCreateOrConnectWithoutClienteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberCreateManyClienteInputEnvelope
+    implements _i1.JsonSerializable {
+  const ContasreceberCreateManyClienteInputEnvelope({
+    required this.data,
+    this.skipDuplicates,
+  });
+
+  factory ContasreceberCreateManyClienteInputEnvelope.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberCreateManyClienteInputEnvelopeFromJson(json);
+
+  final Iterable<ContasreceberCreateManyClienteInput> data;
+
+  final bool? skipDuplicates;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberCreateManyClienteInputEnvelopeToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -5802,6 +6489,125 @@ class PedidoCreateManyClienteInputEnvelope implements _i1.JsonSerializable {
   @override
   Map<String, dynamic> toJson() =>
       _$PedidoCreateManyClienteInputEnvelopeToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberUpsertWithWhereUniqueWithoutClienteInput
+    implements _i1.JsonSerializable {
+  const ContasreceberUpsertWithWhereUniqueWithoutClienteInput({
+    required this.where,
+    required this.update,
+    required this.create,
+  });
+
+  factory ContasreceberUpsertWithWhereUniqueWithoutClienteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberUpsertWithWhereUniqueWithoutClienteInputFromJson(json);
+
+  final ContasreceberWhereUniqueInput where;
+
+  final ContasreceberUpdateWithoutClienteInput update;
+
+  final ContasreceberCreateWithoutClienteInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberUpsertWithWhereUniqueWithoutClienteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberUpdateWithWhereUniqueWithoutClienteInput
+    implements _i1.JsonSerializable {
+  const ContasreceberUpdateWithWhereUniqueWithoutClienteInput({
+    required this.where,
+    required this.data,
+  });
+
+  factory ContasreceberUpdateWithWhereUniqueWithoutClienteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberUpdateWithWhereUniqueWithoutClienteInputFromJson(json);
+
+  final ContasreceberWhereUniqueInput where;
+
+  final ContasreceberUpdateWithoutClienteInput data;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberUpdateWithWhereUniqueWithoutClienteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberUpdateManyWithWhereWithoutClienteInput
+    implements _i1.JsonSerializable {
+  const ContasreceberUpdateManyWithWhereWithoutClienteInput({
+    required this.where,
+    required this.data,
+  });
+
+  factory ContasreceberUpdateManyWithWhereWithoutClienteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberUpdateManyWithWhereWithoutClienteInputFromJson(json);
+
+  final ContasreceberScalarWhereInput where;
+
+  final ContasreceberUpdateManyMutationInput data;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberUpdateManyWithWhereWithoutClienteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberScalarWhereInput implements _i1.JsonSerializable {
+  const ContasreceberScalarWhereInput({
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.codcontasreceber,
+    this.codcliente,
+    this.codpedido,
+    this.dataemissao,
+    this.datavencimento,
+    this.valor,
+    this.valorrestante,
+    this.statuspagamento,
+  });
+
+  factory ContasreceberScalarWhereInput.fromJson(Map<String, dynamic> json) =>
+      _$ContasreceberScalarWhereInputFromJson(json);
+
+  final Iterable<ContasreceberScalarWhereInput>? AND;
+
+  final Iterable<ContasreceberScalarWhereInput>? OR;
+
+  final Iterable<ContasreceberScalarWhereInput>? NOT;
+
+  @JsonKey(name: r'CODCONTASRECEBER')
+  final IntFilter? codcontasreceber;
+
+  @JsonKey(name: r'CODCLIENTE')
+  final IntFilter? codcliente;
+
+  @JsonKey(name: r'CODPEDIDO')
+  final IntNullableFilter? codpedido;
+
+  @JsonKey(name: r'DATAEMISSAO')
+  final DateTimeFilter? dataemissao;
+
+  @JsonKey(name: r'DATAVENCIMENTO')
+  final DateTimeFilter? datavencimento;
+
+  @JsonKey(name: r'VALOR')
+  final FloatFilter? valor;
+
+  @JsonKey(name: r'VALORRESTANTE')
+  final FloatFilter? valorrestante;
+
+  @JsonKey(name: r'STATUSPAGAMENTO')
+  final StringFilter? statuspagamento;
+
+  @override
+  Map<String, dynamic> toJson() => _$ContasreceberScalarWhereInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -5905,6 +6711,106 @@ class PedidoScalarWhereInput implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$PedidoScalarWhereInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ClienteCreateWithoutContasreceberInput implements _i1.JsonSerializable {
+  const ClienteCreateWithoutContasreceberInput({
+    this.nome,
+    this.cpfcnpj,
+    this.endereco,
+    this.contato,
+    this.datacadastro,
+    this.pedido,
+  });
+
+  factory ClienteCreateWithoutContasreceberInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ClienteCreateWithoutContasreceberInputFromJson(json);
+
+  @JsonKey(name: r'NOME')
+  final String? nome;
+
+  @JsonKey(name: r'CPFCNPJ')
+  final String? cpfcnpj;
+
+  @JsonKey(name: r'ENDERECO')
+  final String? endereco;
+
+  @JsonKey(name: r'CONTATO')
+  final String? contato;
+
+  @JsonKey(name: r'DATACADASTRO')
+  final DateTime? datacadastro;
+
+  final PedidoCreateNestedManyWithoutClienteInput? pedido;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ClienteCreateWithoutContasreceberInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ClienteUncheckedCreateWithoutContasreceberInput
+    implements _i1.JsonSerializable {
+  const ClienteUncheckedCreateWithoutContasreceberInput({
+    this.codcliente,
+    this.nome,
+    this.cpfcnpj,
+    this.endereco,
+    this.contato,
+    this.datacadastro,
+    this.pedido,
+  });
+
+  factory ClienteUncheckedCreateWithoutContasreceberInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ClienteUncheckedCreateWithoutContasreceberInputFromJson(json);
+
+  @JsonKey(name: r'CODCLIENTE')
+  final int? codcliente;
+
+  @JsonKey(name: r'NOME')
+  final String? nome;
+
+  @JsonKey(name: r'CPFCNPJ')
+  final String? cpfcnpj;
+
+  @JsonKey(name: r'ENDERECO')
+  final String? endereco;
+
+  @JsonKey(name: r'CONTATO')
+  final String? contato;
+
+  @JsonKey(name: r'DATACADASTRO')
+  final DateTime? datacadastro;
+
+  final PedidoUncheckedCreateNestedManyWithoutClienteInput? pedido;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ClienteUncheckedCreateWithoutContasreceberInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ClienteCreateOrConnectWithoutContasreceberInput
+    implements _i1.JsonSerializable {
+  const ClienteCreateOrConnectWithoutContasreceberInput({
+    required this.where,
+    required this.create,
+  });
+
+  factory ClienteCreateOrConnectWithoutContasreceberInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ClienteCreateOrConnectWithoutContasreceberInputFromJson(json);
+
+  final ClienteWhereUniqueInput where;
+
+  final ClienteCreateWithoutContasreceberInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ClienteCreateOrConnectWithoutContasreceberInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -6079,6 +6985,105 @@ class PagamentoCreateManyContasreceberInputEnvelope
   @override
   Map<String, dynamic> toJson() =>
       _$PagamentoCreateManyContasreceberInputEnvelopeToJson(this);
+}
+
+@_i1.jsonSerializable
+class ClienteUpsertWithoutContasreceberInput implements _i1.JsonSerializable {
+  const ClienteUpsertWithoutContasreceberInput({
+    required this.update,
+    required this.create,
+  });
+
+  factory ClienteUpsertWithoutContasreceberInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ClienteUpsertWithoutContasreceberInputFromJson(json);
+
+  final ClienteUpdateWithoutContasreceberInput update;
+
+  final ClienteCreateWithoutContasreceberInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ClienteUpsertWithoutContasreceberInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ClienteUpdateWithoutContasreceberInput implements _i1.JsonSerializable {
+  const ClienteUpdateWithoutContasreceberInput({
+    this.nome,
+    this.cpfcnpj,
+    this.endereco,
+    this.contato,
+    this.datacadastro,
+    this.pedido,
+  });
+
+  factory ClienteUpdateWithoutContasreceberInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ClienteUpdateWithoutContasreceberInputFromJson(json);
+
+  @JsonKey(name: r'NOME')
+  final StringFieldUpdateOperationsInput? nome;
+
+  @JsonKey(name: r'CPFCNPJ')
+  final StringFieldUpdateOperationsInput? cpfcnpj;
+
+  @JsonKey(name: r'ENDERECO')
+  final StringFieldUpdateOperationsInput? endereco;
+
+  @JsonKey(name: r'CONTATO')
+  final StringFieldUpdateOperationsInput? contato;
+
+  @JsonKey(name: r'DATACADASTRO')
+  final DateTimeFieldUpdateOperationsInput? datacadastro;
+
+  final PedidoUpdateManyWithoutClienteNestedInput? pedido;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ClienteUpdateWithoutContasreceberInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ClienteUncheckedUpdateWithoutContasreceberInput
+    implements _i1.JsonSerializable {
+  const ClienteUncheckedUpdateWithoutContasreceberInput({
+    this.codcliente,
+    this.nome,
+    this.cpfcnpj,
+    this.endereco,
+    this.contato,
+    this.datacadastro,
+    this.pedido,
+  });
+
+  factory ClienteUncheckedUpdateWithoutContasreceberInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ClienteUncheckedUpdateWithoutContasreceberInputFromJson(json);
+
+  @JsonKey(name: r'CODCLIENTE')
+  final IntFieldUpdateOperationsInput? codcliente;
+
+  @JsonKey(name: r'NOME')
+  final StringFieldUpdateOperationsInput? nome;
+
+  @JsonKey(name: r'CPFCNPJ')
+  final StringFieldUpdateOperationsInput? cpfcnpj;
+
+  @JsonKey(name: r'ENDERECO')
+  final StringFieldUpdateOperationsInput? endereco;
+
+  @JsonKey(name: r'CONTATO')
+  final StringFieldUpdateOperationsInput? contato;
+
+  @JsonKey(name: r'DATACADASTRO')
+  final DateTimeFieldUpdateOperationsInput? datacadastro;
+
+  final PedidoUncheckedUpdateManyWithoutClienteNestedInput? pedido;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ClienteUncheckedUpdateWithoutContasreceberInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -6594,7 +7599,8 @@ class ContasreceberCreateWithoutPagamentoInput implements _i1.JsonSerializable {
     this.valor,
     this.valorrestante,
     this.statuspagamento,
-    required this.pedido,
+    required this.cliente,
+    this.pedido,
   });
 
   factory ContasreceberCreateWithoutPagamentoInput.fromJson(
@@ -6616,7 +7622,9 @@ class ContasreceberCreateWithoutPagamentoInput implements _i1.JsonSerializable {
   @JsonKey(name: r'STATUSPAGAMENTO')
   final String? statuspagamento;
 
-  final PedidoCreateNestedOneWithoutContasreceberInput pedido;
+  final ClienteCreateNestedOneWithoutContasreceberInput cliente;
+
+  final PedidoCreateNestedOneWithoutContasreceberInput? pedido;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -6628,7 +7636,8 @@ class ContasreceberUncheckedCreateWithoutPagamentoInput
     implements _i1.JsonSerializable {
   const ContasreceberUncheckedCreateWithoutPagamentoInput({
     this.codcontasreceber,
-    required this.codpedido,
+    required this.codcliente,
+    this.codpedido,
     this.dataemissao,
     this.datavencimento,
     this.valor,
@@ -6643,8 +7652,11 @@ class ContasreceberUncheckedCreateWithoutPagamentoInput
   @JsonKey(name: r'CODCONTASRECEBER')
   final int? codcontasreceber;
 
+  @JsonKey(name: r'CODCLIENTE')
+  final int codcliente;
+
   @JsonKey(name: r'CODPEDIDO')
-  final int codpedido;
+  final int? codpedido;
 
   @JsonKey(name: r'DATAEMISSAO')
   final DateTime? dataemissao;
@@ -6715,6 +7727,7 @@ class ContasreceberUpdateWithoutPagamentoInput implements _i1.JsonSerializable {
     this.valor,
     this.valorrestante,
     this.statuspagamento,
+    this.cliente,
     this.pedido,
   });
 
@@ -6737,7 +7750,9 @@ class ContasreceberUpdateWithoutPagamentoInput implements _i1.JsonSerializable {
   @JsonKey(name: r'STATUSPAGAMENTO')
   final StringFieldUpdateOperationsInput? statuspagamento;
 
-  final PedidoUpdateOneRequiredWithoutContasreceberNestedInput? pedido;
+  final ClienteUpdateOneRequiredWithoutContasreceberNestedInput? cliente;
+
+  final PedidoUpdateOneWithoutContasreceberNestedInput? pedido;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -6749,6 +7764,7 @@ class ContasreceberUncheckedUpdateWithoutPagamentoInput
     implements _i1.JsonSerializable {
   const ContasreceberUncheckedUpdateWithoutPagamentoInput({
     this.codcontasreceber,
+    this.codcliente,
     this.codpedido,
     this.dataemissao,
     this.datavencimento,
@@ -6764,8 +7780,11 @@ class ContasreceberUncheckedUpdateWithoutPagamentoInput
   @JsonKey(name: r'CODCONTASRECEBER')
   final IntFieldUpdateOperationsInput? codcontasreceber;
 
+  @JsonKey(name: r'CODCLIENTE')
+  final IntFieldUpdateOperationsInput? codcliente;
+
   @JsonKey(name: r'CODPEDIDO')
-  final IntFieldUpdateOperationsInput? codpedido;
+  final NullableIntFieldUpdateOperationsInput? codpedido;
 
   @JsonKey(name: r'DATAEMISSAO')
   final DateTimeFieldUpdateOperationsInput? dataemissao;
@@ -6795,6 +7814,7 @@ class ContasreceberCreateWithoutPedidoInput implements _i1.JsonSerializable {
     this.valor,
     this.valorrestante,
     this.statuspagamento,
+    required this.cliente,
     this.pagamento,
   });
 
@@ -6817,6 +7837,8 @@ class ContasreceberCreateWithoutPedidoInput implements _i1.JsonSerializable {
   @JsonKey(name: r'STATUSPAGAMENTO')
   final String? statuspagamento;
 
+  final ClienteCreateNestedOneWithoutContasreceberInput cliente;
+
   final PagamentoCreateNestedManyWithoutContasreceberInput? pagamento;
 
   @override
@@ -6829,6 +7851,7 @@ class ContasreceberUncheckedCreateWithoutPedidoInput
     implements _i1.JsonSerializable {
   const ContasreceberUncheckedCreateWithoutPedidoInput({
     this.codcontasreceber,
+    required this.codcliente,
     this.dataemissao,
     this.datavencimento,
     this.valor,
@@ -6843,6 +7866,9 @@ class ContasreceberUncheckedCreateWithoutPedidoInput
 
   @JsonKey(name: r'CODCONTASRECEBER')
   final int? codcontasreceber;
+
+  @JsonKey(name: r'CODCLIENTE')
+  final int codcliente;
 
   @JsonKey(name: r'DATAEMISSAO')
   final DateTime? dataemissao;
@@ -7021,6 +8047,7 @@ class ClienteCreateWithoutPedidoInput implements _i1.JsonSerializable {
     this.endereco,
     this.contato,
     this.datacadastro,
+    this.contasreceber,
   });
 
   factory ClienteCreateWithoutPedidoInput.fromJson(Map<String, dynamic> json) =>
@@ -7041,6 +8068,8 @@ class ClienteCreateWithoutPedidoInput implements _i1.JsonSerializable {
   @JsonKey(name: r'DATACADASTRO')
   final DateTime? datacadastro;
 
+  final ContasreceberCreateNestedManyWithoutClienteInput? contasreceber;
+
   @override
   Map<String, dynamic> toJson() =>
       _$ClienteCreateWithoutPedidoInputToJson(this);
@@ -7055,6 +8084,7 @@ class ClienteUncheckedCreateWithoutPedidoInput implements _i1.JsonSerializable {
     this.endereco,
     this.contato,
     this.datacadastro,
+    this.contasreceber,
   });
 
   factory ClienteUncheckedCreateWithoutPedidoInput.fromJson(
@@ -7078,6 +8108,9 @@ class ClienteUncheckedCreateWithoutPedidoInput implements _i1.JsonSerializable {
 
   @JsonKey(name: r'DATACADASTRO')
   final DateTime? datacadastro;
+
+  final ContasreceberUncheckedCreateNestedManyWithoutClienteInput?
+      contasreceber;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -7168,55 +8201,6 @@ class ContasreceberUpdateManyWithWhereWithoutPedidoInput
   @override
   Map<String, dynamic> toJson() =>
       _$ContasreceberUpdateManyWithWhereWithoutPedidoInputToJson(this);
-}
-
-@_i1.jsonSerializable
-class ContasreceberScalarWhereInput implements _i1.JsonSerializable {
-  const ContasreceberScalarWhereInput({
-    this.AND,
-    this.OR,
-    this.NOT,
-    this.codcontasreceber,
-    this.codpedido,
-    this.dataemissao,
-    this.datavencimento,
-    this.valor,
-    this.valorrestante,
-    this.statuspagamento,
-  });
-
-  factory ContasreceberScalarWhereInput.fromJson(Map<String, dynamic> json) =>
-      _$ContasreceberScalarWhereInputFromJson(json);
-
-  final Iterable<ContasreceberScalarWhereInput>? AND;
-
-  final Iterable<ContasreceberScalarWhereInput>? OR;
-
-  final Iterable<ContasreceberScalarWhereInput>? NOT;
-
-  @JsonKey(name: r'CODCONTASRECEBER')
-  final IntFilter? codcontasreceber;
-
-  @JsonKey(name: r'CODPEDIDO')
-  final IntFilter? codpedido;
-
-  @JsonKey(name: r'DATAEMISSAO')
-  final DateTimeFilter? dataemissao;
-
-  @JsonKey(name: r'DATAVENCIMENTO')
-  final DateTimeFilter? datavencimento;
-
-  @JsonKey(name: r'VALOR')
-  final FloatFilter? valor;
-
-  @JsonKey(name: r'VALORRESTANTE')
-  final FloatFilter? valorrestante;
-
-  @JsonKey(name: r'STATUSPAGAMENTO')
-  final StringFilter? statuspagamento;
-
-  @override
-  Map<String, dynamic> toJson() => _$ContasreceberScalarWhereInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -7357,6 +8341,7 @@ class ClienteUpdateWithoutPedidoInput implements _i1.JsonSerializable {
     this.endereco,
     this.contato,
     this.datacadastro,
+    this.contasreceber,
   });
 
   factory ClienteUpdateWithoutPedidoInput.fromJson(Map<String, dynamic> json) =>
@@ -7377,6 +8362,8 @@ class ClienteUpdateWithoutPedidoInput implements _i1.JsonSerializable {
   @JsonKey(name: r'DATACADASTRO')
   final DateTimeFieldUpdateOperationsInput? datacadastro;
 
+  final ContasreceberUpdateManyWithoutClienteNestedInput? contasreceber;
+
   @override
   Map<String, dynamic> toJson() =>
       _$ClienteUpdateWithoutPedidoInputToJson(this);
@@ -7391,6 +8378,7 @@ class ClienteUncheckedUpdateWithoutPedidoInput implements _i1.JsonSerializable {
     this.endereco,
     this.contato,
     this.datacadastro,
+    this.contasreceber,
   });
 
   factory ClienteUncheckedUpdateWithoutPedidoInput.fromJson(
@@ -7414,6 +8402,9 @@ class ClienteUncheckedUpdateWithoutPedidoInput implements _i1.JsonSerializable {
 
   @JsonKey(name: r'DATACADASTRO')
   final DateTimeFieldUpdateOperationsInput? datacadastro;
+
+  final ContasreceberUncheckedUpdateManyWithoutClienteNestedInput?
+      contasreceber;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -7593,6 +8584,48 @@ class ItenspedidoUpdateManyWithWhereWithoutProdutoInput
 }
 
 @_i1.jsonSerializable
+class ContasreceberCreateManyClienteInput implements _i1.JsonSerializable {
+  const ContasreceberCreateManyClienteInput({
+    this.codcontasreceber,
+    this.codpedido,
+    this.dataemissao,
+    this.datavencimento,
+    this.valor,
+    this.valorrestante,
+    this.statuspagamento,
+  });
+
+  factory ContasreceberCreateManyClienteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberCreateManyClienteInputFromJson(json);
+
+  @JsonKey(name: r'CODCONTASRECEBER')
+  final int? codcontasreceber;
+
+  @JsonKey(name: r'CODPEDIDO')
+  final int? codpedido;
+
+  @JsonKey(name: r'DATAEMISSAO')
+  final DateTime? dataemissao;
+
+  @JsonKey(name: r'DATAVENCIMENTO')
+  final DateTime? datavencimento;
+
+  @JsonKey(name: r'VALOR')
+  final double? valor;
+
+  @JsonKey(name: r'VALORRESTANTE')
+  final double? valorrestante;
+
+  @JsonKey(name: r'STATUSPAGAMENTO')
+  final String? statuspagamento;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberCreateManyClienteInputToJson(this);
+}
+
+@_i1.jsonSerializable
 class PedidoCreateManyClienteInput implements _i1.JsonSerializable {
   const PedidoCreateManyClienteInput({
     this.codpedido,
@@ -7614,6 +8647,135 @@ class PedidoCreateManyClienteInput implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$PedidoCreateManyClienteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberUpdateWithoutClienteInput implements _i1.JsonSerializable {
+  const ContasreceberUpdateWithoutClienteInput({
+    this.dataemissao,
+    this.datavencimento,
+    this.valor,
+    this.valorrestante,
+    this.statuspagamento,
+    this.pedido,
+    this.pagamento,
+  });
+
+  factory ContasreceberUpdateWithoutClienteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberUpdateWithoutClienteInputFromJson(json);
+
+  @JsonKey(name: r'DATAEMISSAO')
+  final DateTimeFieldUpdateOperationsInput? dataemissao;
+
+  @JsonKey(name: r'DATAVENCIMENTO')
+  final DateTimeFieldUpdateOperationsInput? datavencimento;
+
+  @JsonKey(name: r'VALOR')
+  final FloatFieldUpdateOperationsInput? valor;
+
+  @JsonKey(name: r'VALORRESTANTE')
+  final FloatFieldUpdateOperationsInput? valorrestante;
+
+  @JsonKey(name: r'STATUSPAGAMENTO')
+  final StringFieldUpdateOperationsInput? statuspagamento;
+
+  final PedidoUpdateOneWithoutContasreceberNestedInput? pedido;
+
+  final PagamentoUpdateManyWithoutContasreceberNestedInput? pagamento;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberUpdateWithoutClienteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberUncheckedUpdateWithoutClienteInput
+    implements _i1.JsonSerializable {
+  const ContasreceberUncheckedUpdateWithoutClienteInput({
+    this.codcontasreceber,
+    this.codpedido,
+    this.dataemissao,
+    this.datavencimento,
+    this.valor,
+    this.valorrestante,
+    this.statuspagamento,
+    this.pagamento,
+  });
+
+  factory ContasreceberUncheckedUpdateWithoutClienteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberUncheckedUpdateWithoutClienteInputFromJson(json);
+
+  @JsonKey(name: r'CODCONTASRECEBER')
+  final IntFieldUpdateOperationsInput? codcontasreceber;
+
+  @JsonKey(name: r'CODPEDIDO')
+  final NullableIntFieldUpdateOperationsInput? codpedido;
+
+  @JsonKey(name: r'DATAEMISSAO')
+  final DateTimeFieldUpdateOperationsInput? dataemissao;
+
+  @JsonKey(name: r'DATAVENCIMENTO')
+  final DateTimeFieldUpdateOperationsInput? datavencimento;
+
+  @JsonKey(name: r'VALOR')
+  final FloatFieldUpdateOperationsInput? valor;
+
+  @JsonKey(name: r'VALORRESTANTE')
+  final FloatFieldUpdateOperationsInput? valorrestante;
+
+  @JsonKey(name: r'STATUSPAGAMENTO')
+  final StringFieldUpdateOperationsInput? statuspagamento;
+
+  final PagamentoUncheckedUpdateManyWithoutContasreceberNestedInput? pagamento;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberUncheckedUpdateWithoutClienteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ContasreceberUncheckedUpdateManyWithoutContasreceberInput
+    implements _i1.JsonSerializable {
+  const ContasreceberUncheckedUpdateManyWithoutContasreceberInput({
+    this.codcontasreceber,
+    this.codpedido,
+    this.dataemissao,
+    this.datavencimento,
+    this.valor,
+    this.valorrestante,
+    this.statuspagamento,
+  });
+
+  factory ContasreceberUncheckedUpdateManyWithoutContasreceberInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ContasreceberUncheckedUpdateManyWithoutContasreceberInputFromJson(json);
+
+  @JsonKey(name: r'CODCONTASRECEBER')
+  final IntFieldUpdateOperationsInput? codcontasreceber;
+
+  @JsonKey(name: r'CODPEDIDO')
+  final NullableIntFieldUpdateOperationsInput? codpedido;
+
+  @JsonKey(name: r'DATAEMISSAO')
+  final DateTimeFieldUpdateOperationsInput? dataemissao;
+
+  @JsonKey(name: r'DATAVENCIMENTO')
+  final DateTimeFieldUpdateOperationsInput? datavencimento;
+
+  @JsonKey(name: r'VALOR')
+  final FloatFieldUpdateOperationsInput? valor;
+
+  @JsonKey(name: r'VALORRESTANTE')
+  final FloatFieldUpdateOperationsInput? valorrestante;
+
+  @JsonKey(name: r'STATUSPAGAMENTO')
+  final StringFieldUpdateOperationsInput? statuspagamento;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ContasreceberUncheckedUpdateManyWithoutContasreceberInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -7808,6 +8970,7 @@ class PagamentoUncheckedUpdateManyWithoutPagamentoInput
 class ContasreceberCreateManyPedidoInput implements _i1.JsonSerializable {
   const ContasreceberCreateManyPedidoInput({
     this.codcontasreceber,
+    required this.codcliente,
     this.dataemissao,
     this.datavencimento,
     this.valor,
@@ -7821,6 +8984,9 @@ class ContasreceberCreateManyPedidoInput implements _i1.JsonSerializable {
 
   @JsonKey(name: r'CODCONTASRECEBER')
   final int? codcontasreceber;
+
+  @JsonKey(name: r'CODCLIENTE')
+  final int codcliente;
 
   @JsonKey(name: r'DATAEMISSAO')
   final DateTime? dataemissao;
@@ -7884,6 +9050,7 @@ class ContasreceberUpdateWithoutPedidoInput implements _i1.JsonSerializable {
     this.valor,
     this.valorrestante,
     this.statuspagamento,
+    this.cliente,
     this.pagamento,
   });
 
@@ -7906,6 +9073,8 @@ class ContasreceberUpdateWithoutPedidoInput implements _i1.JsonSerializable {
   @JsonKey(name: r'STATUSPAGAMENTO')
   final StringFieldUpdateOperationsInput? statuspagamento;
 
+  final ClienteUpdateOneRequiredWithoutContasreceberNestedInput? cliente;
+
   final PagamentoUpdateManyWithoutContasreceberNestedInput? pagamento;
 
   @override
@@ -7918,6 +9087,7 @@ class ContasreceberUncheckedUpdateWithoutPedidoInput
     implements _i1.JsonSerializable {
   const ContasreceberUncheckedUpdateWithoutPedidoInput({
     this.codcontasreceber,
+    this.codcliente,
     this.dataemissao,
     this.datavencimento,
     this.valor,
@@ -7932,6 +9102,9 @@ class ContasreceberUncheckedUpdateWithoutPedidoInput
 
   @JsonKey(name: r'CODCONTASRECEBER')
   final IntFieldUpdateOperationsInput? codcontasreceber;
+
+  @JsonKey(name: r'CODCLIENTE')
+  final IntFieldUpdateOperationsInput? codcliente;
 
   @JsonKey(name: r'DATAEMISSAO')
   final DateTimeFieldUpdateOperationsInput? dataemissao;
@@ -7953,45 +9126,6 @@ class ContasreceberUncheckedUpdateWithoutPedidoInput
   @override
   Map<String, dynamic> toJson() =>
       _$ContasreceberUncheckedUpdateWithoutPedidoInputToJson(this);
-}
-
-@_i1.jsonSerializable
-class ContasreceberUncheckedUpdateManyWithoutContasreceberInput
-    implements _i1.JsonSerializable {
-  const ContasreceberUncheckedUpdateManyWithoutContasreceberInput({
-    this.codcontasreceber,
-    this.dataemissao,
-    this.datavencimento,
-    this.valor,
-    this.valorrestante,
-    this.statuspagamento,
-  });
-
-  factory ContasreceberUncheckedUpdateManyWithoutContasreceberInput.fromJson(
-          Map<String, dynamic> json) =>
-      _$ContasreceberUncheckedUpdateManyWithoutContasreceberInputFromJson(json);
-
-  @JsonKey(name: r'CODCONTASRECEBER')
-  final IntFieldUpdateOperationsInput? codcontasreceber;
-
-  @JsonKey(name: r'DATAEMISSAO')
-  final DateTimeFieldUpdateOperationsInput? dataemissao;
-
-  @JsonKey(name: r'DATAVENCIMENTO')
-  final DateTimeFieldUpdateOperationsInput? datavencimento;
-
-  @JsonKey(name: r'VALOR')
-  final FloatFieldUpdateOperationsInput? valor;
-
-  @JsonKey(name: r'VALORRESTANTE')
-  final FloatFieldUpdateOperationsInput? valorrestante;
-
-  @JsonKey(name: r'STATUSPAGAMENTO')
-  final StringFieldUpdateOperationsInput? statuspagamento;
-
-  @override
-  Map<String, dynamic> toJson() =>
-      _$ContasreceberUncheckedUpdateManyWithoutContasreceberInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -8231,7 +9365,8 @@ class Cliente implements _i1.JsonSerializable {
 class Contasreceber implements _i1.JsonSerializable {
   const Contasreceber({
     required this.codcontasreceber,
-    required this.codpedido,
+    required this.codcliente,
+    this.codpedido,
     required this.dataemissao,
     required this.datavencimento,
     required this.valor,
@@ -8245,8 +9380,11 @@ class Contasreceber implements _i1.JsonSerializable {
   @JsonKey(name: r'CODCONTASRECEBER')
   final int codcontasreceber;
 
+  @JsonKey(name: r'CODCLIENTE')
+  final int codcliente;
+
   @JsonKey(name: r'CODPEDIDO')
-  final int codpedido;
+  final int? codpedido;
 
   @JsonKey(name: r'DATAEMISSAO')
   final DateTime dataemissao;
@@ -8392,6 +9530,57 @@ class ClienteFluent<T> extends _i1.PrismaFluent<T> {
     super.$query,
   );
 
+  Future<Iterable<Contasreceber>?> contasreceber({
+    ContasreceberWhereInput? where,
+    Iterable<ContasreceberOrderByWithRelationInput>? orderBy,
+    ContasreceberWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    Iterable<ContasreceberScalarFieldEnum>? distinct,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'cursor',
+        cursor,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+      _i2.GraphQLArg(
+        r'distinct',
+        distinct,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'contasreceber',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'contasreceber',
+    );
+    final fields = ContasreceberScalarFieldEnum.values.toGraphQLFields();
+    compiler(Iterable<Map> contasreceber) => contasreceber.map(
+        (Map contasreceber) => Contasreceber.fromJson(contasreceber.cast()));
+    return query(fields)
+        .then((json) => json is Iterable ? compiler(json.cast()) : null);
+  }
+
   Future<Iterable<Pedido>?> pedido({
     PedidoWhereInput? where,
     Iterable<PedidoOrderByWithRelationInput>? orderBy,
@@ -8463,7 +9652,28 @@ class ContasreceberFluent<T> extends _i1.PrismaFluent<T> {
     super.$query,
   );
 
-  PedidoFluent<Pedido> pedido() {
+  ClienteFluent<Cliente> cliente() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'cliente',
+          fields: fields,
+        )
+      ]),
+      key: r'cliente',
+    );
+    final future = query(ClienteScalarFieldEnum.values.toGraphQLFields()).then(
+        (json) => json is Map
+            ? Cliente.fromJson(json.cast<String, dynamic>())
+            : throw Exception(
+                'Not found OutputTypeRefType.string(value: cliente)'));
+    return ClienteFluent<Cliente>(
+      future,
+      query,
+    );
+  }
+
+  PedidoFluent<Pedido?> pedido() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
@@ -8474,11 +9684,9 @@ class ContasreceberFluent<T> extends _i1.PrismaFluent<T> {
       key: r'pedido',
     );
     final future = query(PedidoScalarFieldEnum.values.toGraphQLFields()).then(
-        (json) => json is Map
-            ? Pedido.fromJson(json.cast<String, dynamic>())
-            : throw Exception(
-                'Not found OutputTypeRefType.string(value: pedido)'));
-    return PedidoFluent<Pedido>(
+        (json) =>
+            json is Map ? Pedido.fromJson(json.cast<String, dynamic>()) : null);
+    return PedidoFluent<Pedido?>(
       future,
       query,
     );
@@ -12080,6 +13288,7 @@ class ClienteGroupByOutputType implements _i1.JsonSerializable {
 class ContasreceberGroupByOutputType implements _i1.JsonSerializable {
   const ContasreceberGroupByOutputType({
     this.codcontasreceber,
+    this.codcliente,
     this.codpedido,
     this.dataemissao,
     this.datavencimento,
@@ -12093,6 +13302,9 @@ class ContasreceberGroupByOutputType implements _i1.JsonSerializable {
 
   @JsonKey(name: r'CODCONTASRECEBER')
   final int? codcontasreceber;
+
+  @JsonKey(name: r'CODCLIENTE')
+  final int? codcliente;
 
   @JsonKey(name: r'CODPEDIDO')
   final int? codpedido;
@@ -12680,6 +13892,19 @@ class ClienteCountOutputType {
 
   final _i1.PrismaFluentQuery $query;
 
+  Future<int> contasreceber() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'contasreceber',
+          fields: fields,
+        )
+      ]),
+      key: r'contasreceber',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
   Future<int> pedido() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
@@ -13036,6 +14261,19 @@ class ContasreceberCountAggregateOutputType {
     return query(const []).then((value) => (value as int));
   }
 
+  Future<int> codcliente() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'CODCLIENTE',
+          fields: fields,
+        )
+      ]),
+      key: r'CODCLIENTE',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
   Future<int> codpedido() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
@@ -13146,6 +14384,19 @@ class ContasreceberAvgAggregateOutputType {
     return query(const []).then((value) => (value as double?));
   }
 
+  Future<double?> codcliente() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'CODCLIENTE',
+          fields: fields,
+        )
+      ]),
+      key: r'CODCLIENTE',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
   Future<double?> codpedido() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
@@ -13204,6 +14455,19 @@ class ContasreceberSumAggregateOutputType {
     return query(const []).then((value) => (value as int?));
   }
 
+  Future<int?> codcliente() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'CODCLIENTE',
+          fields: fields,
+        )
+      ]),
+      key: r'CODCLIENTE',
+    );
+    return query(const []).then((value) => (value as int?));
+  }
+
   Future<int?> codpedido() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
@@ -13258,6 +14522,19 @@ class ContasreceberMinAggregateOutputType {
         )
       ]),
       key: r'CODCONTASRECEBER',
+    );
+    return query(const []).then((value) => (value as int?));
+  }
+
+  Future<int?> codcliente() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'CODCLIENTE',
+          fields: fields,
+        )
+      ]),
+      key: r'CODCLIENTE',
     );
     return query(const []).then((value) => (value as int?));
   }
@@ -13357,6 +14634,19 @@ class ContasreceberMaxAggregateOutputType {
         )
       ]),
       key: r'CODCONTASRECEBER',
+    );
+    return query(const []).then((value) => (value as int?));
+  }
+
+  Future<int?> codcliente() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'CODCLIENTE',
+          fields: fields,
+        )
+      ]),
+      key: r'CODCLIENTE',
     );
     return query(const []).then((value) => (value as int?));
   }
@@ -14776,10 +16066,10 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
     final engine = _i5.BinaryEngine(
       logger: logger,
       schema:
-          r'Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgp9CgpkYXRhc291cmNlIGRiIHsKICBwcm92aWRlciA9ICJteXNxbCIKICB1cmwgICAgICA9ICJteXNxbDovL3Jvb3Q6cm9vdEBsb2NhbGhvc3Q6MzMwNi9jb250YXNfcmVjZWJlciIKfQoKbW9kZWwgY2xpZW50ZSB7CiAgQ09EQ0xJRU5URSAgIEludCAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgTk9NRSAgICAgICAgIFN0cmluZyAgIEBkZWZhdWx0KCIiKSBAZGIuVmFyQ2hhcig1MDApCiAgQ1BGQ05QSiAgICAgIFN0cmluZyAgIEBkZWZhdWx0KCIiKSBAZGIuVmFyQ2hhcigyMCkKICBFTkRFUkVDTyAgICAgU3RyaW5nICAgQGRlZmF1bHQoIiIpIEBkYi5WYXJDaGFyKDUwMCkKICBDT05UQVRPICAgICAgU3RyaW5nICAgQGRlZmF1bHQoIiIpIEBkYi5WYXJDaGFyKDUwMCkKICBEQVRBQ0FEQVNUUk8gRGF0ZVRpbWUgQGRlZmF1bHQobm93KCkpIEBkYi5EYXRlVGltZSgwKQogIHBlZGlkbyAgICAgICBwZWRpZG9bXQp9Cgptb2RlbCBjb250YXNyZWNlYmVyIHsKICBDT0RDT05UQVNSRUNFQkVSIEludCAgICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgQ09EUEVESURPICAgICAgICBJbnQKICBEQVRBRU1JU1NBTyAgICAgIERhdGVUaW1lICAgIEBkZWZhdWx0KG5vdygpKSBAZGIuRGF0ZVRpbWUoMCkKICBEQVRBVkVOQ0lNRU5UTyAgIERhdGVUaW1lICAgIEBkZWZhdWx0KG5vdygpKSBAZGIuRGF0ZVRpbWUoMCkKICBWQUxPUiAgICAgICAgICAgIEZsb2F0ICAgICAgIEBkZWZhdWx0KDApCiAgVkFMT1JSRVNUQU5URSAgICBGbG9hdCAgICAgICBAZGVmYXVsdCgwKQogIFNUQVRVU1BBR0FNRU5UTyAgU3RyaW5nICAgICAgQGRlZmF1bHQoIiIpIEBkYi5WYXJDaGFyKDEpCiAgcGVkaWRvICAgICAgICAgICBwZWRpZG8gICAgICBAcmVsYXRpb24oZmllbGRzOiBbQ09EUEVESURPXSwgcmVmZXJlbmNlczogW0NPRFBFRElET10sIG9uVXBkYXRlOiBSZXN0cmljdCwgbWFwOiAiRktfQ09OVEFTUkVDRUJFUl9QRURJRE8iKQogIHBhZ2FtZW50byAgICAgICAgcGFnYW1lbnRvW10KCiAgQEBpbmRleChbQ09EUEVESURPXSwgbWFwOiAiRktfQ09OVEFTUkVDRUJFUl9QRURJRE8iKQp9Cgptb2RlbCBpdGVuc3BlZGlkbyB7CiAgQ09ESVRFTlNQRURJRE8gSW50ICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIENPRFBFRElETyAgICAgIEludAogIENPRFBST0RVVE8gICAgIEludAogIFFVQU5USURBREUgICAgIEludCAgICAgQGRlZmF1bHQoMCkKICBQUkVDT1VOSVRBUklPICBGbG9hdCAgIEBkZWZhdWx0KDApCiAgVkFMT1JUT1RBTCAgICAgRmxvYXQgICBAZGVmYXVsdCgwKQogIHBlZGlkbyAgICAgICAgIHBlZGlkbyAgQHJlbGF0aW9uKGZpZWxkczogW0NPRFBFRElET10sIHJlZmVyZW5jZXM6IFtDT0RQRURJRE9dLCBvblVwZGF0ZTogUmVzdHJpY3QsIG1hcDogIkZLX0lURU5TUEVESURPX1BFRElETyIpCiAgcHJvZHV0byAgICAgICAgcHJvZHV0byBAcmVsYXRpb24oZmllbGRzOiBbQ09EUFJPRFVUT10sIHJlZmVyZW5jZXM6IFtDT0RQUk9EVVRPXSwgb25VcGRhdGU6IFJlc3RyaWN0LCBtYXA6ICJGS19JVEVOU1BFRElET19QUk9EVVRPIikKCiAgQEBpbmRleChbQ09EUEVESURPXSwgbWFwOiAiRktfSVRFTlNQRURJRE9fUEVESURPIikKICBAQGluZGV4KFtDT0RQUk9EVVRPXSwgbWFwOiAiRktfSVRFTlNQRURJRE9fUFJPRFVUTyIpCn0KCm1vZGVsIHBhZ2FtZW50byB7CiAgQ09EUEFHQU1FTlRPICAgICBJbnQgICAgICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgQ09EQ09OVEFTUkVDRUJFUiBJbnQKICBEQVRBUEFHQU1FTlRPICAgIERhdGVUaW1lICAgICAgQGRlZmF1bHQobm93KCkpIEBkYi5EYXRlVGltZSgwKQogIFZBTE9SUEFHTyAgICAgICAgRmxvYXQgICAgICAgICBAZGVmYXVsdCgwKQogIGNvbnRhc3JlY2ViZXIgICAgY29udGFzcmVjZWJlciBAcmVsYXRpb24oZmllbGRzOiBbQ09EQ09OVEFTUkVDRUJFUl0sIHJlZmVyZW5jZXM6IFtDT0RDT05UQVNSRUNFQkVSXSwgb25VcGRhdGU6IFJlc3RyaWN0LCBtYXA6ICJGS19QQUdBTUVOVE9TX0NPTlRBU1JFQ0VCRVIiKQoKICBAQGluZGV4KFtDT0RDT05UQVNSRUNFQkVSXSwgbWFwOiAiRktfUEFHQU1FTlRPU19DT05UQVNSRUNFQkVSIikKfQoKbW9kZWwgcGVkaWRvIHsKICBDT0RQRURJRE8gICAgIEludCAgICAgICAgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIENPRENMSUVOVEUgICAgSW50CiAgREFUQVBFRElETyAgICBEYXRlVGltZSAgICAgICAgQGRlZmF1bHQobm93KCkpIEBkYi5EYXRlVGltZSgwKQogIFZBTE9SVE9UQUwgICAgRmxvYXQgICAgICAgICAgIEBkZWZhdWx0KDApCiAgY29udGFzcmVjZWJlciBjb250YXNyZWNlYmVyW10KICBpdGVuc3BlZGlkbyAgIGl0ZW5zcGVkaWRvW10KICBjbGllbnRlICAgICAgIGNsaWVudGUgICAgICAgICBAcmVsYXRpb24oZmllbGRzOiBbQ09EQ0xJRU5URV0sIHJlZmVyZW5jZXM6IFtDT0RDTElFTlRFXSwgb25VcGRhdGU6IFJlc3RyaWN0LCBtYXA6ICJGS19QRURJRE9fQ0xJRU5URSIpCgogIEBAaW5kZXgoW0NPRENMSUVOVEVdLCBtYXA6ICJGS19QRURJRE9fQ0xJRU5URSIpCn0KCm1vZGVsIHByb2R1dG8gewogIENPRFBST0RVVE8gIEludCAgICAgICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBOT01FICAgICAgICBTdHJpbmcgICAgICAgIEBkZWZhdWx0KCIiKSBAZGIuVmFyQ2hhcig1MDApCiAgREVTQ1JJQ0FPICAgU3RyaW5nICAgICAgICBAZGVmYXVsdCgiIikgQGRiLlZhckNoYXIoNTAwKQogIFBSRUNPICAgICAgIEZsb2F0ICAgICAgICAgQGRlZmF1bHQoMCkKICBpdGVuc3BlZGlkbyBpdGVuc3BlZGlkb1tdCn0K',
+          r'Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgp9CgpkYXRhc291cmNlIGRiIHsKICBwcm92aWRlciA9ICJteXNxbCIKICB1cmwgICAgICA9ICJteXNxbDovL3Jvb3Q6cm9vdEBsb2NhbGhvc3Q6MzMwNi9jb250YXNfcmVjZWJlciIKfQoKbW9kZWwgY2xpZW50ZSB7CiAgQ09EQ0xJRU5URSAgICBJbnQgICAgICAgICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBOT01FICAgICAgICAgIFN0cmluZyAgICAgICAgICBAZGVmYXVsdCgiIikgQGRiLlZhckNoYXIoNTAwKQogIENQRkNOUEogICAgICAgU3RyaW5nICAgICAgICAgIEBkZWZhdWx0KCIiKSBAZGIuVmFyQ2hhcigyMCkKICBFTkRFUkVDTyAgICAgIFN0cmluZyAgICAgICAgICBAZGVmYXVsdCgiIikgQGRiLlZhckNoYXIoNTAwKQogIENPTlRBVE8gICAgICAgU3RyaW5nICAgICAgICAgIEBkZWZhdWx0KCIiKSBAZGIuVmFyQ2hhcig1MDApCiAgREFUQUNBREFTVFJPICBEYXRlVGltZSAgICAgICAgQGRlZmF1bHQobm93KCkpIEBkYi5EYXRlVGltZSgwKQogIGNvbnRhc3JlY2ViZXIgY29udGFzcmVjZWJlcltdCiAgcGVkaWRvICAgICAgICBwZWRpZG9bXQp9Cgptb2RlbCBjb250YXNyZWNlYmVyIHsKICBDT0RDT05UQVNSRUNFQkVSIEludCAgICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgQ09EQ0xJRU5URSAgICAgICBJbnQKICBDT0RQRURJRE8gICAgICAgIEludD8KICBEQVRBRU1JU1NBTyAgICAgIERhdGVUaW1lICAgIEBkZWZhdWx0KG5vdygpKSBAZGIuRGF0ZVRpbWUoMCkKICBEQVRBVkVOQ0lNRU5UTyAgIERhdGVUaW1lICAgIEBkZWZhdWx0KG5vdygpKSBAZGIuRGF0ZVRpbWUoMCkKICBWQUxPUiAgICAgICAgICAgIEZsb2F0ICAgICAgIEBkZWZhdWx0KDApCiAgVkFMT1JSRVNUQU5URSAgICBGbG9hdCAgICAgICBAZGVmYXVsdCgwKQogIFNUQVRVU1BBR0FNRU5UTyAgU3RyaW5nICAgICAgQGRlZmF1bHQoIiIpIEBkYi5WYXJDaGFyKDEpCiAgY2xpZW50ZSAgICAgICAgICBjbGllbnRlICAgICBAcmVsYXRpb24oZmllbGRzOiBbQ09EQ0xJRU5URV0sIHJlZmVyZW5jZXM6IFtDT0RDTElFTlRFXSwgb25VcGRhdGU6IFJlc3RyaWN0LCBtYXA6ICJGS19DT05UQVNSRUNFQkVSX0NMSUVOVEUiKQogIHBlZGlkbyAgICAgICAgICAgcGVkaWRvPyAgICAgQHJlbGF0aW9uKGZpZWxkczogW0NPRFBFRElET10sIHJlZmVyZW5jZXM6IFtDT0RQRURJRE9dLCBvbkRlbGV0ZTogUmVzdHJpY3QsIG9uVXBkYXRlOiBSZXN0cmljdCwgbWFwOiAiRktfQ09OVEFTUkVDRUJFUl9QRURJRE8iKQogIHBhZ2FtZW50byAgICAgICAgcGFnYW1lbnRvW10KCiAgQEBpbmRleChbQ09EUEVESURPXSwgbWFwOiAiRktfQ09OVEFTUkVDRUJFUl9QRURJRE8iKQogIEBAaW5kZXgoW0NPRENMSUVOVEVdLCBtYXA6ICJGS19DT05UQVNSRUNFQkVSX0NMSUVOVEUiKQp9Cgptb2RlbCBpdGVuc3BlZGlkbyB7CiAgQ09ESVRFTlNQRURJRE8gSW50ICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIENPRFBFRElETyAgICAgIEludAogIENPRFBST0RVVE8gICAgIEludAogIFFVQU5USURBREUgICAgIEludCAgICAgQGRlZmF1bHQoMCkKICBQUkVDT1VOSVRBUklPICBGbG9hdCAgIEBkZWZhdWx0KDApCiAgVkFMT1JUT1RBTCAgICAgRmxvYXQgICBAZGVmYXVsdCgwKQogIHBlZGlkbyAgICAgICAgIHBlZGlkbyAgQHJlbGF0aW9uKGZpZWxkczogW0NPRFBFRElET10sIHJlZmVyZW5jZXM6IFtDT0RQRURJRE9dLCBvblVwZGF0ZTogUmVzdHJpY3QsIG1hcDogIkZLX0lURU5TUEVESURPX1BFRElETyIpCiAgcHJvZHV0byAgICAgICAgcHJvZHV0byBAcmVsYXRpb24oZmllbGRzOiBbQ09EUFJPRFVUT10sIHJlZmVyZW5jZXM6IFtDT0RQUk9EVVRPXSwgb25VcGRhdGU6IFJlc3RyaWN0LCBtYXA6ICJGS19JVEVOU1BFRElET19QUk9EVVRPIikKCiAgQEBpbmRleChbQ09EUEVESURPXSwgbWFwOiAiRktfSVRFTlNQRURJRE9fUEVESURPIikKICBAQGluZGV4KFtDT0RQUk9EVVRPXSwgbWFwOiAiRktfSVRFTlNQRURJRE9fUFJPRFVUTyIpCn0KCm1vZGVsIHBhZ2FtZW50byB7CiAgQ09EUEFHQU1FTlRPICAgICBJbnQgICAgICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgQ09EQ09OVEFTUkVDRUJFUiBJbnQKICBEQVRBUEFHQU1FTlRPICAgIERhdGVUaW1lICAgICAgQGRlZmF1bHQobm93KCkpIEBkYi5EYXRlVGltZSgwKQogIFZBTE9SUEFHTyAgICAgICAgRmxvYXQgICAgICAgICBAZGVmYXVsdCgwKQogIGNvbnRhc3JlY2ViZXIgICAgY29udGFzcmVjZWJlciBAcmVsYXRpb24oZmllbGRzOiBbQ09EQ09OVEFTUkVDRUJFUl0sIHJlZmVyZW5jZXM6IFtDT0RDT05UQVNSRUNFQkVSXSwgb25VcGRhdGU6IFJlc3RyaWN0LCBtYXA6ICJGS19QQUdBTUVOVE9TX0NPTlRBU1JFQ0VCRVIiKQoKICBAQGluZGV4KFtDT0RDT05UQVNSRUNFQkVSXSwgbWFwOiAiRktfUEFHQU1FTlRPU19DT05UQVNSRUNFQkVSIikKfQoKbW9kZWwgcGVkaWRvIHsKICBDT0RQRURJRE8gICAgIEludCAgICAgICAgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIENPRENMSUVOVEUgICAgSW50CiAgREFUQVBFRElETyAgICBEYXRlVGltZSAgICAgICAgQGRlZmF1bHQobm93KCkpIEBkYi5EYXRlVGltZSgwKQogIFZBTE9SVE9UQUwgICAgRmxvYXQgICAgICAgICAgIEBkZWZhdWx0KDApCiAgY29udGFzcmVjZWJlciBjb250YXNyZWNlYmVyW10KICBpdGVuc3BlZGlkbyAgIGl0ZW5zcGVkaWRvW10KICBjbGllbnRlICAgICAgIGNsaWVudGUgICAgICAgICBAcmVsYXRpb24oZmllbGRzOiBbQ09EQ0xJRU5URV0sIHJlZmVyZW5jZXM6IFtDT0RDTElFTlRFXSwgb25VcGRhdGU6IFJlc3RyaWN0LCBtYXA6ICJGS19QRURJRE9fQ0xJRU5URSIpCgogIEBAaW5kZXgoW0NPRENMSUVOVEVdLCBtYXA6ICJGS19QRURJRE9fQ0xJRU5URSIpCn0KCm1vZGVsIHByb2R1dG8gewogIENPRFBST0RVVE8gIEludCAgICAgICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBOT01FICAgICAgICBTdHJpbmcgICAgICAgIEBkZWZhdWx0KCIiKSBAZGIuVmFyQ2hhcig1MDApCiAgREVTQ1JJQ0FPICAgU3RyaW5nICAgICAgICBAZGVmYXVsdCgiIikgQGRiLlZhckNoYXIoNTAwKQogIFBSRUNPICAgICAgIEZsb2F0ICAgICAgICAgQGRlZmF1bHQoMCkKICBpdGVuc3BlZGlkbyBpdGVuc3BlZGlkb1tdCn0K',
       datasources: datasources?.toJson().cast() ?? const {},
       executable:
-          r'C:\Users\Aluno\node_modules\prisma\query-engine-windows.exe',
+          r'C:\Users\paulo\node_modules\prisma\query-engine-windows.exe',
     );
     return PrismaClient._internal(engine);
   }
@@ -14800,33 +16090,39 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         headers: headers ?? _headers,
         transaction: transaction ?? _transaction,
       );
+
   _i1.ModelDelegate<Cliente> get cliente => _i1.ModelDelegate<Cliente>(
         _engine,
         headers: _headers,
         transaction: _transaction,
       );
+
   _i1.ModelDelegate<Contasreceber> get contasreceber =>
       _i1.ModelDelegate<Contasreceber>(
         _engine,
         headers: _headers,
         transaction: _transaction,
       );
+
   _i1.ModelDelegate<Itenspedido> get itenspedido =>
       _i1.ModelDelegate<Itenspedido>(
         _engine,
         headers: _headers,
         transaction: _transaction,
       );
+
   _i1.ModelDelegate<Pagamento> get pagamento => _i1.ModelDelegate<Pagamento>(
         _engine,
         headers: _headers,
         transaction: _transaction,
       );
+
   _i1.ModelDelegate<Pedido> get pedido => _i1.ModelDelegate<Pedido>(
         _engine,
         headers: _headers,
         transaction: _transaction,
       );
+
   _i1.ModelDelegate<Produto> get produto => _i1.ModelDelegate<Produto>(
         _engine,
         headers: _headers,

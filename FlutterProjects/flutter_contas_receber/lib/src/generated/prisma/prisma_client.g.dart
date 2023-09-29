@@ -33,6 +33,10 @@ ClienteWhereInput _$ClienteWhereInputFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTimeFilter.fromJson(
               json['DATACADASTRO'] as Map<String, dynamic>),
+      contasreceber: json['contasreceber'] == null
+          ? null
+          : ContasreceberListRelationFilter.fromJson(
+              json['contasreceber'] as Map<String, dynamic>),
       pedido: json['pedido'] == null
           ? null
           : PedidoListRelationFilter.fromJson(
@@ -57,6 +61,7 @@ Map<String, dynamic> _$ClienteWhereInputToJson(ClienteWhereInput instance) {
   writeNotNull('ENDERECO', instance.endereco?.toJson());
   writeNotNull('CONTATO', instance.contato?.toJson());
   writeNotNull('DATACADASTRO', instance.datacadastro?.toJson());
+  writeNotNull('contasreceber', instance.contasreceber?.toJson());
   writeNotNull('pedido', instance.pedido?.toJson());
   return val;
 }
@@ -71,6 +76,10 @@ ClienteOrderByWithRelationInput _$ClienteOrderByWithRelationInputFromJson(
       contato: $enumDecodeNullable(_$SortOrderEnumMap, json['CONTATO']),
       datacadastro:
           $enumDecodeNullable(_$SortOrderEnumMap, json['DATACADASTRO']),
+      contasreceber: json['contasreceber'] == null
+          ? null
+          : ContasreceberOrderByRelationAggregateInput.fromJson(
+              json['contasreceber'] as Map<String, dynamic>),
       pedido: json['pedido'] == null
           ? null
           : PedidoOrderByRelationAggregateInput.fromJson(
@@ -93,6 +102,7 @@ Map<String, dynamic> _$ClienteOrderByWithRelationInputToJson(
   writeNotNull('ENDERECO', _$SortOrderEnumMap[instance.endereco]);
   writeNotNull('CONTATO', _$SortOrderEnumMap[instance.contato]);
   writeNotNull('DATACADASTRO', _$SortOrderEnumMap[instance.datacadastro]);
+  writeNotNull('contasreceber', instance.contasreceber?.toJson());
   writeNotNull('pedido', instance.pedido?.toJson());
   return val;
 }
@@ -252,9 +262,13 @@ ContasreceberWhereInput _$ContasreceberWhereInputFromJson(
           ? null
           : IntFilter.fromJson(
               json['CODCONTASRECEBER'] as Map<String, dynamic>),
+      codcliente: json['CODCLIENTE'] == null
+          ? null
+          : IntFilter.fromJson(json['CODCLIENTE'] as Map<String, dynamic>),
       codpedido: json['CODPEDIDO'] == null
           ? null
-          : IntFilter.fromJson(json['CODPEDIDO'] as Map<String, dynamic>),
+          : IntNullableFilter.fromJson(
+              json['CODPEDIDO'] as Map<String, dynamic>),
       dataemissao: json['DATAEMISSAO'] == null
           ? null
           : DateTimeFilter.fromJson(
@@ -273,6 +287,10 @@ ContasreceberWhereInput _$ContasreceberWhereInputFromJson(
           ? null
           : StringFilter.fromJson(
               json['STATUSPAGAMENTO'] as Map<String, dynamic>),
+      cliente: json['cliente'] == null
+          ? null
+          : ClienteRelationFilter.fromJson(
+              json['cliente'] as Map<String, dynamic>),
       pedido: json['pedido'] == null
           ? null
           : PedidoRelationFilter.fromJson(
@@ -297,12 +315,14 @@ Map<String, dynamic> _$ContasreceberWhereInputToJson(
   writeNotNull('OR', instance.OR?.map((e) => e.toJson()).toList());
   writeNotNull('NOT', instance.NOT?.map((e) => e.toJson()).toList());
   writeNotNull('CODCONTASRECEBER', instance.codcontasreceber?.toJson());
+  writeNotNull('CODCLIENTE', instance.codcliente?.toJson());
   writeNotNull('CODPEDIDO', instance.codpedido?.toJson());
   writeNotNull('DATAEMISSAO', instance.dataemissao?.toJson());
   writeNotNull('DATAVENCIMENTO', instance.datavencimento?.toJson());
   writeNotNull('VALOR', instance.valor?.toJson());
   writeNotNull('VALORRESTANTE', instance.valorrestante?.toJson());
   writeNotNull('STATUSPAGAMENTO', instance.statuspagamento?.toJson());
+  writeNotNull('cliente', instance.cliente?.toJson());
   writeNotNull('pedido', instance.pedido?.toJson());
   writeNotNull('pagamento', instance.pagamento?.toJson());
   return val;
@@ -314,6 +334,8 @@ ContasreceberOrderByWithRelationInput
         ContasreceberOrderByWithRelationInput(
           codcontasreceber:
               $enumDecodeNullable(_$SortOrderEnumMap, json['CODCONTASRECEBER']),
+          codcliente:
+              $enumDecodeNullable(_$SortOrderEnumMap, json['CODCLIENTE']),
           codpedido: $enumDecodeNullable(_$SortOrderEnumMap, json['CODPEDIDO']),
           dataemissao:
               $enumDecodeNullable(_$SortOrderEnumMap, json['DATAEMISSAO']),
@@ -324,6 +346,10 @@ ContasreceberOrderByWithRelationInput
               $enumDecodeNullable(_$SortOrderEnumMap, json['VALORRESTANTE']),
           statuspagamento:
               $enumDecodeNullable(_$SortOrderEnumMap, json['STATUSPAGAMENTO']),
+          cliente: json['cliente'] == null
+              ? null
+              : ClienteOrderByWithRelationInput.fromJson(
+                  json['cliente'] as Map<String, dynamic>),
           pedido: json['pedido'] == null
               ? null
               : PedidoOrderByWithRelationInput.fromJson(
@@ -346,12 +372,14 @@ Map<String, dynamic> _$ContasreceberOrderByWithRelationInputToJson(
 
   writeNotNull(
       'CODCONTASRECEBER', _$SortOrderEnumMap[instance.codcontasreceber]);
+  writeNotNull('CODCLIENTE', _$SortOrderEnumMap[instance.codcliente]);
   writeNotNull('CODPEDIDO', _$SortOrderEnumMap[instance.codpedido]);
   writeNotNull('DATAEMISSAO', _$SortOrderEnumMap[instance.dataemissao]);
   writeNotNull('DATAVENCIMENTO', _$SortOrderEnumMap[instance.datavencimento]);
   writeNotNull('VALOR', _$SortOrderEnumMap[instance.valor]);
   writeNotNull('VALORRESTANTE', _$SortOrderEnumMap[instance.valorrestante]);
   writeNotNull('STATUSPAGAMENTO', _$SortOrderEnumMap[instance.statuspagamento]);
+  writeNotNull('cliente', instance.cliente?.toJson());
   writeNotNull('pedido', instance.pedido?.toJson());
   writeNotNull('pagamento', instance.pagamento?.toJson());
   return val;
@@ -383,6 +411,8 @@ ContasreceberOrderByWithAggregationInput
         ContasreceberOrderByWithAggregationInput(
           codcontasreceber:
               $enumDecodeNullable(_$SortOrderEnumMap, json['CODCONTASRECEBER']),
+          codcliente:
+              $enumDecodeNullable(_$SortOrderEnumMap, json['CODCLIENTE']),
           codpedido: $enumDecodeNullable(_$SortOrderEnumMap, json['CODPEDIDO']),
           dataemissao:
               $enumDecodeNullable(_$SortOrderEnumMap, json['DATAEMISSAO']),
@@ -427,6 +457,7 @@ Map<String, dynamic> _$ContasreceberOrderByWithAggregationInputToJson(
 
   writeNotNull(
       'CODCONTASRECEBER', _$SortOrderEnumMap[instance.codcontasreceber]);
+  writeNotNull('CODCLIENTE', _$SortOrderEnumMap[instance.codcliente]);
   writeNotNull('CODPEDIDO', _$SortOrderEnumMap[instance.codpedido]);
   writeNotNull('DATAEMISSAO', _$SortOrderEnumMap[instance.dataemissao]);
   writeNotNull('DATAVENCIMENTO', _$SortOrderEnumMap[instance.datavencimento]);
@@ -458,9 +489,13 @@ ContasreceberScalarWhereWithAggregatesInput
               ? null
               : IntWithAggregatesFilter.fromJson(
                   json['CODCONTASRECEBER'] as Map<String, dynamic>),
-          codpedido: json['CODPEDIDO'] == null
+          codcliente: json['CODCLIENTE'] == null
               ? null
               : IntWithAggregatesFilter.fromJson(
+                  json['CODCLIENTE'] as Map<String, dynamic>),
+          codpedido: json['CODPEDIDO'] == null
+              ? null
+              : IntNullableWithAggregatesFilter.fromJson(
                   json['CODPEDIDO'] as Map<String, dynamic>),
           dataemissao: json['DATAEMISSAO'] == null
               ? null
@@ -498,6 +533,7 @@ Map<String, dynamic> _$ContasreceberScalarWhereWithAggregatesInputToJson(
   writeNotNull('OR', instance.OR?.map((e) => e.toJson()).toList());
   writeNotNull('NOT', instance.NOT?.map((e) => e.toJson()).toList());
   writeNotNull('CODCONTASRECEBER', instance.codcontasreceber?.toJson());
+  writeNotNull('CODCLIENTE', instance.codcliente?.toJson());
   writeNotNull('CODPEDIDO', instance.codpedido?.toJson());
   writeNotNull('DATAEMISSAO', instance.dataemissao?.toJson());
   writeNotNull('DATAVENCIMENTO', instance.datavencimento?.toJson());
@@ -1389,6 +1425,10 @@ ClienteCreateInput _$ClienteCreateInputFromJson(Map<String, dynamic> json) =>
       contato: json['CONTATO'] as String?,
       datacadastro: _$JsonConverterFromJson<String, DateTime>(
           json['DATACADASTRO'], const DateTimeJsonConverter().fromJson),
+      contasreceber: json['contasreceber'] == null
+          ? null
+          : ContasreceberCreateNestedManyWithoutClienteInput.fromJson(
+              json['contasreceber'] as Map<String, dynamic>),
       pedido: json['pedido'] == null
           ? null
           : PedidoCreateNestedManyWithoutClienteInput.fromJson(
@@ -1412,6 +1452,7 @@ Map<String, dynamic> _$ClienteCreateInputToJson(ClienteCreateInput instance) {
       'DATACADASTRO',
       _$JsonConverterToJson<String, DateTime>(
           instance.datacadastro, const DateTimeJsonConverter().toJson));
+  writeNotNull('contasreceber', instance.contasreceber?.toJson());
   writeNotNull('pedido', instance.pedido?.toJson());
   return val;
 }
@@ -1438,6 +1479,10 @@ ClienteUncheckedCreateInput _$ClienteUncheckedCreateInputFromJson(
       contato: json['CONTATO'] as String?,
       datacadastro: _$JsonConverterFromJson<String, DateTime>(
           json['DATACADASTRO'], const DateTimeJsonConverter().fromJson),
+      contasreceber: json['contasreceber'] == null
+          ? null
+          : ContasreceberUncheckedCreateNestedManyWithoutClienteInput.fromJson(
+              json['contasreceber'] as Map<String, dynamic>),
       pedido: json['pedido'] == null
           ? null
           : PedidoUncheckedCreateNestedManyWithoutClienteInput.fromJson(
@@ -1463,6 +1508,7 @@ Map<String, dynamic> _$ClienteUncheckedCreateInputToJson(
       'DATACADASTRO',
       _$JsonConverterToJson<String, DateTime>(
           instance.datacadastro, const DateTimeJsonConverter().toJson));
+  writeNotNull('contasreceber', instance.contasreceber?.toJson());
   writeNotNull('pedido', instance.pedido?.toJson());
   return val;
 }
@@ -1489,6 +1535,10 @@ ClienteUpdateInput _$ClienteUpdateInputFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTimeFieldUpdateOperationsInput.fromJson(
               json['DATACADASTRO'] as Map<String, dynamic>),
+      contasreceber: json['contasreceber'] == null
+          ? null
+          : ContasreceberUpdateManyWithoutClienteNestedInput.fromJson(
+              json['contasreceber'] as Map<String, dynamic>),
       pedido: json['pedido'] == null
           ? null
           : PedidoUpdateManyWithoutClienteNestedInput.fromJson(
@@ -1509,6 +1559,7 @@ Map<String, dynamic> _$ClienteUpdateInputToJson(ClienteUpdateInput instance) {
   writeNotNull('ENDERECO', instance.endereco?.toJson());
   writeNotNull('CONTATO', instance.contato?.toJson());
   writeNotNull('DATACADASTRO', instance.datacadastro?.toJson());
+  writeNotNull('contasreceber', instance.contasreceber?.toJson());
   writeNotNull('pedido', instance.pedido?.toJson());
   return val;
 }
@@ -1540,6 +1591,10 @@ ClienteUncheckedUpdateInput _$ClienteUncheckedUpdateInputFromJson(
           ? null
           : DateTimeFieldUpdateOperationsInput.fromJson(
               json['DATACADASTRO'] as Map<String, dynamic>),
+      contasreceber: json['contasreceber'] == null
+          ? null
+          : ContasreceberUncheckedUpdateManyWithoutClienteNestedInput.fromJson(
+              json['contasreceber'] as Map<String, dynamic>),
       pedido: json['pedido'] == null
           ? null
           : PedidoUncheckedUpdateManyWithoutClienteNestedInput.fromJson(
@@ -1562,6 +1617,7 @@ Map<String, dynamic> _$ClienteUncheckedUpdateInputToJson(
   writeNotNull('ENDERECO', instance.endereco?.toJson());
   writeNotNull('CONTATO', instance.contato?.toJson());
   writeNotNull('DATACADASTRO', instance.datacadastro?.toJson());
+  writeNotNull('contasreceber', instance.contasreceber?.toJson());
   writeNotNull('pedido', instance.pedido?.toJson());
   return val;
 }
@@ -1701,8 +1757,12 @@ ContasreceberCreateInput _$ContasreceberCreateInputFromJson(
       valor: (json['VALOR'] as num?)?.toDouble(),
       valorrestante: (json['VALORRESTANTE'] as num?)?.toDouble(),
       statuspagamento: json['STATUSPAGAMENTO'] as String?,
-      pedido: PedidoCreateNestedOneWithoutContasreceberInput.fromJson(
-          json['pedido'] as Map<String, dynamic>),
+      cliente: ClienteCreateNestedOneWithoutContasreceberInput.fromJson(
+          json['cliente'] as Map<String, dynamic>),
+      pedido: json['pedido'] == null
+          ? null
+          : PedidoCreateNestedOneWithoutContasreceberInput.fromJson(
+              json['pedido'] as Map<String, dynamic>),
       pagamento: json['pagamento'] == null
           ? null
           : PagamentoCreateNestedManyWithoutContasreceberInput.fromJson(
@@ -1730,7 +1790,8 @@ Map<String, dynamic> _$ContasreceberCreateInputToJson(
   writeNotNull('VALOR', instance.valor);
   writeNotNull('VALORRESTANTE', instance.valorrestante);
   writeNotNull('STATUSPAGAMENTO', instance.statuspagamento);
-  val['pedido'] = instance.pedido.toJson();
+  val['cliente'] = instance.cliente.toJson();
+  writeNotNull('pedido', instance.pedido?.toJson());
   writeNotNull('pagamento', instance.pagamento?.toJson());
   return val;
 }
@@ -1739,7 +1800,8 @@ ContasreceberUncheckedCreateInput _$ContasreceberUncheckedCreateInputFromJson(
         Map<String, dynamic> json) =>
     ContasreceberUncheckedCreateInput(
       codcontasreceber: json['CODCONTASRECEBER'] as int?,
-      codpedido: json['CODPEDIDO'] as int,
+      codcliente: json['CODCLIENTE'] as int,
+      codpedido: json['CODPEDIDO'] as int?,
       dataemissao: _$JsonConverterFromJson<String, DateTime>(
           json['DATAEMISSAO'], const DateTimeJsonConverter().fromJson),
       datavencimento: _$JsonConverterFromJson<String, DateTime>(
@@ -1764,7 +1826,8 @@ Map<String, dynamic> _$ContasreceberUncheckedCreateInputToJson(
   }
 
   writeNotNull('CODCONTASRECEBER', instance.codcontasreceber);
-  val['CODPEDIDO'] = instance.codpedido;
+  val['CODCLIENTE'] = instance.codcliente;
+  writeNotNull('CODPEDIDO', instance.codpedido);
   writeNotNull(
       'DATAEMISSAO',
       _$JsonConverterToJson<String, DateTime>(
@@ -1803,9 +1866,13 @@ ContasreceberUpdateInput _$ContasreceberUpdateInputFromJson(
           ? null
           : StringFieldUpdateOperationsInput.fromJson(
               json['STATUSPAGAMENTO'] as Map<String, dynamic>),
+      cliente: json['cliente'] == null
+          ? null
+          : ClienteUpdateOneRequiredWithoutContasreceberNestedInput.fromJson(
+              json['cliente'] as Map<String, dynamic>),
       pedido: json['pedido'] == null
           ? null
-          : PedidoUpdateOneRequiredWithoutContasreceberNestedInput.fromJson(
+          : PedidoUpdateOneWithoutContasreceberNestedInput.fromJson(
               json['pedido'] as Map<String, dynamic>),
       pagamento: json['pagamento'] == null
           ? null
@@ -1828,6 +1895,7 @@ Map<String, dynamic> _$ContasreceberUpdateInputToJson(
   writeNotNull('VALOR', instance.valor?.toJson());
   writeNotNull('VALORRESTANTE', instance.valorrestante?.toJson());
   writeNotNull('STATUSPAGAMENTO', instance.statuspagamento?.toJson());
+  writeNotNull('cliente', instance.cliente?.toJson());
   writeNotNull('pedido', instance.pedido?.toJson());
   writeNotNull('pagamento', instance.pagamento?.toJson());
   return val;
@@ -1840,9 +1908,13 @@ ContasreceberUncheckedUpdateInput _$ContasreceberUncheckedUpdateInputFromJson(
           ? null
           : IntFieldUpdateOperationsInput.fromJson(
               json['CODCONTASRECEBER'] as Map<String, dynamic>),
-      codpedido: json['CODPEDIDO'] == null
+      codcliente: json['CODCLIENTE'] == null
           ? null
           : IntFieldUpdateOperationsInput.fromJson(
+              json['CODCLIENTE'] as Map<String, dynamic>),
+      codpedido: json['CODPEDIDO'] == null
+          ? null
+          : NullableIntFieldUpdateOperationsInput.fromJson(
               json['CODPEDIDO'] as Map<String, dynamic>),
       dataemissao: json['DATAEMISSAO'] == null
           ? null
@@ -1881,6 +1953,7 @@ Map<String, dynamic> _$ContasreceberUncheckedUpdateInputToJson(
   }
 
   writeNotNull('CODCONTASRECEBER', instance.codcontasreceber?.toJson());
+  writeNotNull('CODCLIENTE', instance.codcliente?.toJson());
   writeNotNull('CODPEDIDO', instance.codpedido?.toJson());
   writeNotNull('DATAEMISSAO', instance.dataemissao?.toJson());
   writeNotNull('DATAVENCIMENTO', instance.datavencimento?.toJson());
@@ -1895,7 +1968,8 @@ ContasreceberCreateManyInput _$ContasreceberCreateManyInputFromJson(
         Map<String, dynamic> json) =>
     ContasreceberCreateManyInput(
       codcontasreceber: json['CODCONTASRECEBER'] as int?,
-      codpedido: json['CODPEDIDO'] as int,
+      codcliente: json['CODCLIENTE'] as int,
+      codpedido: json['CODPEDIDO'] as int?,
       dataemissao: _$JsonConverterFromJson<String, DateTime>(
           json['DATAEMISSAO'], const DateTimeJsonConverter().fromJson),
       datavencimento: _$JsonConverterFromJson<String, DateTime>(
@@ -1916,7 +1990,8 @@ Map<String, dynamic> _$ContasreceberCreateManyInputToJson(
   }
 
   writeNotNull('CODCONTASRECEBER', instance.codcontasreceber);
-  val['CODPEDIDO'] = instance.codpedido;
+  val['CODCLIENTE'] = instance.codcliente;
+  writeNotNull('CODPEDIDO', instance.codpedido);
   writeNotNull(
       'DATAEMISSAO',
       _$JsonConverterToJson<String, DateTime>(
@@ -1982,9 +2057,13 @@ ContasreceberUncheckedUpdateManyInput
               ? null
               : IntFieldUpdateOperationsInput.fromJson(
                   json['CODCONTASRECEBER'] as Map<String, dynamic>),
-          codpedido: json['CODPEDIDO'] == null
+          codcliente: json['CODCLIENTE'] == null
               ? null
               : IntFieldUpdateOperationsInput.fromJson(
+                  json['CODCLIENTE'] as Map<String, dynamic>),
+          codpedido: json['CODPEDIDO'] == null
+              ? null
+              : NullableIntFieldUpdateOperationsInput.fromJson(
                   json['CODPEDIDO'] as Map<String, dynamic>),
           dataemissao: json['DATAEMISSAO'] == null
               ? null
@@ -2019,6 +2098,7 @@ Map<String, dynamic> _$ContasreceberUncheckedUpdateManyInputToJson(
   }
 
   writeNotNull('CODCONTASRECEBER', instance.codcontasreceber?.toJson());
+  writeNotNull('CODCLIENTE', instance.codcliente?.toJson());
   writeNotNull('CODPEDIDO', instance.codpedido?.toJson());
   writeNotNull('DATAEMISSAO', instance.dataemissao?.toJson());
   writeNotNull('DATAVENCIMENTO', instance.datavencimento?.toJson());
@@ -3142,6 +3222,39 @@ Map<String, dynamic> _$DateTimeFilterToJson(DateTimeFilter instance) {
   return val;
 }
 
+ContasreceberListRelationFilter _$ContasreceberListRelationFilterFromJson(
+        Map<String, dynamic> json) =>
+    ContasreceberListRelationFilter(
+      every: json['every'] == null
+          ? null
+          : ContasreceberWhereInput.fromJson(
+              json['every'] as Map<String, dynamic>),
+      some: json['some'] == null
+          ? null
+          : ContasreceberWhereInput.fromJson(
+              json['some'] as Map<String, dynamic>),
+      none: json['none'] == null
+          ? null
+          : ContasreceberWhereInput.fromJson(
+              json['none'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$ContasreceberListRelationFilterToJson(
+    ContasreceberListRelationFilter instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('every', instance.every?.toJson());
+  writeNotNull('some', instance.some?.toJson());
+  writeNotNull('none', instance.none?.toJson());
+  return val;
+}
+
 PedidoListRelationFilter _$PedidoListRelationFilterFromJson(
         Map<String, dynamic> json) =>
     PedidoListRelationFilter(
@@ -3169,6 +3282,27 @@ Map<String, dynamic> _$PedidoListRelationFilterToJson(
   writeNotNull('every', instance.every?.toJson());
   writeNotNull('some', instance.some?.toJson());
   writeNotNull('none', instance.none?.toJson());
+  return val;
+}
+
+ContasreceberOrderByRelationAggregateInput
+    _$ContasreceberOrderByRelationAggregateInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberOrderByRelationAggregateInput(
+          $count: $enumDecodeNullable(_$SortOrderEnumMap, json['_count']),
+        );
+
+Map<String, dynamic> _$ContasreceberOrderByRelationAggregateInputToJson(
+    ContasreceberOrderByRelationAggregateInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('_count', _$SortOrderEnumMap[instance.$count]);
   return val;
 }
 
@@ -3510,6 +3644,41 @@ Map<String, dynamic> _$DateTimeWithAggregatesFilterToJson(
   return val;
 }
 
+IntNullableFilter _$IntNullableFilterFromJson(Map<String, dynamic> json) =>
+    IntNullableFilter(
+      equals: json['equals'] as int?,
+      $in: (json['in'] as List<dynamic>?)?.map((e) => e as int),
+      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as int),
+      lt: json['lt'] as int?,
+      lte: json['lte'] as int?,
+      gt: json['gt'] as int?,
+      gte: json['gte'] as int?,
+      not: json['not'] == null
+          ? null
+          : NestedIntNullableFilter.fromJson(
+              json['not'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$IntNullableFilterToJson(IntNullableFilter instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('equals', instance.equals);
+  writeNotNull('in', instance.$in?.toList());
+  writeNotNull('notIn', instance.notIn?.toList());
+  writeNotNull('lt', instance.lt);
+  writeNotNull('lte', instance.lte);
+  writeNotNull('gt', instance.gt);
+  writeNotNull('gte', instance.gte);
+  writeNotNull('not', instance.not?.toJson());
+  return val;
+}
+
 FloatFilter _$FloatFilterFromJson(Map<String, dynamic> json) => FloatFilter(
       equals: (json['equals'] as num?)?.toDouble(),
       $in: (json['in'] as List<dynamic>?)?.map((e) => (e as num).toDouble()),
@@ -3541,6 +3710,32 @@ Map<String, dynamic> _$FloatFilterToJson(FloatFilter instance) {
   writeNotNull('gt', instance.gt);
   writeNotNull('gte', instance.gte);
   writeNotNull('not', instance.not?.toJson());
+  return val;
+}
+
+ClienteRelationFilter _$ClienteRelationFilterFromJson(
+        Map<String, dynamic> json) =>
+    ClienteRelationFilter(
+      $is: json['is'] == null
+          ? null
+          : ClienteWhereInput.fromJson(json['is'] as Map<String, dynamic>),
+      isNot: json['isNot'] == null
+          ? null
+          : ClienteWhereInput.fromJson(json['isNot'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$ClienteRelationFilterToJson(
+    ClienteRelationFilter instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('is', instance.$is?.toJson());
+  writeNotNull('isNot', instance.isNot?.toJson());
   return val;
 }
 
@@ -3627,6 +3822,8 @@ ContasreceberCountOrderByAggregateInput
         ContasreceberCountOrderByAggregateInput(
           codcontasreceber:
               $enumDecodeNullable(_$SortOrderEnumMap, json['CODCONTASRECEBER']),
+          codcliente:
+              $enumDecodeNullable(_$SortOrderEnumMap, json['CODCLIENTE']),
           codpedido: $enumDecodeNullable(_$SortOrderEnumMap, json['CODPEDIDO']),
           dataemissao:
               $enumDecodeNullable(_$SortOrderEnumMap, json['DATAEMISSAO']),
@@ -3651,6 +3848,7 @@ Map<String, dynamic> _$ContasreceberCountOrderByAggregateInputToJson(
 
   writeNotNull(
       'CODCONTASRECEBER', _$SortOrderEnumMap[instance.codcontasreceber]);
+  writeNotNull('CODCLIENTE', _$SortOrderEnumMap[instance.codcliente]);
   writeNotNull('CODPEDIDO', _$SortOrderEnumMap[instance.codpedido]);
   writeNotNull('DATAEMISSAO', _$SortOrderEnumMap[instance.dataemissao]);
   writeNotNull('DATAVENCIMENTO', _$SortOrderEnumMap[instance.datavencimento]);
@@ -3666,6 +3864,8 @@ ContasreceberAvgOrderByAggregateInput
         ContasreceberAvgOrderByAggregateInput(
           codcontasreceber:
               $enumDecodeNullable(_$SortOrderEnumMap, json['CODCONTASRECEBER']),
+          codcliente:
+              $enumDecodeNullable(_$SortOrderEnumMap, json['CODCLIENTE']),
           codpedido: $enumDecodeNullable(_$SortOrderEnumMap, json['CODPEDIDO']),
           valor: $enumDecodeNullable(_$SortOrderEnumMap, json['VALOR']),
           valorrestante:
@@ -3684,6 +3884,7 @@ Map<String, dynamic> _$ContasreceberAvgOrderByAggregateInputToJson(
 
   writeNotNull(
       'CODCONTASRECEBER', _$SortOrderEnumMap[instance.codcontasreceber]);
+  writeNotNull('CODCLIENTE', _$SortOrderEnumMap[instance.codcliente]);
   writeNotNull('CODPEDIDO', _$SortOrderEnumMap[instance.codpedido]);
   writeNotNull('VALOR', _$SortOrderEnumMap[instance.valor]);
   writeNotNull('VALORRESTANTE', _$SortOrderEnumMap[instance.valorrestante]);
@@ -3696,6 +3897,8 @@ ContasreceberMaxOrderByAggregateInput
         ContasreceberMaxOrderByAggregateInput(
           codcontasreceber:
               $enumDecodeNullable(_$SortOrderEnumMap, json['CODCONTASRECEBER']),
+          codcliente:
+              $enumDecodeNullable(_$SortOrderEnumMap, json['CODCLIENTE']),
           codpedido: $enumDecodeNullable(_$SortOrderEnumMap, json['CODPEDIDO']),
           dataemissao:
               $enumDecodeNullable(_$SortOrderEnumMap, json['DATAEMISSAO']),
@@ -3720,6 +3923,7 @@ Map<String, dynamic> _$ContasreceberMaxOrderByAggregateInputToJson(
 
   writeNotNull(
       'CODCONTASRECEBER', _$SortOrderEnumMap[instance.codcontasreceber]);
+  writeNotNull('CODCLIENTE', _$SortOrderEnumMap[instance.codcliente]);
   writeNotNull('CODPEDIDO', _$SortOrderEnumMap[instance.codpedido]);
   writeNotNull('DATAEMISSAO', _$SortOrderEnumMap[instance.dataemissao]);
   writeNotNull('DATAVENCIMENTO', _$SortOrderEnumMap[instance.datavencimento]);
@@ -3735,6 +3939,8 @@ ContasreceberMinOrderByAggregateInput
         ContasreceberMinOrderByAggregateInput(
           codcontasreceber:
               $enumDecodeNullable(_$SortOrderEnumMap, json['CODCONTASRECEBER']),
+          codcliente:
+              $enumDecodeNullable(_$SortOrderEnumMap, json['CODCLIENTE']),
           codpedido: $enumDecodeNullable(_$SortOrderEnumMap, json['CODPEDIDO']),
           dataemissao:
               $enumDecodeNullable(_$SortOrderEnumMap, json['DATAEMISSAO']),
@@ -3759,6 +3965,7 @@ Map<String, dynamic> _$ContasreceberMinOrderByAggregateInputToJson(
 
   writeNotNull(
       'CODCONTASRECEBER', _$SortOrderEnumMap[instance.codcontasreceber]);
+  writeNotNull('CODCLIENTE', _$SortOrderEnumMap[instance.codcliente]);
   writeNotNull('CODPEDIDO', _$SortOrderEnumMap[instance.codpedido]);
   writeNotNull('DATAEMISSAO', _$SortOrderEnumMap[instance.dataemissao]);
   writeNotNull('DATAVENCIMENTO', _$SortOrderEnumMap[instance.datavencimento]);
@@ -3774,6 +3981,8 @@ ContasreceberSumOrderByAggregateInput
         ContasreceberSumOrderByAggregateInput(
           codcontasreceber:
               $enumDecodeNullable(_$SortOrderEnumMap, json['CODCONTASRECEBER']),
+          codcliente:
+              $enumDecodeNullable(_$SortOrderEnumMap, json['CODCLIENTE']),
           codpedido: $enumDecodeNullable(_$SortOrderEnumMap, json['CODPEDIDO']),
           valor: $enumDecodeNullable(_$SortOrderEnumMap, json['VALOR']),
           valorrestante:
@@ -3792,9 +4001,72 @@ Map<String, dynamic> _$ContasreceberSumOrderByAggregateInputToJson(
 
   writeNotNull(
       'CODCONTASRECEBER', _$SortOrderEnumMap[instance.codcontasreceber]);
+  writeNotNull('CODCLIENTE', _$SortOrderEnumMap[instance.codcliente]);
   writeNotNull('CODPEDIDO', _$SortOrderEnumMap[instance.codpedido]);
   writeNotNull('VALOR', _$SortOrderEnumMap[instance.valor]);
   writeNotNull('VALORRESTANTE', _$SortOrderEnumMap[instance.valorrestante]);
+  return val;
+}
+
+IntNullableWithAggregatesFilter _$IntNullableWithAggregatesFilterFromJson(
+        Map<String, dynamic> json) =>
+    IntNullableWithAggregatesFilter(
+      equals: json['equals'] as int?,
+      $in: (json['in'] as List<dynamic>?)?.map((e) => e as int),
+      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as int),
+      lt: json['lt'] as int?,
+      lte: json['lte'] as int?,
+      gt: json['gt'] as int?,
+      gte: json['gte'] as int?,
+      not: json['not'] == null
+          ? null
+          : NestedIntNullableWithAggregatesFilter.fromJson(
+              json['not'] as Map<String, dynamic>),
+      $count: json['_count'] == null
+          ? null
+          : NestedIntNullableFilter.fromJson(
+              json['_count'] as Map<String, dynamic>),
+      $avg: json['_avg'] == null
+          ? null
+          : NestedFloatNullableFilter.fromJson(
+              json['_avg'] as Map<String, dynamic>),
+      $sum: json['_sum'] == null
+          ? null
+          : NestedIntNullableFilter.fromJson(
+              json['_sum'] as Map<String, dynamic>),
+      $min: json['_min'] == null
+          ? null
+          : NestedIntNullableFilter.fromJson(
+              json['_min'] as Map<String, dynamic>),
+      $max: json['_max'] == null
+          ? null
+          : NestedIntNullableFilter.fromJson(
+              json['_max'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$IntNullableWithAggregatesFilterToJson(
+    IntNullableWithAggregatesFilter instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('equals', instance.equals);
+  writeNotNull('in', instance.$in?.toList());
+  writeNotNull('notIn', instance.notIn?.toList());
+  writeNotNull('lt', instance.lt);
+  writeNotNull('lte', instance.lte);
+  writeNotNull('gt', instance.gt);
+  writeNotNull('gte', instance.gte);
+  writeNotNull('not', instance.not?.toJson());
+  writeNotNull('_count', instance.$count?.toJson());
+  writeNotNull('_avg', instance.$avg?.toJson());
+  writeNotNull('_sum', instance.$sum?.toJson());
+  writeNotNull('_min', instance.$min?.toJson());
+  writeNotNull('_max', instance.$max?.toJson());
   return val;
 }
 
@@ -4230,39 +4502,6 @@ Map<String, dynamic> _$PagamentoSumOrderByAggregateInputToJson(
   return val;
 }
 
-ContasreceberListRelationFilter _$ContasreceberListRelationFilterFromJson(
-        Map<String, dynamic> json) =>
-    ContasreceberListRelationFilter(
-      every: json['every'] == null
-          ? null
-          : ContasreceberWhereInput.fromJson(
-              json['every'] as Map<String, dynamic>),
-      some: json['some'] == null
-          ? null
-          : ContasreceberWhereInput.fromJson(
-              json['some'] as Map<String, dynamic>),
-      none: json['none'] == null
-          ? null
-          : ContasreceberWhereInput.fromJson(
-              json['none'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$ContasreceberListRelationFilterToJson(
-    ContasreceberListRelationFilter instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('every', instance.every?.toJson());
-  writeNotNull('some', instance.some?.toJson());
-  writeNotNull('none', instance.none?.toJson());
-  return val;
-}
-
 ItenspedidoListRelationFilter _$ItenspedidoListRelationFilterFromJson(
         Map<String, dynamic> json) =>
     ItenspedidoListRelationFilter(
@@ -4293,53 +4532,6 @@ Map<String, dynamic> _$ItenspedidoListRelationFilterToJson(
   writeNotNull('every', instance.every?.toJson());
   writeNotNull('some', instance.some?.toJson());
   writeNotNull('none', instance.none?.toJson());
-  return val;
-}
-
-ClienteRelationFilter _$ClienteRelationFilterFromJson(
-        Map<String, dynamic> json) =>
-    ClienteRelationFilter(
-      $is: json['is'] == null
-          ? null
-          : ClienteWhereInput.fromJson(json['is'] as Map<String, dynamic>),
-      isNot: json['isNot'] == null
-          ? null
-          : ClienteWhereInput.fromJson(json['isNot'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$ClienteRelationFilterToJson(
-    ClienteRelationFilter instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('is', instance.$is?.toJson());
-  writeNotNull('isNot', instance.isNot?.toJson());
-  return val;
-}
-
-ContasreceberOrderByRelationAggregateInput
-    _$ContasreceberOrderByRelationAggregateInputFromJson(
-            Map<String, dynamic> json) =>
-        ContasreceberOrderByRelationAggregateInput(
-          $count: $enumDecodeNullable(_$SortOrderEnumMap, json['_count']),
-        );
-
-Map<String, dynamic> _$ContasreceberOrderByRelationAggregateInputToJson(
-    ContasreceberOrderByRelationAggregateInput instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('_count', _$SortOrderEnumMap[instance.$count]);
   return val;
 }
 
@@ -4612,6 +4804,43 @@ Map<String, dynamic> _$ProdutoSumOrderByAggregateInputToJson(
   return val;
 }
 
+ContasreceberCreateNestedManyWithoutClienteInput
+    _$ContasreceberCreateNestedManyWithoutClienteInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberCreateNestedManyWithoutClienteInput(
+          create: (json['create'] as List<dynamic>?)?.map((e) =>
+              ContasreceberCreateWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          connectOrCreate: (json['connectOrCreate'] as List<dynamic>?)?.map(
+              (e) => ContasreceberCreateOrConnectWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          createMany: json['createMany'] == null
+              ? null
+              : ContasreceberCreateManyClienteInputEnvelope.fromJson(
+                  json['createMany'] as Map<String, dynamic>),
+          connect: (json['connect'] as List<dynamic>?)?.map((e) =>
+              ContasreceberWhereUniqueInput.fromJson(
+                  e as Map<String, dynamic>)),
+        );
+
+Map<String, dynamic> _$ContasreceberCreateNestedManyWithoutClienteInputToJson(
+    ContasreceberCreateNestedManyWithoutClienteInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('create', instance.create?.map((e) => e.toJson()).toList());
+  writeNotNull('connectOrCreate',
+      instance.connectOrCreate?.map((e) => e.toJson()).toList());
+  writeNotNull('createMany', instance.createMany?.toJson());
+  writeNotNull('connect', instance.connect?.map((e) => e.toJson()).toList());
+  return val;
+}
+
 PedidoCreateNestedManyWithoutClienteInput
     _$PedidoCreateNestedManyWithoutClienteInputFromJson(
             Map<String, dynamic> json) =>
@@ -4632,6 +4861,44 @@ PedidoCreateNestedManyWithoutClienteInput
 
 Map<String, dynamic> _$PedidoCreateNestedManyWithoutClienteInputToJson(
     PedidoCreateNestedManyWithoutClienteInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('create', instance.create?.map((e) => e.toJson()).toList());
+  writeNotNull('connectOrCreate',
+      instance.connectOrCreate?.map((e) => e.toJson()).toList());
+  writeNotNull('createMany', instance.createMany?.toJson());
+  writeNotNull('connect', instance.connect?.map((e) => e.toJson()).toList());
+  return val;
+}
+
+ContasreceberUncheckedCreateNestedManyWithoutClienteInput
+    _$ContasreceberUncheckedCreateNestedManyWithoutClienteInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberUncheckedCreateNestedManyWithoutClienteInput(
+          create: (json['create'] as List<dynamic>?)?.map((e) =>
+              ContasreceberCreateWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          connectOrCreate: (json['connectOrCreate'] as List<dynamic>?)?.map(
+              (e) => ContasreceberCreateOrConnectWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          createMany: json['createMany'] == null
+              ? null
+              : ContasreceberCreateManyClienteInputEnvelope.fromJson(
+                  json['createMany'] as Map<String, dynamic>),
+          connect: (json['connect'] as List<dynamic>?)?.map((e) =>
+              ContasreceberWhereUniqueInput.fromJson(
+                  e as Map<String, dynamic>)),
+        );
+
+Map<String, dynamic>
+    _$ContasreceberUncheckedCreateNestedManyWithoutClienteInputToJson(
+        ContasreceberUncheckedCreateNestedManyWithoutClienteInput instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -4728,6 +4995,74 @@ Map<String, dynamic> _$DateTimeFieldUpdateOperationsInputToJson(
   return val;
 }
 
+ContasreceberUpdateManyWithoutClienteNestedInput
+    _$ContasreceberUpdateManyWithoutClienteNestedInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberUpdateManyWithoutClienteNestedInput(
+          create: (json['create'] as List<dynamic>?)?.map((e) =>
+              ContasreceberCreateWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          connectOrCreate: (json['connectOrCreate'] as List<dynamic>?)?.map(
+              (e) => ContasreceberCreateOrConnectWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          upsert: (json['upsert'] as List<dynamic>?)?.map((e) =>
+              ContasreceberUpsertWithWhereUniqueWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          createMany: json['createMany'] == null
+              ? null
+              : ContasreceberCreateManyClienteInputEnvelope.fromJson(
+                  json['createMany'] as Map<String, dynamic>),
+          set: (json['set'] as List<dynamic>?)?.map((e) =>
+              ContasreceberWhereUniqueInput.fromJson(
+                  e as Map<String, dynamic>)),
+          disconnect: (json['disconnect'] as List<dynamic>?)?.map((e) =>
+              ContasreceberWhereUniqueInput.fromJson(
+                  e as Map<String, dynamic>)),
+          delete: (json['delete'] as List<dynamic>?)?.map((e) =>
+              ContasreceberWhereUniqueInput.fromJson(
+                  e as Map<String, dynamic>)),
+          connect: (json['connect'] as List<dynamic>?)?.map((e) =>
+              ContasreceberWhereUniqueInput.fromJson(
+                  e as Map<String, dynamic>)),
+          update: (json['update'] as List<dynamic>?)?.map((e) =>
+              ContasreceberUpdateWithWhereUniqueWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          updateMany: (json['updateMany'] as List<dynamic>?)?.map((e) =>
+              ContasreceberUpdateManyWithWhereWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          deleteMany: (json['deleteMany'] as List<dynamic>?)?.map((e) =>
+              ContasreceberScalarWhereInput.fromJson(
+                  e as Map<String, dynamic>)),
+        );
+
+Map<String, dynamic> _$ContasreceberUpdateManyWithoutClienteNestedInputToJson(
+    ContasreceberUpdateManyWithoutClienteNestedInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('create', instance.create?.map((e) => e.toJson()).toList());
+  writeNotNull('connectOrCreate',
+      instance.connectOrCreate?.map((e) => e.toJson()).toList());
+  writeNotNull('upsert', instance.upsert?.map((e) => e.toJson()).toList());
+  writeNotNull('createMany', instance.createMany?.toJson());
+  writeNotNull('set', instance.set?.map((e) => e.toJson()).toList());
+  writeNotNull(
+      'disconnect', instance.disconnect?.map((e) => e.toJson()).toList());
+  writeNotNull('delete', instance.delete?.map((e) => e.toJson()).toList());
+  writeNotNull('connect', instance.connect?.map((e) => e.toJson()).toList());
+  writeNotNull('update', instance.update?.map((e) => e.toJson()).toList());
+  writeNotNull(
+      'updateMany', instance.updateMany?.map((e) => e.toJson()).toList());
+  writeNotNull(
+      'deleteMany', instance.deleteMany?.map((e) => e.toJson()).toList());
+  return val;
+}
+
 PedidoUpdateManyWithoutClienteNestedInput
     _$PedidoUpdateManyWithoutClienteNestedInputFromJson(
             Map<String, dynamic> json) =>
@@ -4819,6 +5154,75 @@ Map<String, dynamic> _$IntFieldUpdateOperationsInputToJson(
   return val;
 }
 
+ContasreceberUncheckedUpdateManyWithoutClienteNestedInput
+    _$ContasreceberUncheckedUpdateManyWithoutClienteNestedInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberUncheckedUpdateManyWithoutClienteNestedInput(
+          create: (json['create'] as List<dynamic>?)?.map((e) =>
+              ContasreceberCreateWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          connectOrCreate: (json['connectOrCreate'] as List<dynamic>?)?.map(
+              (e) => ContasreceberCreateOrConnectWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          upsert: (json['upsert'] as List<dynamic>?)?.map((e) =>
+              ContasreceberUpsertWithWhereUniqueWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          createMany: json['createMany'] == null
+              ? null
+              : ContasreceberCreateManyClienteInputEnvelope.fromJson(
+                  json['createMany'] as Map<String, dynamic>),
+          set: (json['set'] as List<dynamic>?)?.map((e) =>
+              ContasreceberWhereUniqueInput.fromJson(
+                  e as Map<String, dynamic>)),
+          disconnect: (json['disconnect'] as List<dynamic>?)?.map((e) =>
+              ContasreceberWhereUniqueInput.fromJson(
+                  e as Map<String, dynamic>)),
+          delete: (json['delete'] as List<dynamic>?)?.map((e) =>
+              ContasreceberWhereUniqueInput.fromJson(
+                  e as Map<String, dynamic>)),
+          connect: (json['connect'] as List<dynamic>?)?.map((e) =>
+              ContasreceberWhereUniqueInput.fromJson(
+                  e as Map<String, dynamic>)),
+          update: (json['update'] as List<dynamic>?)?.map((e) =>
+              ContasreceberUpdateWithWhereUniqueWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          updateMany: (json['updateMany'] as List<dynamic>?)?.map((e) =>
+              ContasreceberUpdateManyWithWhereWithoutClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          deleteMany: (json['deleteMany'] as List<dynamic>?)?.map((e) =>
+              ContasreceberScalarWhereInput.fromJson(
+                  e as Map<String, dynamic>)),
+        );
+
+Map<String, dynamic>
+    _$ContasreceberUncheckedUpdateManyWithoutClienteNestedInputToJson(
+        ContasreceberUncheckedUpdateManyWithoutClienteNestedInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('create', instance.create?.map((e) => e.toJson()).toList());
+  writeNotNull('connectOrCreate',
+      instance.connectOrCreate?.map((e) => e.toJson()).toList());
+  writeNotNull('upsert', instance.upsert?.map((e) => e.toJson()).toList());
+  writeNotNull('createMany', instance.createMany?.toJson());
+  writeNotNull('set', instance.set?.map((e) => e.toJson()).toList());
+  writeNotNull(
+      'disconnect', instance.disconnect?.map((e) => e.toJson()).toList());
+  writeNotNull('delete', instance.delete?.map((e) => e.toJson()).toList());
+  writeNotNull('connect', instance.connect?.map((e) => e.toJson()).toList());
+  writeNotNull('update', instance.update?.map((e) => e.toJson()).toList());
+  writeNotNull(
+      'updateMany', instance.updateMany?.map((e) => e.toJson()).toList());
+  writeNotNull(
+      'deleteMany', instance.deleteMany?.map((e) => e.toJson()).toList());
+  return val;
+}
+
 PedidoUncheckedUpdateManyWithoutClienteNestedInput
     _$PedidoUncheckedUpdateManyWithoutClienteNestedInputFromJson(
             Map<String, dynamic> json) =>
@@ -4879,6 +5283,40 @@ Map<String, dynamic> _$PedidoUncheckedUpdateManyWithoutClienteNestedInputToJson(
       'updateMany', instance.updateMany?.map((e) => e.toJson()).toList());
   writeNotNull(
       'deleteMany', instance.deleteMany?.map((e) => e.toJson()).toList());
+  return val;
+}
+
+ClienteCreateNestedOneWithoutContasreceberInput
+    _$ClienteCreateNestedOneWithoutContasreceberInputFromJson(
+            Map<String, dynamic> json) =>
+        ClienteCreateNestedOneWithoutContasreceberInput(
+          create: json['create'] == null
+              ? null
+              : ClienteCreateWithoutContasreceberInput.fromJson(
+                  json['create'] as Map<String, dynamic>),
+          connectOrCreate: json['connectOrCreate'] == null
+              ? null
+              : ClienteCreateOrConnectWithoutContasreceberInput.fromJson(
+                  json['connectOrCreate'] as Map<String, dynamic>),
+          connect: json['connect'] == null
+              ? null
+              : ClienteWhereUniqueInput.fromJson(
+                  json['connect'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$ClienteCreateNestedOneWithoutContasreceberInputToJson(
+    ClienteCreateNestedOneWithoutContasreceberInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('create', instance.create?.toJson());
+  writeNotNull('connectOrCreate', instance.connectOrCreate?.toJson());
+  writeNotNull('connect', instance.connect?.toJson());
   return val;
 }
 
@@ -5017,10 +5455,55 @@ Map<String, dynamic> _$FloatFieldUpdateOperationsInputToJson(
   return val;
 }
 
-PedidoUpdateOneRequiredWithoutContasreceberNestedInput
-    _$PedidoUpdateOneRequiredWithoutContasreceberNestedInputFromJson(
+ClienteUpdateOneRequiredWithoutContasreceberNestedInput
+    _$ClienteUpdateOneRequiredWithoutContasreceberNestedInputFromJson(
             Map<String, dynamic> json) =>
-        PedidoUpdateOneRequiredWithoutContasreceberNestedInput(
+        ClienteUpdateOneRequiredWithoutContasreceberNestedInput(
+          create: json['create'] == null
+              ? null
+              : ClienteCreateWithoutContasreceberInput.fromJson(
+                  json['create'] as Map<String, dynamic>),
+          connectOrCreate: json['connectOrCreate'] == null
+              ? null
+              : ClienteCreateOrConnectWithoutContasreceberInput.fromJson(
+                  json['connectOrCreate'] as Map<String, dynamic>),
+          upsert: json['upsert'] == null
+              ? null
+              : ClienteUpsertWithoutContasreceberInput.fromJson(
+                  json['upsert'] as Map<String, dynamic>),
+          connect: json['connect'] == null
+              ? null
+              : ClienteWhereUniqueInput.fromJson(
+                  json['connect'] as Map<String, dynamic>),
+          update: json['update'] == null
+              ? null
+              : ClienteUpdateWithoutContasreceberInput.fromJson(
+                  json['update'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic>
+    _$ClienteUpdateOneRequiredWithoutContasreceberNestedInputToJson(
+        ClienteUpdateOneRequiredWithoutContasreceberNestedInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('create', instance.create?.toJson());
+  writeNotNull('connectOrCreate', instance.connectOrCreate?.toJson());
+  writeNotNull('upsert', instance.upsert?.toJson());
+  writeNotNull('connect', instance.connect?.toJson());
+  writeNotNull('update', instance.update?.toJson());
+  return val;
+}
+
+PedidoUpdateOneWithoutContasreceberNestedInput
+    _$PedidoUpdateOneWithoutContasreceberNestedInputFromJson(
+            Map<String, dynamic> json) =>
+        PedidoUpdateOneWithoutContasreceberNestedInput(
           create: json['create'] == null
               ? null
               : PedidoCreateWithoutContasreceberInput.fromJson(
@@ -5033,6 +5516,8 @@ PedidoUpdateOneRequiredWithoutContasreceberNestedInput
               ? null
               : PedidoUpsertWithoutContasreceberInput.fromJson(
                   json['upsert'] as Map<String, dynamic>),
+          disconnect: json['disconnect'] as bool?,
+          delete: json['delete'] as bool?,
           connect: json['connect'] == null
               ? null
               : PedidoWhereUniqueInput.fromJson(
@@ -5043,9 +5528,8 @@ PedidoUpdateOneRequiredWithoutContasreceberNestedInput
                   json['update'] as Map<String, dynamic>),
         );
 
-Map<String, dynamic>
-    _$PedidoUpdateOneRequiredWithoutContasreceberNestedInputToJson(
-        PedidoUpdateOneRequiredWithoutContasreceberNestedInput instance) {
+Map<String, dynamic> _$PedidoUpdateOneWithoutContasreceberNestedInputToJson(
+    PedidoUpdateOneWithoutContasreceberNestedInput instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -5057,6 +5541,8 @@ Map<String, dynamic>
   writeNotNull('create', instance.create?.toJson());
   writeNotNull('connectOrCreate', instance.connectOrCreate?.toJson());
   writeNotNull('upsert', instance.upsert?.toJson());
+  writeNotNull('disconnect', instance.disconnect);
+  writeNotNull('delete', instance.delete);
   writeNotNull('connect', instance.connect?.toJson());
   writeNotNull('update', instance.update?.toJson());
   return val;
@@ -5122,6 +5608,35 @@ Map<String, dynamic> _$PagamentoUpdateManyWithoutContasreceberNestedInputToJson(
       'updateMany', instance.updateMany?.map((e) => e.toJson()).toList());
   writeNotNull(
       'deleteMany', instance.deleteMany?.map((e) => e.toJson()).toList());
+  return val;
+}
+
+NullableIntFieldUpdateOperationsInput
+    _$NullableIntFieldUpdateOperationsInputFromJson(
+            Map<String, dynamic> json) =>
+        NullableIntFieldUpdateOperationsInput(
+          set: json['set'] as int?,
+          increment: json['increment'] as int?,
+          decrement: json['decrement'] as int?,
+          multiply: json['multiply'] as int?,
+          divide: json['divide'] as int?,
+        );
+
+Map<String, dynamic> _$NullableIntFieldUpdateOperationsInputToJson(
+    NullableIntFieldUpdateOperationsInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('set', instance.set);
+  writeNotNull('increment', instance.increment);
+  writeNotNull('decrement', instance.decrement);
+  writeNotNull('multiply', instance.multiply);
+  writeNotNull('divide', instance.divide);
   return val;
 }
 
@@ -6470,6 +6985,144 @@ Map<String, dynamic> _$NestedDateTimeWithAggregatesFilterToJson(
   return val;
 }
 
+NestedIntNullableFilter _$NestedIntNullableFilterFromJson(
+        Map<String, dynamic> json) =>
+    NestedIntNullableFilter(
+      equals: json['equals'] as int?,
+      $in: (json['in'] as List<dynamic>?)?.map((e) => e as int),
+      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as int),
+      lt: json['lt'] as int?,
+      lte: json['lte'] as int?,
+      gt: json['gt'] as int?,
+      gte: json['gte'] as int?,
+      not: json['not'] == null
+          ? null
+          : NestedIntNullableFilter.fromJson(
+              json['not'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$NestedIntNullableFilterToJson(
+    NestedIntNullableFilter instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('equals', instance.equals);
+  writeNotNull('in', instance.$in?.toList());
+  writeNotNull('notIn', instance.notIn?.toList());
+  writeNotNull('lt', instance.lt);
+  writeNotNull('lte', instance.lte);
+  writeNotNull('gt', instance.gt);
+  writeNotNull('gte', instance.gte);
+  writeNotNull('not', instance.not?.toJson());
+  return val;
+}
+
+NestedIntNullableWithAggregatesFilter
+    _$NestedIntNullableWithAggregatesFilterFromJson(
+            Map<String, dynamic> json) =>
+        NestedIntNullableWithAggregatesFilter(
+          equals: json['equals'] as int?,
+          $in: (json['in'] as List<dynamic>?)?.map((e) => e as int),
+          notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as int),
+          lt: json['lt'] as int?,
+          lte: json['lte'] as int?,
+          gt: json['gt'] as int?,
+          gte: json['gte'] as int?,
+          not: json['not'] == null
+              ? null
+              : NestedIntNullableWithAggregatesFilter.fromJson(
+                  json['not'] as Map<String, dynamic>),
+          $count: json['_count'] == null
+              ? null
+              : NestedIntNullableFilter.fromJson(
+                  json['_count'] as Map<String, dynamic>),
+          $avg: json['_avg'] == null
+              ? null
+              : NestedFloatNullableFilter.fromJson(
+                  json['_avg'] as Map<String, dynamic>),
+          $sum: json['_sum'] == null
+              ? null
+              : NestedIntNullableFilter.fromJson(
+                  json['_sum'] as Map<String, dynamic>),
+          $min: json['_min'] == null
+              ? null
+              : NestedIntNullableFilter.fromJson(
+                  json['_min'] as Map<String, dynamic>),
+          $max: json['_max'] == null
+              ? null
+              : NestedIntNullableFilter.fromJson(
+                  json['_max'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$NestedIntNullableWithAggregatesFilterToJson(
+    NestedIntNullableWithAggregatesFilter instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('equals', instance.equals);
+  writeNotNull('in', instance.$in?.toList());
+  writeNotNull('notIn', instance.notIn?.toList());
+  writeNotNull('lt', instance.lt);
+  writeNotNull('lte', instance.lte);
+  writeNotNull('gt', instance.gt);
+  writeNotNull('gte', instance.gte);
+  writeNotNull('not', instance.not?.toJson());
+  writeNotNull('_count', instance.$count?.toJson());
+  writeNotNull('_avg', instance.$avg?.toJson());
+  writeNotNull('_sum', instance.$sum?.toJson());
+  writeNotNull('_min', instance.$min?.toJson());
+  writeNotNull('_max', instance.$max?.toJson());
+  return val;
+}
+
+NestedFloatNullableFilter _$NestedFloatNullableFilterFromJson(
+        Map<String, dynamic> json) =>
+    NestedFloatNullableFilter(
+      equals: (json['equals'] as num?)?.toDouble(),
+      $in: (json['in'] as List<dynamic>?)?.map((e) => (e as num).toDouble()),
+      notIn:
+          (json['notIn'] as List<dynamic>?)?.map((e) => (e as num).toDouble()),
+      lt: (json['lt'] as num?)?.toDouble(),
+      lte: (json['lte'] as num?)?.toDouble(),
+      gt: (json['gt'] as num?)?.toDouble(),
+      gte: (json['gte'] as num?)?.toDouble(),
+      not: json['not'] == null
+          ? null
+          : NestedFloatNullableFilter.fromJson(
+              json['not'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$NestedFloatNullableFilterToJson(
+    NestedFloatNullableFilter instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('equals', instance.equals);
+  writeNotNull('in', instance.$in?.toList());
+  writeNotNull('notIn', instance.notIn?.toList());
+  writeNotNull('lt', instance.lt);
+  writeNotNull('lte', instance.lte);
+  writeNotNull('gt', instance.gt);
+  writeNotNull('gte', instance.gte);
+  writeNotNull('not', instance.not?.toJson());
+  return val;
+}
+
 NestedFloatWithAggregatesFilter _$NestedFloatWithAggregatesFilterFromJson(
         Map<String, dynamic> json) =>
     NestedFloatWithAggregatesFilter(
@@ -6525,6 +7178,142 @@ Map<String, dynamic> _$NestedFloatWithAggregatesFilterToJson(
   writeNotNull('_sum', instance.$sum?.toJson());
   writeNotNull('_min', instance.$min?.toJson());
   writeNotNull('_max', instance.$max?.toJson());
+  return val;
+}
+
+ContasreceberCreateWithoutClienteInput
+    _$ContasreceberCreateWithoutClienteInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberCreateWithoutClienteInput(
+          dataemissao: _$JsonConverterFromJson<String, DateTime>(
+              json['DATAEMISSAO'], const DateTimeJsonConverter().fromJson),
+          datavencimento: _$JsonConverterFromJson<String, DateTime>(
+              json['DATAVENCIMENTO'], const DateTimeJsonConverter().fromJson),
+          valor: (json['VALOR'] as num?)?.toDouble(),
+          valorrestante: (json['VALORRESTANTE'] as num?)?.toDouble(),
+          statuspagamento: json['STATUSPAGAMENTO'] as String?,
+          pedido: json['pedido'] == null
+              ? null
+              : PedidoCreateNestedOneWithoutContasreceberInput.fromJson(
+                  json['pedido'] as Map<String, dynamic>),
+          pagamento: json['pagamento'] == null
+              ? null
+              : PagamentoCreateNestedManyWithoutContasreceberInput.fromJson(
+                  json['pagamento'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$ContasreceberCreateWithoutClienteInputToJson(
+    ContasreceberCreateWithoutClienteInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(
+      'DATAEMISSAO',
+      _$JsonConverterToJson<String, DateTime>(
+          instance.dataemissao, const DateTimeJsonConverter().toJson));
+  writeNotNull(
+      'DATAVENCIMENTO',
+      _$JsonConverterToJson<String, DateTime>(
+          instance.datavencimento, const DateTimeJsonConverter().toJson));
+  writeNotNull('VALOR', instance.valor);
+  writeNotNull('VALORRESTANTE', instance.valorrestante);
+  writeNotNull('STATUSPAGAMENTO', instance.statuspagamento);
+  writeNotNull('pedido', instance.pedido?.toJson());
+  writeNotNull('pagamento', instance.pagamento?.toJson());
+  return val;
+}
+
+ContasreceberUncheckedCreateWithoutClienteInput
+    _$ContasreceberUncheckedCreateWithoutClienteInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberUncheckedCreateWithoutClienteInput(
+          codcontasreceber: json['CODCONTASRECEBER'] as int?,
+          codpedido: json['CODPEDIDO'] as int?,
+          dataemissao: _$JsonConverterFromJson<String, DateTime>(
+              json['DATAEMISSAO'], const DateTimeJsonConverter().fromJson),
+          datavencimento: _$JsonConverterFromJson<String, DateTime>(
+              json['DATAVENCIMENTO'], const DateTimeJsonConverter().fromJson),
+          valor: (json['VALOR'] as num?)?.toDouble(),
+          valorrestante: (json['VALORRESTANTE'] as num?)?.toDouble(),
+          statuspagamento: json['STATUSPAGAMENTO'] as String?,
+          pagamento: json['pagamento'] == null
+              ? null
+              : PagamentoUncheckedCreateNestedManyWithoutContasreceberInput
+                  .fromJson(json['pagamento'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$ContasreceberUncheckedCreateWithoutClienteInputToJson(
+    ContasreceberUncheckedCreateWithoutClienteInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('CODCONTASRECEBER', instance.codcontasreceber);
+  writeNotNull('CODPEDIDO', instance.codpedido);
+  writeNotNull(
+      'DATAEMISSAO',
+      _$JsonConverterToJson<String, DateTime>(
+          instance.dataemissao, const DateTimeJsonConverter().toJson));
+  writeNotNull(
+      'DATAVENCIMENTO',
+      _$JsonConverterToJson<String, DateTime>(
+          instance.datavencimento, const DateTimeJsonConverter().toJson));
+  writeNotNull('VALOR', instance.valor);
+  writeNotNull('VALORRESTANTE', instance.valorrestante);
+  writeNotNull('STATUSPAGAMENTO', instance.statuspagamento);
+  writeNotNull('pagamento', instance.pagamento?.toJson());
+  return val;
+}
+
+ContasreceberCreateOrConnectWithoutClienteInput
+    _$ContasreceberCreateOrConnectWithoutClienteInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberCreateOrConnectWithoutClienteInput(
+          where: ContasreceberWhereUniqueInput.fromJson(
+              json['where'] as Map<String, dynamic>),
+          create: ContasreceberCreateWithoutClienteInput.fromJson(
+              json['create'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$ContasreceberCreateOrConnectWithoutClienteInputToJson(
+        ContasreceberCreateOrConnectWithoutClienteInput instance) =>
+    <String, dynamic>{
+      'where': instance.where.toJson(),
+      'create': instance.create.toJson(),
+    };
+
+ContasreceberCreateManyClienteInputEnvelope
+    _$ContasreceberCreateManyClienteInputEnvelopeFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberCreateManyClienteInputEnvelope(
+          data: (json['data'] as List<dynamic>).map((e) =>
+              ContasreceberCreateManyClienteInput.fromJson(
+                  e as Map<String, dynamic>)),
+          skipDuplicates: json['skipDuplicates'] as bool?,
+        );
+
+Map<String, dynamic> _$ContasreceberCreateManyClienteInputEnvelopeToJson(
+    ContasreceberCreateManyClienteInputEnvelope instance) {
+  final val = <String, dynamic>{
+    'data': instance.data.map((e) => e.toJson()).toList(),
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('skipDuplicates', instance.skipDuplicates);
   return val;
 }
 
@@ -6644,6 +7433,127 @@ Map<String, dynamic> _$PedidoCreateManyClienteInputEnvelopeToJson(
   return val;
 }
 
+ContasreceberUpsertWithWhereUniqueWithoutClienteInput
+    _$ContasreceberUpsertWithWhereUniqueWithoutClienteInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberUpsertWithWhereUniqueWithoutClienteInput(
+          where: ContasreceberWhereUniqueInput.fromJson(
+              json['where'] as Map<String, dynamic>),
+          update: ContasreceberUpdateWithoutClienteInput.fromJson(
+              json['update'] as Map<String, dynamic>),
+          create: ContasreceberCreateWithoutClienteInput.fromJson(
+              json['create'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic>
+    _$ContasreceberUpsertWithWhereUniqueWithoutClienteInputToJson(
+            ContasreceberUpsertWithWhereUniqueWithoutClienteInput instance) =>
+        <String, dynamic>{
+          'where': instance.where.toJson(),
+          'update': instance.update.toJson(),
+          'create': instance.create.toJson(),
+        };
+
+ContasreceberUpdateWithWhereUniqueWithoutClienteInput
+    _$ContasreceberUpdateWithWhereUniqueWithoutClienteInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberUpdateWithWhereUniqueWithoutClienteInput(
+          where: ContasreceberWhereUniqueInput.fromJson(
+              json['where'] as Map<String, dynamic>),
+          data: ContasreceberUpdateWithoutClienteInput.fromJson(
+              json['data'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic>
+    _$ContasreceberUpdateWithWhereUniqueWithoutClienteInputToJson(
+            ContasreceberUpdateWithWhereUniqueWithoutClienteInput instance) =>
+        <String, dynamic>{
+          'where': instance.where.toJson(),
+          'data': instance.data.toJson(),
+        };
+
+ContasreceberUpdateManyWithWhereWithoutClienteInput
+    _$ContasreceberUpdateManyWithWhereWithoutClienteInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberUpdateManyWithWhereWithoutClienteInput(
+          where: ContasreceberScalarWhereInput.fromJson(
+              json['where'] as Map<String, dynamic>),
+          data: ContasreceberUpdateManyMutationInput.fromJson(
+              json['data'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic>
+    _$ContasreceberUpdateManyWithWhereWithoutClienteInputToJson(
+            ContasreceberUpdateManyWithWhereWithoutClienteInput instance) =>
+        <String, dynamic>{
+          'where': instance.where.toJson(),
+          'data': instance.data.toJson(),
+        };
+
+ContasreceberScalarWhereInput _$ContasreceberScalarWhereInputFromJson(
+        Map<String, dynamic> json) =>
+    ContasreceberScalarWhereInput(
+      AND: (json['AND'] as List<dynamic>?)?.map((e) =>
+          ContasreceberScalarWhereInput.fromJson(e as Map<String, dynamic>)),
+      OR: (json['OR'] as List<dynamic>?)?.map((e) =>
+          ContasreceberScalarWhereInput.fromJson(e as Map<String, dynamic>)),
+      NOT: (json['NOT'] as List<dynamic>?)?.map((e) =>
+          ContasreceberScalarWhereInput.fromJson(e as Map<String, dynamic>)),
+      codcontasreceber: json['CODCONTASRECEBER'] == null
+          ? null
+          : IntFilter.fromJson(
+              json['CODCONTASRECEBER'] as Map<String, dynamic>),
+      codcliente: json['CODCLIENTE'] == null
+          ? null
+          : IntFilter.fromJson(json['CODCLIENTE'] as Map<String, dynamic>),
+      codpedido: json['CODPEDIDO'] == null
+          ? null
+          : IntNullableFilter.fromJson(
+              json['CODPEDIDO'] as Map<String, dynamic>),
+      dataemissao: json['DATAEMISSAO'] == null
+          ? null
+          : DateTimeFilter.fromJson(
+              json['DATAEMISSAO'] as Map<String, dynamic>),
+      datavencimento: json['DATAVENCIMENTO'] == null
+          ? null
+          : DateTimeFilter.fromJson(
+              json['DATAVENCIMENTO'] as Map<String, dynamic>),
+      valor: json['VALOR'] == null
+          ? null
+          : FloatFilter.fromJson(json['VALOR'] as Map<String, dynamic>),
+      valorrestante: json['VALORRESTANTE'] == null
+          ? null
+          : FloatFilter.fromJson(json['VALORRESTANTE'] as Map<String, dynamic>),
+      statuspagamento: json['STATUSPAGAMENTO'] == null
+          ? null
+          : StringFilter.fromJson(
+              json['STATUSPAGAMENTO'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$ContasreceberScalarWhereInputToJson(
+    ContasreceberScalarWhereInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('AND', instance.AND?.map((e) => e.toJson()).toList());
+  writeNotNull('OR', instance.OR?.map((e) => e.toJson()).toList());
+  writeNotNull('NOT', instance.NOT?.map((e) => e.toJson()).toList());
+  writeNotNull('CODCONTASRECEBER', instance.codcontasreceber?.toJson());
+  writeNotNull('CODCLIENTE', instance.codcliente?.toJson());
+  writeNotNull('CODPEDIDO', instance.codpedido?.toJson());
+  writeNotNull('DATAEMISSAO', instance.dataemissao?.toJson());
+  writeNotNull('DATAVENCIMENTO', instance.datavencimento?.toJson());
+  writeNotNull('VALOR', instance.valor?.toJson());
+  writeNotNull('VALORRESTANTE', instance.valorrestante?.toJson());
+  writeNotNull('STATUSPAGAMENTO', instance.statuspagamento?.toJson());
+  return val;
+}
+
 PedidoUpsertWithWhereUniqueWithoutClienteInput
     _$PedidoUpsertWithWhereUniqueWithoutClienteInputFromJson(
             Map<String, dynamic> json) =>
@@ -6740,6 +7650,101 @@ Map<String, dynamic> _$PedidoScalarWhereInputToJson(
   writeNotNull('VALORTOTAL', instance.valortotal?.toJson());
   return val;
 }
+
+ClienteCreateWithoutContasreceberInput
+    _$ClienteCreateWithoutContasreceberInputFromJson(
+            Map<String, dynamic> json) =>
+        ClienteCreateWithoutContasreceberInput(
+          nome: json['NOME'] as String?,
+          cpfcnpj: json['CPFCNPJ'] as String?,
+          endereco: json['ENDERECO'] as String?,
+          contato: json['CONTATO'] as String?,
+          datacadastro: _$JsonConverterFromJson<String, DateTime>(
+              json['DATACADASTRO'], const DateTimeJsonConverter().fromJson),
+          pedido: json['pedido'] == null
+              ? null
+              : PedidoCreateNestedManyWithoutClienteInput.fromJson(
+                  json['pedido'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$ClienteCreateWithoutContasreceberInputToJson(
+    ClienteCreateWithoutContasreceberInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('NOME', instance.nome);
+  writeNotNull('CPFCNPJ', instance.cpfcnpj);
+  writeNotNull('ENDERECO', instance.endereco);
+  writeNotNull('CONTATO', instance.contato);
+  writeNotNull(
+      'DATACADASTRO',
+      _$JsonConverterToJson<String, DateTime>(
+          instance.datacadastro, const DateTimeJsonConverter().toJson));
+  writeNotNull('pedido', instance.pedido?.toJson());
+  return val;
+}
+
+ClienteUncheckedCreateWithoutContasreceberInput
+    _$ClienteUncheckedCreateWithoutContasreceberInputFromJson(
+            Map<String, dynamic> json) =>
+        ClienteUncheckedCreateWithoutContasreceberInput(
+          codcliente: json['CODCLIENTE'] as int?,
+          nome: json['NOME'] as String?,
+          cpfcnpj: json['CPFCNPJ'] as String?,
+          endereco: json['ENDERECO'] as String?,
+          contato: json['CONTATO'] as String?,
+          datacadastro: _$JsonConverterFromJson<String, DateTime>(
+              json['DATACADASTRO'], const DateTimeJsonConverter().fromJson),
+          pedido: json['pedido'] == null
+              ? null
+              : PedidoUncheckedCreateNestedManyWithoutClienteInput.fromJson(
+                  json['pedido'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$ClienteUncheckedCreateWithoutContasreceberInputToJson(
+    ClienteUncheckedCreateWithoutContasreceberInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('CODCLIENTE', instance.codcliente);
+  writeNotNull('NOME', instance.nome);
+  writeNotNull('CPFCNPJ', instance.cpfcnpj);
+  writeNotNull('ENDERECO', instance.endereco);
+  writeNotNull('CONTATO', instance.contato);
+  writeNotNull(
+      'DATACADASTRO',
+      _$JsonConverterToJson<String, DateTime>(
+          instance.datacadastro, const DateTimeJsonConverter().toJson));
+  writeNotNull('pedido', instance.pedido?.toJson());
+  return val;
+}
+
+ClienteCreateOrConnectWithoutContasreceberInput
+    _$ClienteCreateOrConnectWithoutContasreceberInputFromJson(
+            Map<String, dynamic> json) =>
+        ClienteCreateOrConnectWithoutContasreceberInput(
+          where: ClienteWhereUniqueInput.fromJson(
+              json['where'] as Map<String, dynamic>),
+          create: ClienteCreateWithoutContasreceberInput.fromJson(
+              json['create'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$ClienteCreateOrConnectWithoutContasreceberInputToJson(
+        ClienteCreateOrConnectWithoutContasreceberInput instance) =>
+    <String, dynamic>{
+      'where': instance.where.toJson(),
+      'create': instance.create.toJson(),
+    };
 
 PedidoCreateWithoutContasreceberInput
     _$PedidoCreateWithoutContasreceberInputFromJson(
@@ -6925,6 +7930,126 @@ Map<String, dynamic> _$PagamentoCreateManyContasreceberInputEnvelopeToJson(
   }
 
   writeNotNull('skipDuplicates', instance.skipDuplicates);
+  return val;
+}
+
+ClienteUpsertWithoutContasreceberInput
+    _$ClienteUpsertWithoutContasreceberInputFromJson(
+            Map<String, dynamic> json) =>
+        ClienteUpsertWithoutContasreceberInput(
+          update: ClienteUpdateWithoutContasreceberInput.fromJson(
+              json['update'] as Map<String, dynamic>),
+          create: ClienteCreateWithoutContasreceberInput.fromJson(
+              json['create'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$ClienteUpsertWithoutContasreceberInputToJson(
+        ClienteUpsertWithoutContasreceberInput instance) =>
+    <String, dynamic>{
+      'update': instance.update.toJson(),
+      'create': instance.create.toJson(),
+    };
+
+ClienteUpdateWithoutContasreceberInput
+    _$ClienteUpdateWithoutContasreceberInputFromJson(
+            Map<String, dynamic> json) =>
+        ClienteUpdateWithoutContasreceberInput(
+          nome: json['NOME'] == null
+              ? null
+              : StringFieldUpdateOperationsInput.fromJson(
+                  json['NOME'] as Map<String, dynamic>),
+          cpfcnpj: json['CPFCNPJ'] == null
+              ? null
+              : StringFieldUpdateOperationsInput.fromJson(
+                  json['CPFCNPJ'] as Map<String, dynamic>),
+          endereco: json['ENDERECO'] == null
+              ? null
+              : StringFieldUpdateOperationsInput.fromJson(
+                  json['ENDERECO'] as Map<String, dynamic>),
+          contato: json['CONTATO'] == null
+              ? null
+              : StringFieldUpdateOperationsInput.fromJson(
+                  json['CONTATO'] as Map<String, dynamic>),
+          datacadastro: json['DATACADASTRO'] == null
+              ? null
+              : DateTimeFieldUpdateOperationsInput.fromJson(
+                  json['DATACADASTRO'] as Map<String, dynamic>),
+          pedido: json['pedido'] == null
+              ? null
+              : PedidoUpdateManyWithoutClienteNestedInput.fromJson(
+                  json['pedido'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$ClienteUpdateWithoutContasreceberInputToJson(
+    ClienteUpdateWithoutContasreceberInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('NOME', instance.nome?.toJson());
+  writeNotNull('CPFCNPJ', instance.cpfcnpj?.toJson());
+  writeNotNull('ENDERECO', instance.endereco?.toJson());
+  writeNotNull('CONTATO', instance.contato?.toJson());
+  writeNotNull('DATACADASTRO', instance.datacadastro?.toJson());
+  writeNotNull('pedido', instance.pedido?.toJson());
+  return val;
+}
+
+ClienteUncheckedUpdateWithoutContasreceberInput
+    _$ClienteUncheckedUpdateWithoutContasreceberInputFromJson(
+            Map<String, dynamic> json) =>
+        ClienteUncheckedUpdateWithoutContasreceberInput(
+          codcliente: json['CODCLIENTE'] == null
+              ? null
+              : IntFieldUpdateOperationsInput.fromJson(
+                  json['CODCLIENTE'] as Map<String, dynamic>),
+          nome: json['NOME'] == null
+              ? null
+              : StringFieldUpdateOperationsInput.fromJson(
+                  json['NOME'] as Map<String, dynamic>),
+          cpfcnpj: json['CPFCNPJ'] == null
+              ? null
+              : StringFieldUpdateOperationsInput.fromJson(
+                  json['CPFCNPJ'] as Map<String, dynamic>),
+          endereco: json['ENDERECO'] == null
+              ? null
+              : StringFieldUpdateOperationsInput.fromJson(
+                  json['ENDERECO'] as Map<String, dynamic>),
+          contato: json['CONTATO'] == null
+              ? null
+              : StringFieldUpdateOperationsInput.fromJson(
+                  json['CONTATO'] as Map<String, dynamic>),
+          datacadastro: json['DATACADASTRO'] == null
+              ? null
+              : DateTimeFieldUpdateOperationsInput.fromJson(
+                  json['DATACADASTRO'] as Map<String, dynamic>),
+          pedido: json['pedido'] == null
+              ? null
+              : PedidoUncheckedUpdateManyWithoutClienteNestedInput.fromJson(
+                  json['pedido'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$ClienteUncheckedUpdateWithoutContasreceberInputToJson(
+    ClienteUncheckedUpdateWithoutContasreceberInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('CODCLIENTE', instance.codcliente?.toJson());
+  writeNotNull('NOME', instance.nome?.toJson());
+  writeNotNull('CPFCNPJ', instance.cpfcnpj?.toJson());
+  writeNotNull('ENDERECO', instance.endereco?.toJson());
+  writeNotNull('CONTATO', instance.contato?.toJson());
+  writeNotNull('DATACADASTRO', instance.datacadastro?.toJson());
+  writeNotNull('pedido', instance.pedido?.toJson());
   return val;
 }
 
@@ -7482,8 +8607,12 @@ ContasreceberCreateWithoutPagamentoInput
           valor: (json['VALOR'] as num?)?.toDouble(),
           valorrestante: (json['VALORRESTANTE'] as num?)?.toDouble(),
           statuspagamento: json['STATUSPAGAMENTO'] as String?,
-          pedido: PedidoCreateNestedOneWithoutContasreceberInput.fromJson(
-              json['pedido'] as Map<String, dynamic>),
+          cliente: ClienteCreateNestedOneWithoutContasreceberInput.fromJson(
+              json['cliente'] as Map<String, dynamic>),
+          pedido: json['pedido'] == null
+              ? null
+              : PedidoCreateNestedOneWithoutContasreceberInput.fromJson(
+                  json['pedido'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$ContasreceberCreateWithoutPagamentoInputToJson(
@@ -7507,7 +8636,8 @@ Map<String, dynamic> _$ContasreceberCreateWithoutPagamentoInputToJson(
   writeNotNull('VALOR', instance.valor);
   writeNotNull('VALORRESTANTE', instance.valorrestante);
   writeNotNull('STATUSPAGAMENTO', instance.statuspagamento);
-  val['pedido'] = instance.pedido.toJson();
+  val['cliente'] = instance.cliente.toJson();
+  writeNotNull('pedido', instance.pedido?.toJson());
   return val;
 }
 
@@ -7516,7 +8646,8 @@ ContasreceberUncheckedCreateWithoutPagamentoInput
             Map<String, dynamic> json) =>
         ContasreceberUncheckedCreateWithoutPagamentoInput(
           codcontasreceber: json['CODCONTASRECEBER'] as int?,
-          codpedido: json['CODPEDIDO'] as int,
+          codcliente: json['CODCLIENTE'] as int,
+          codpedido: json['CODPEDIDO'] as int?,
           dataemissao: _$JsonConverterFromJson<String, DateTime>(
               json['DATAEMISSAO'], const DateTimeJsonConverter().fromJson),
           datavencimento: _$JsonConverterFromJson<String, DateTime>(
@@ -7537,7 +8668,8 @@ Map<String, dynamic> _$ContasreceberUncheckedCreateWithoutPagamentoInputToJson(
   }
 
   writeNotNull('CODCONTASRECEBER', instance.codcontasreceber);
-  val['CODPEDIDO'] = instance.codpedido;
+  val['CODCLIENTE'] = instance.codcliente;
+  writeNotNull('CODPEDIDO', instance.codpedido);
   writeNotNull(
       'DATAEMISSAO',
       _$JsonConverterToJson<String, DateTime>(
@@ -7610,9 +8742,13 @@ ContasreceberUpdateWithoutPagamentoInput
               ? null
               : StringFieldUpdateOperationsInput.fromJson(
                   json['STATUSPAGAMENTO'] as Map<String, dynamic>),
+          cliente: json['cliente'] == null
+              ? null
+              : ClienteUpdateOneRequiredWithoutContasreceberNestedInput
+                  .fromJson(json['cliente'] as Map<String, dynamic>),
           pedido: json['pedido'] == null
               ? null
-              : PedidoUpdateOneRequiredWithoutContasreceberNestedInput.fromJson(
+              : PedidoUpdateOneWithoutContasreceberNestedInput.fromJson(
                   json['pedido'] as Map<String, dynamic>),
         );
 
@@ -7631,6 +8767,7 @@ Map<String, dynamic> _$ContasreceberUpdateWithoutPagamentoInputToJson(
   writeNotNull('VALOR', instance.valor?.toJson());
   writeNotNull('VALORRESTANTE', instance.valorrestante?.toJson());
   writeNotNull('STATUSPAGAMENTO', instance.statuspagamento?.toJson());
+  writeNotNull('cliente', instance.cliente?.toJson());
   writeNotNull('pedido', instance.pedido?.toJson());
   return val;
 }
@@ -7643,9 +8780,13 @@ ContasreceberUncheckedUpdateWithoutPagamentoInput
               ? null
               : IntFieldUpdateOperationsInput.fromJson(
                   json['CODCONTASRECEBER'] as Map<String, dynamic>),
-          codpedido: json['CODPEDIDO'] == null
+          codcliente: json['CODCLIENTE'] == null
               ? null
               : IntFieldUpdateOperationsInput.fromJson(
+                  json['CODCLIENTE'] as Map<String, dynamic>),
+          codpedido: json['CODPEDIDO'] == null
+              ? null
+              : NullableIntFieldUpdateOperationsInput.fromJson(
                   json['CODPEDIDO'] as Map<String, dynamic>),
           dataemissao: json['DATAEMISSAO'] == null
               ? null
@@ -7680,6 +8821,7 @@ Map<String, dynamic> _$ContasreceberUncheckedUpdateWithoutPagamentoInputToJson(
   }
 
   writeNotNull('CODCONTASRECEBER', instance.codcontasreceber?.toJson());
+  writeNotNull('CODCLIENTE', instance.codcliente?.toJson());
   writeNotNull('CODPEDIDO', instance.codpedido?.toJson());
   writeNotNull('DATAEMISSAO', instance.dataemissao?.toJson());
   writeNotNull('DATAVENCIMENTO', instance.datavencimento?.toJson());
@@ -7700,6 +8842,8 @@ ContasreceberCreateWithoutPedidoInput
           valor: (json['VALOR'] as num?)?.toDouble(),
           valorrestante: (json['VALORRESTANTE'] as num?)?.toDouble(),
           statuspagamento: json['STATUSPAGAMENTO'] as String?,
+          cliente: ClienteCreateNestedOneWithoutContasreceberInput.fromJson(
+              json['cliente'] as Map<String, dynamic>),
           pagamento: json['pagamento'] == null
               ? null
               : PagamentoCreateNestedManyWithoutContasreceberInput.fromJson(
@@ -7727,6 +8871,7 @@ Map<String, dynamic> _$ContasreceberCreateWithoutPedidoInputToJson(
   writeNotNull('VALOR', instance.valor);
   writeNotNull('VALORRESTANTE', instance.valorrestante);
   writeNotNull('STATUSPAGAMENTO', instance.statuspagamento);
+  val['cliente'] = instance.cliente.toJson();
   writeNotNull('pagamento', instance.pagamento?.toJson());
   return val;
 }
@@ -7736,6 +8881,7 @@ ContasreceberUncheckedCreateWithoutPedidoInput
             Map<String, dynamic> json) =>
         ContasreceberUncheckedCreateWithoutPedidoInput(
           codcontasreceber: json['CODCONTASRECEBER'] as int?,
+          codcliente: json['CODCLIENTE'] as int,
           dataemissao: _$JsonConverterFromJson<String, DateTime>(
               json['DATAEMISSAO'], const DateTimeJsonConverter().fromJson),
           datavencimento: _$JsonConverterFromJson<String, DateTime>(
@@ -7760,6 +8906,7 @@ Map<String, dynamic> _$ContasreceberUncheckedCreateWithoutPedidoInputToJson(
   }
 
   writeNotNull('CODCONTASRECEBER', instance.codcontasreceber);
+  val['CODCLIENTE'] = instance.codcliente;
   writeNotNull(
       'DATAEMISSAO',
       _$JsonConverterToJson<String, DateTime>(
@@ -7926,6 +9073,10 @@ ClienteCreateWithoutPedidoInput _$ClienteCreateWithoutPedidoInputFromJson(
       contato: json['CONTATO'] as String?,
       datacadastro: _$JsonConverterFromJson<String, DateTime>(
           json['DATACADASTRO'], const DateTimeJsonConverter().fromJson),
+      contasreceber: json['contasreceber'] == null
+          ? null
+          : ContasreceberCreateNestedManyWithoutClienteInput.fromJson(
+              json['contasreceber'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ClienteCreateWithoutPedidoInputToJson(
@@ -7946,6 +9097,7 @@ Map<String, dynamic> _$ClienteCreateWithoutPedidoInputToJson(
       'DATACADASTRO',
       _$JsonConverterToJson<String, DateTime>(
           instance.datacadastro, const DateTimeJsonConverter().toJson));
+  writeNotNull('contasreceber', instance.contasreceber?.toJson());
   return val;
 }
 
@@ -7960,6 +9112,10 @@ ClienteUncheckedCreateWithoutPedidoInput
           contato: json['CONTATO'] as String?,
           datacadastro: _$JsonConverterFromJson<String, DateTime>(
               json['DATACADASTRO'], const DateTimeJsonConverter().fromJson),
+          contasreceber: json['contasreceber'] == null
+              ? null
+              : ContasreceberUncheckedCreateNestedManyWithoutClienteInput
+                  .fromJson(json['contasreceber'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$ClienteUncheckedCreateWithoutPedidoInputToJson(
@@ -7981,6 +9137,7 @@ Map<String, dynamic> _$ClienteUncheckedCreateWithoutPedidoInputToJson(
       'DATACADASTRO',
       _$JsonConverterToJson<String, DateTime>(
           instance.datacadastro, const DateTimeJsonConverter().toJson));
+  writeNotNull('contasreceber', instance.contasreceber?.toJson());
   return val;
 }
 
@@ -8056,65 +9213,6 @@ Map<String, dynamic> _$ContasreceberUpdateManyWithWhereWithoutPedidoInputToJson(
       'where': instance.where.toJson(),
       'data': instance.data.toJson(),
     };
-
-ContasreceberScalarWhereInput _$ContasreceberScalarWhereInputFromJson(
-        Map<String, dynamic> json) =>
-    ContasreceberScalarWhereInput(
-      AND: (json['AND'] as List<dynamic>?)?.map((e) =>
-          ContasreceberScalarWhereInput.fromJson(e as Map<String, dynamic>)),
-      OR: (json['OR'] as List<dynamic>?)?.map((e) =>
-          ContasreceberScalarWhereInput.fromJson(e as Map<String, dynamic>)),
-      NOT: (json['NOT'] as List<dynamic>?)?.map((e) =>
-          ContasreceberScalarWhereInput.fromJson(e as Map<String, dynamic>)),
-      codcontasreceber: json['CODCONTASRECEBER'] == null
-          ? null
-          : IntFilter.fromJson(
-              json['CODCONTASRECEBER'] as Map<String, dynamic>),
-      codpedido: json['CODPEDIDO'] == null
-          ? null
-          : IntFilter.fromJson(json['CODPEDIDO'] as Map<String, dynamic>),
-      dataemissao: json['DATAEMISSAO'] == null
-          ? null
-          : DateTimeFilter.fromJson(
-              json['DATAEMISSAO'] as Map<String, dynamic>),
-      datavencimento: json['DATAVENCIMENTO'] == null
-          ? null
-          : DateTimeFilter.fromJson(
-              json['DATAVENCIMENTO'] as Map<String, dynamic>),
-      valor: json['VALOR'] == null
-          ? null
-          : FloatFilter.fromJson(json['VALOR'] as Map<String, dynamic>),
-      valorrestante: json['VALORRESTANTE'] == null
-          ? null
-          : FloatFilter.fromJson(json['VALORRESTANTE'] as Map<String, dynamic>),
-      statuspagamento: json['STATUSPAGAMENTO'] == null
-          ? null
-          : StringFilter.fromJson(
-              json['STATUSPAGAMENTO'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$ContasreceberScalarWhereInputToJson(
-    ContasreceberScalarWhereInput instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('AND', instance.AND?.map((e) => e.toJson()).toList());
-  writeNotNull('OR', instance.OR?.map((e) => e.toJson()).toList());
-  writeNotNull('NOT', instance.NOT?.map((e) => e.toJson()).toList());
-  writeNotNull('CODCONTASRECEBER', instance.codcontasreceber?.toJson());
-  writeNotNull('CODPEDIDO', instance.codpedido?.toJson());
-  writeNotNull('DATAEMISSAO', instance.dataemissao?.toJson());
-  writeNotNull('DATAVENCIMENTO', instance.datavencimento?.toJson());
-  writeNotNull('VALOR', instance.valor?.toJson());
-  writeNotNull('VALORRESTANTE', instance.valorrestante?.toJson());
-  writeNotNull('STATUSPAGAMENTO', instance.statuspagamento?.toJson());
-  return val;
-}
 
 ItenspedidoUpsertWithWhereUniqueWithoutPedidoInput
     _$ItenspedidoUpsertWithWhereUniqueWithoutPedidoInputFromJson(
@@ -8260,6 +9358,10 @@ ClienteUpdateWithoutPedidoInput _$ClienteUpdateWithoutPedidoInputFromJson(
           ? null
           : DateTimeFieldUpdateOperationsInput.fromJson(
               json['DATACADASTRO'] as Map<String, dynamic>),
+      contasreceber: json['contasreceber'] == null
+          ? null
+          : ContasreceberUpdateManyWithoutClienteNestedInput.fromJson(
+              json['contasreceber'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ClienteUpdateWithoutPedidoInputToJson(
@@ -8277,6 +9379,7 @@ Map<String, dynamic> _$ClienteUpdateWithoutPedidoInputToJson(
   writeNotNull('ENDERECO', instance.endereco?.toJson());
   writeNotNull('CONTATO', instance.contato?.toJson());
   writeNotNull('DATACADASTRO', instance.datacadastro?.toJson());
+  writeNotNull('contasreceber', instance.contasreceber?.toJson());
   return val;
 }
 
@@ -8308,6 +9411,10 @@ ClienteUncheckedUpdateWithoutPedidoInput
               ? null
               : DateTimeFieldUpdateOperationsInput.fromJson(
                   json['DATACADASTRO'] as Map<String, dynamic>),
+          contasreceber: json['contasreceber'] == null
+              ? null
+              : ContasreceberUncheckedUpdateManyWithoutClienteNestedInput
+                  .fromJson(json['contasreceber'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$ClienteUncheckedUpdateWithoutPedidoInputToJson(
@@ -8326,6 +9433,7 @@ Map<String, dynamic> _$ClienteUncheckedUpdateWithoutPedidoInputToJson(
   writeNotNull('ENDERECO', instance.endereco?.toJson());
   writeNotNull('CONTATO', instance.contato?.toJson());
   writeNotNull('DATACADASTRO', instance.datacadastro?.toJson());
+  writeNotNull('contasreceber', instance.contasreceber?.toJson());
   return val;
 }
 
@@ -8484,6 +9592,46 @@ Map<String, dynamic> _$ItenspedidoUpdateManyWithWhereWithoutProdutoInputToJson(
       'data': instance.data.toJson(),
     };
 
+ContasreceberCreateManyClienteInput
+    _$ContasreceberCreateManyClienteInputFromJson(Map<String, dynamic> json) =>
+        ContasreceberCreateManyClienteInput(
+          codcontasreceber: json['CODCONTASRECEBER'] as int?,
+          codpedido: json['CODPEDIDO'] as int?,
+          dataemissao: _$JsonConverterFromJson<String, DateTime>(
+              json['DATAEMISSAO'], const DateTimeJsonConverter().fromJson),
+          datavencimento: _$JsonConverterFromJson<String, DateTime>(
+              json['DATAVENCIMENTO'], const DateTimeJsonConverter().fromJson),
+          valor: (json['VALOR'] as num?)?.toDouble(),
+          valorrestante: (json['VALORRESTANTE'] as num?)?.toDouble(),
+          statuspagamento: json['STATUSPAGAMENTO'] as String?,
+        );
+
+Map<String, dynamic> _$ContasreceberCreateManyClienteInputToJson(
+    ContasreceberCreateManyClienteInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('CODCONTASRECEBER', instance.codcontasreceber);
+  writeNotNull('CODPEDIDO', instance.codpedido);
+  writeNotNull(
+      'DATAEMISSAO',
+      _$JsonConverterToJson<String, DateTime>(
+          instance.dataemissao, const DateTimeJsonConverter().toJson));
+  writeNotNull(
+      'DATAVENCIMENTO',
+      _$JsonConverterToJson<String, DateTime>(
+          instance.datavencimento, const DateTimeJsonConverter().toJson));
+  writeNotNull('VALOR', instance.valor);
+  writeNotNull('VALORRESTANTE', instance.valorrestante);
+  writeNotNull('STATUSPAGAMENTO', instance.statuspagamento);
+  return val;
+}
+
 PedidoCreateManyClienteInput _$PedidoCreateManyClienteInputFromJson(
         Map<String, dynamic> json) =>
     PedidoCreateManyClienteInput(
@@ -8509,6 +9657,174 @@ Map<String, dynamic> _$PedidoCreateManyClienteInputToJson(
       _$JsonConverterToJson<String, DateTime>(
           instance.datapedido, const DateTimeJsonConverter().toJson));
   writeNotNull('VALORTOTAL', instance.valortotal);
+  return val;
+}
+
+ContasreceberUpdateWithoutClienteInput
+    _$ContasreceberUpdateWithoutClienteInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberUpdateWithoutClienteInput(
+          dataemissao: json['DATAEMISSAO'] == null
+              ? null
+              : DateTimeFieldUpdateOperationsInput.fromJson(
+                  json['DATAEMISSAO'] as Map<String, dynamic>),
+          datavencimento: json['DATAVENCIMENTO'] == null
+              ? null
+              : DateTimeFieldUpdateOperationsInput.fromJson(
+                  json['DATAVENCIMENTO'] as Map<String, dynamic>),
+          valor: json['VALOR'] == null
+              ? null
+              : FloatFieldUpdateOperationsInput.fromJson(
+                  json['VALOR'] as Map<String, dynamic>),
+          valorrestante: json['VALORRESTANTE'] == null
+              ? null
+              : FloatFieldUpdateOperationsInput.fromJson(
+                  json['VALORRESTANTE'] as Map<String, dynamic>),
+          statuspagamento: json['STATUSPAGAMENTO'] == null
+              ? null
+              : StringFieldUpdateOperationsInput.fromJson(
+                  json['STATUSPAGAMENTO'] as Map<String, dynamic>),
+          pedido: json['pedido'] == null
+              ? null
+              : PedidoUpdateOneWithoutContasreceberNestedInput.fromJson(
+                  json['pedido'] as Map<String, dynamic>),
+          pagamento: json['pagamento'] == null
+              ? null
+              : PagamentoUpdateManyWithoutContasreceberNestedInput.fromJson(
+                  json['pagamento'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$ContasreceberUpdateWithoutClienteInputToJson(
+    ContasreceberUpdateWithoutClienteInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('DATAEMISSAO', instance.dataemissao?.toJson());
+  writeNotNull('DATAVENCIMENTO', instance.datavencimento?.toJson());
+  writeNotNull('VALOR', instance.valor?.toJson());
+  writeNotNull('VALORRESTANTE', instance.valorrestante?.toJson());
+  writeNotNull('STATUSPAGAMENTO', instance.statuspagamento?.toJson());
+  writeNotNull('pedido', instance.pedido?.toJson());
+  writeNotNull('pagamento', instance.pagamento?.toJson());
+  return val;
+}
+
+ContasreceberUncheckedUpdateWithoutClienteInput
+    _$ContasreceberUncheckedUpdateWithoutClienteInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberUncheckedUpdateWithoutClienteInput(
+          codcontasreceber: json['CODCONTASRECEBER'] == null
+              ? null
+              : IntFieldUpdateOperationsInput.fromJson(
+                  json['CODCONTASRECEBER'] as Map<String, dynamic>),
+          codpedido: json['CODPEDIDO'] == null
+              ? null
+              : NullableIntFieldUpdateOperationsInput.fromJson(
+                  json['CODPEDIDO'] as Map<String, dynamic>),
+          dataemissao: json['DATAEMISSAO'] == null
+              ? null
+              : DateTimeFieldUpdateOperationsInput.fromJson(
+                  json['DATAEMISSAO'] as Map<String, dynamic>),
+          datavencimento: json['DATAVENCIMENTO'] == null
+              ? null
+              : DateTimeFieldUpdateOperationsInput.fromJson(
+                  json['DATAVENCIMENTO'] as Map<String, dynamic>),
+          valor: json['VALOR'] == null
+              ? null
+              : FloatFieldUpdateOperationsInput.fromJson(
+                  json['VALOR'] as Map<String, dynamic>),
+          valorrestante: json['VALORRESTANTE'] == null
+              ? null
+              : FloatFieldUpdateOperationsInput.fromJson(
+                  json['VALORRESTANTE'] as Map<String, dynamic>),
+          statuspagamento: json['STATUSPAGAMENTO'] == null
+              ? null
+              : StringFieldUpdateOperationsInput.fromJson(
+                  json['STATUSPAGAMENTO'] as Map<String, dynamic>),
+          pagamento: json['pagamento'] == null
+              ? null
+              : PagamentoUncheckedUpdateManyWithoutContasreceberNestedInput
+                  .fromJson(json['pagamento'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$ContasreceberUncheckedUpdateWithoutClienteInputToJson(
+    ContasreceberUncheckedUpdateWithoutClienteInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('CODCONTASRECEBER', instance.codcontasreceber?.toJson());
+  writeNotNull('CODPEDIDO', instance.codpedido?.toJson());
+  writeNotNull('DATAEMISSAO', instance.dataemissao?.toJson());
+  writeNotNull('DATAVENCIMENTO', instance.datavencimento?.toJson());
+  writeNotNull('VALOR', instance.valor?.toJson());
+  writeNotNull('VALORRESTANTE', instance.valorrestante?.toJson());
+  writeNotNull('STATUSPAGAMENTO', instance.statuspagamento?.toJson());
+  writeNotNull('pagamento', instance.pagamento?.toJson());
+  return val;
+}
+
+ContasreceberUncheckedUpdateManyWithoutContasreceberInput
+    _$ContasreceberUncheckedUpdateManyWithoutContasreceberInputFromJson(
+            Map<String, dynamic> json) =>
+        ContasreceberUncheckedUpdateManyWithoutContasreceberInput(
+          codcontasreceber: json['CODCONTASRECEBER'] == null
+              ? null
+              : IntFieldUpdateOperationsInput.fromJson(
+                  json['CODCONTASRECEBER'] as Map<String, dynamic>),
+          codpedido: json['CODPEDIDO'] == null
+              ? null
+              : NullableIntFieldUpdateOperationsInput.fromJson(
+                  json['CODPEDIDO'] as Map<String, dynamic>),
+          dataemissao: json['DATAEMISSAO'] == null
+              ? null
+              : DateTimeFieldUpdateOperationsInput.fromJson(
+                  json['DATAEMISSAO'] as Map<String, dynamic>),
+          datavencimento: json['DATAVENCIMENTO'] == null
+              ? null
+              : DateTimeFieldUpdateOperationsInput.fromJson(
+                  json['DATAVENCIMENTO'] as Map<String, dynamic>),
+          valor: json['VALOR'] == null
+              ? null
+              : FloatFieldUpdateOperationsInput.fromJson(
+                  json['VALOR'] as Map<String, dynamic>),
+          valorrestante: json['VALORRESTANTE'] == null
+              ? null
+              : FloatFieldUpdateOperationsInput.fromJson(
+                  json['VALORRESTANTE'] as Map<String, dynamic>),
+          statuspagamento: json['STATUSPAGAMENTO'] == null
+              ? null
+              : StringFieldUpdateOperationsInput.fromJson(
+                  json['STATUSPAGAMENTO'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic>
+    _$ContasreceberUncheckedUpdateManyWithoutContasreceberInputToJson(
+        ContasreceberUncheckedUpdateManyWithoutContasreceberInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('CODCONTASRECEBER', instance.codcontasreceber?.toJson());
+  writeNotNull('CODPEDIDO', instance.codpedido?.toJson());
+  writeNotNull('DATAEMISSAO', instance.dataemissao?.toJson());
+  writeNotNull('DATAVENCIMENTO', instance.datavencimento?.toJson());
+  writeNotNull('VALOR', instance.valor?.toJson());
+  writeNotNull('VALORRESTANTE', instance.valorrestante?.toJson());
+  writeNotNull('STATUSPAGAMENTO', instance.statuspagamento?.toJson());
   return val;
 }
 
@@ -8758,6 +10074,7 @@ ContasreceberCreateManyPedidoInput _$ContasreceberCreateManyPedidoInputFromJson(
         Map<String, dynamic> json) =>
     ContasreceberCreateManyPedidoInput(
       codcontasreceber: json['CODCONTASRECEBER'] as int?,
+      codcliente: json['CODCLIENTE'] as int,
       dataemissao: _$JsonConverterFromJson<String, DateTime>(
           json['DATAEMISSAO'], const DateTimeJsonConverter().fromJson),
       datavencimento: _$JsonConverterFromJson<String, DateTime>(
@@ -8778,6 +10095,7 @@ Map<String, dynamic> _$ContasreceberCreateManyPedidoInputToJson(
   }
 
   writeNotNull('CODCONTASRECEBER', instance.codcontasreceber);
+  val['CODCLIENTE'] = instance.codcliente;
   writeNotNull(
       'DATAEMISSAO',
       _$JsonConverterToJson<String, DateTime>(
@@ -8844,6 +10162,10 @@ ContasreceberUpdateWithoutPedidoInput
               ? null
               : StringFieldUpdateOperationsInput.fromJson(
                   json['STATUSPAGAMENTO'] as Map<String, dynamic>),
+          cliente: json['cliente'] == null
+              ? null
+              : ClienteUpdateOneRequiredWithoutContasreceberNestedInput
+                  .fromJson(json['cliente'] as Map<String, dynamic>),
           pagamento: json['pagamento'] == null
               ? null
               : PagamentoUpdateManyWithoutContasreceberNestedInput.fromJson(
@@ -8865,6 +10187,7 @@ Map<String, dynamic> _$ContasreceberUpdateWithoutPedidoInputToJson(
   writeNotNull('VALOR', instance.valor?.toJson());
   writeNotNull('VALORRESTANTE', instance.valorrestante?.toJson());
   writeNotNull('STATUSPAGAMENTO', instance.statuspagamento?.toJson());
+  writeNotNull('cliente', instance.cliente?.toJson());
   writeNotNull('pagamento', instance.pagamento?.toJson());
   return val;
 }
@@ -8877,6 +10200,10 @@ ContasreceberUncheckedUpdateWithoutPedidoInput
               ? null
               : IntFieldUpdateOperationsInput.fromJson(
                   json['CODCONTASRECEBER'] as Map<String, dynamic>),
+          codcliente: json['CODCLIENTE'] == null
+              ? null
+              : IntFieldUpdateOperationsInput.fromJson(
+                  json['CODCLIENTE'] as Map<String, dynamic>),
           dataemissao: json['DATAEMISSAO'] == null
               ? null
               : DateTimeFieldUpdateOperationsInput.fromJson(
@@ -8914,62 +10241,13 @@ Map<String, dynamic> _$ContasreceberUncheckedUpdateWithoutPedidoInputToJson(
   }
 
   writeNotNull('CODCONTASRECEBER', instance.codcontasreceber?.toJson());
+  writeNotNull('CODCLIENTE', instance.codcliente?.toJson());
   writeNotNull('DATAEMISSAO', instance.dataemissao?.toJson());
   writeNotNull('DATAVENCIMENTO', instance.datavencimento?.toJson());
   writeNotNull('VALOR', instance.valor?.toJson());
   writeNotNull('VALORRESTANTE', instance.valorrestante?.toJson());
   writeNotNull('STATUSPAGAMENTO', instance.statuspagamento?.toJson());
   writeNotNull('pagamento', instance.pagamento?.toJson());
-  return val;
-}
-
-ContasreceberUncheckedUpdateManyWithoutContasreceberInput
-    _$ContasreceberUncheckedUpdateManyWithoutContasreceberInputFromJson(
-            Map<String, dynamic> json) =>
-        ContasreceberUncheckedUpdateManyWithoutContasreceberInput(
-          codcontasreceber: json['CODCONTASRECEBER'] == null
-              ? null
-              : IntFieldUpdateOperationsInput.fromJson(
-                  json['CODCONTASRECEBER'] as Map<String, dynamic>),
-          dataemissao: json['DATAEMISSAO'] == null
-              ? null
-              : DateTimeFieldUpdateOperationsInput.fromJson(
-                  json['DATAEMISSAO'] as Map<String, dynamic>),
-          datavencimento: json['DATAVENCIMENTO'] == null
-              ? null
-              : DateTimeFieldUpdateOperationsInput.fromJson(
-                  json['DATAVENCIMENTO'] as Map<String, dynamic>),
-          valor: json['VALOR'] == null
-              ? null
-              : FloatFieldUpdateOperationsInput.fromJson(
-                  json['VALOR'] as Map<String, dynamic>),
-          valorrestante: json['VALORRESTANTE'] == null
-              ? null
-              : FloatFieldUpdateOperationsInput.fromJson(
-                  json['VALORRESTANTE'] as Map<String, dynamic>),
-          statuspagamento: json['STATUSPAGAMENTO'] == null
-              ? null
-              : StringFieldUpdateOperationsInput.fromJson(
-                  json['STATUSPAGAMENTO'] as Map<String, dynamic>),
-        );
-
-Map<String, dynamic>
-    _$ContasreceberUncheckedUpdateManyWithoutContasreceberInputToJson(
-        ContasreceberUncheckedUpdateManyWithoutContasreceberInput instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('CODCONTASRECEBER', instance.codcontasreceber?.toJson());
-  writeNotNull('DATAEMISSAO', instance.dataemissao?.toJson());
-  writeNotNull('DATAVENCIMENTO', instance.datavencimento?.toJson());
-  writeNotNull('VALOR', instance.valor?.toJson());
-  writeNotNull('VALORRESTANTE', instance.valorrestante?.toJson());
-  writeNotNull('STATUSPAGAMENTO', instance.statuspagamento?.toJson());
   return val;
 }
 
@@ -9233,7 +10511,8 @@ Map<String, dynamic> _$ClienteToJson(Cliente instance) => <String, dynamic>{
 Contasreceber _$ContasreceberFromJson(Map<String, dynamic> json) =>
     Contasreceber(
       codcontasreceber: json['CODCONTASRECEBER'] as int,
-      codpedido: json['CODPEDIDO'] as int,
+      codcliente: json['CODCLIENTE'] as int,
+      codpedido: json['CODPEDIDO'] as int?,
       dataemissao:
           const DateTimeJsonConverter().fromJson(json['DATAEMISSAO'] as String),
       datavencimento: const DateTimeJsonConverter()
@@ -9243,17 +10522,28 @@ Contasreceber _$ContasreceberFromJson(Map<String, dynamic> json) =>
       statuspagamento: json['STATUSPAGAMENTO'] as String,
     );
 
-Map<String, dynamic> _$ContasreceberToJson(Contasreceber instance) =>
-    <String, dynamic>{
-      'CODCONTASRECEBER': instance.codcontasreceber,
-      'CODPEDIDO': instance.codpedido,
-      'DATAEMISSAO': const DateTimeJsonConverter().toJson(instance.dataemissao),
-      'DATAVENCIMENTO':
-          const DateTimeJsonConverter().toJson(instance.datavencimento),
-      'VALOR': instance.valor,
-      'VALORRESTANTE': instance.valorrestante,
-      'STATUSPAGAMENTO': instance.statuspagamento,
-    };
+Map<String, dynamic> _$ContasreceberToJson(Contasreceber instance) {
+  final val = <String, dynamic>{
+    'CODCONTASRECEBER': instance.codcontasreceber,
+    'CODCLIENTE': instance.codcliente,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('CODPEDIDO', instance.codpedido);
+  val['DATAEMISSAO'] =
+      const DateTimeJsonConverter().toJson(instance.dataemissao);
+  val['DATAVENCIMENTO'] =
+      const DateTimeJsonConverter().toJson(instance.datavencimento);
+  val['VALOR'] = instance.valor;
+  val['VALORRESTANTE'] = instance.valorrestante;
+  val['STATUSPAGAMENTO'] = instance.statuspagamento;
+  return val;
+}
 
 Itenspedido _$ItenspedidoFromJson(Map<String, dynamic> json) => Itenspedido(
       coditenspedido: json['CODITENSPEDIDO'] as int,
@@ -9357,6 +10647,7 @@ ContasreceberGroupByOutputType _$ContasreceberGroupByOutputTypeFromJson(
         Map<String, dynamic> json) =>
     ContasreceberGroupByOutputType(
       codcontasreceber: json['CODCONTASRECEBER'] as int?,
+      codcliente: json['CODCLIENTE'] as int?,
       codpedido: json['CODPEDIDO'] as int?,
       dataemissao: _$JsonConverterFromJson<String, DateTime>(
           json['DATAEMISSAO'], const DateTimeJsonConverter().fromJson),
@@ -9378,6 +10669,7 @@ Map<String, dynamic> _$ContasreceberGroupByOutputTypeToJson(
   }
 
   writeNotNull('CODCONTASRECEBER', instance.codcontasreceber);
+  writeNotNull('CODCLIENTE', instance.codcliente);
   writeNotNull('CODPEDIDO', instance.codpedido);
   writeNotNull(
       'DATAEMISSAO',

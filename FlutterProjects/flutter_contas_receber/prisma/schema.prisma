@@ -8,27 +8,31 @@ datasource db {
 }
 
 model cliente {
-  CODCLIENTE   Int      @id @default(autoincrement())
-  NOME         String   @default("") @db.VarChar(500)
-  CPFCNPJ      String   @default("") @db.VarChar(20)
-  ENDERECO     String   @default("") @db.VarChar(500)
-  CONTATO      String   @default("") @db.VarChar(500)
-  DATACADASTRO DateTime @default(now()) @db.DateTime(0)
-  pedido       pedido[]
+  CODCLIENTE    Int             @id @default(autoincrement())
+  NOME          String          @default("") @db.VarChar(500)
+  CPFCNPJ       String          @default("") @db.VarChar(20)
+  ENDERECO      String          @default("") @db.VarChar(500)
+  CONTATO       String          @default("") @db.VarChar(500)
+  DATACADASTRO  DateTime        @default(now()) @db.DateTime(0)
+  contasreceber contasreceber[]
+  pedido        pedido[]
 }
 
 model contasreceber {
   CODCONTASRECEBER Int         @id @default(autoincrement())
-  CODPEDIDO        Int
+  CODCLIENTE       Int
+  CODPEDIDO        Int?
   DATAEMISSAO      DateTime    @default(now()) @db.DateTime(0)
   DATAVENCIMENTO   DateTime    @default(now()) @db.DateTime(0)
   VALOR            Float       @default(0)
   VALORRESTANTE    Float       @default(0)
   STATUSPAGAMENTO  String      @default("") @db.VarChar(1)
-  pedido           pedido      @relation(fields: [CODPEDIDO], references: [CODPEDIDO], onUpdate: Restrict, map: "FK_CONTASRECEBER_PEDIDO")
+  cliente          cliente     @relation(fields: [CODCLIENTE], references: [CODCLIENTE], onUpdate: Restrict, map: "FK_CONTASRECEBER_CLIENTE")
+  pedido           pedido?     @relation(fields: [CODPEDIDO], references: [CODPEDIDO], onDelete: Restrict, onUpdate: Restrict, map: "FK_CONTASRECEBER_PEDIDO")
   pagamento        pagamento[]
 
   @@index([CODPEDIDO], map: "FK_CONTASRECEBER_PEDIDO")
+  @@index([CODCLIENTE], map: "FK_CONTASRECEBER_CLIENTE")
 }
 
 model itenspedido {
